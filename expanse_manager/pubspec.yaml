@@ -1,0 +1,32 @@
+name: expanse_manager
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  intl: ^0.19.0
+  pie_chart: ^5.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets\Group 77.png
+  - assets\Mask group.png
+  - assets\Subtract.png
+  - assets\Subtract (1).png
+  - assets\icon1.png
+  - assets\Vector (1).png
+  - assets\Vector.png
+  - assets\Rectangle 782.png
+  - assets\Group 45.png
