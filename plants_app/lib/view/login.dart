@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:plants_app/view/verification.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
   @override
-  State createState() => _Login_state();
+  State createState() => _Loginstate();
 }
 
-class _Login_state extends State {
+class _Loginstate extends State {
   TextEditingController mobileno = TextEditingController();
   FocusNode mobilenofocus = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Center(
         child: Column(
           children: [
-            Container(
-              height: 40,
-              color: const Color.fromRGBO(123, 123, 123, 1),
+            const Spacer(
+              flex: 1,
             ),
-            Container(
-              height: 130,
-              width: 130,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.symmetric(horizontal: BorderSide()),
-              ),
-            ),
-            const SizedBox(
-              height: 140,
+            // Container(
+            //   height: 130,
+            //   width: 130,
+            //   decoration: const BoxDecoration(
+            //     border: Border.symmetric(horizontal: BorderSide()),
+            //   ),
+            //   alignment: Alignment.topLeft,
+            //   child: Image.asset("assets/Group 5314.png"),
+            // ),
+            const Spacer(
+              flex: 3,
             ),
             SizedBox(
               height: 90,
@@ -41,10 +43,10 @@ class _Login_state extends State {
                     fontSize: 34, fontWeight: FontWeight.w600),
               ),
             ),
-            const SizedBox(
-              height: 30,
+            const Spacer(
+              flex: 1,
             ),
-            Container(
+            SizedBox(
               height: 60,
               width: 350,
               child: TextField(
@@ -66,24 +68,44 @@ class _Login_state extends State {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 40,
+            const Spacer(
+              flex: 1,
             ),
             Container(
               height: 60,
               width: 360,
-              child: ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(
+              decoration: const BoxDecoration(
+                // gradient: LinearGradient(
+                //   colors: [
+                //     Color.fromRGBO(124, 180, 70, 1),
+                //     Color.fromRGBO(62, 102, 24, 1),
+                //   ],
+                // ),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color.fromRGBO(124, 180, 70, 1),
                     Color.fromRGBO(62, 102, 24, 1),
-                  ),
+                  ],
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
                   // shadowColor: MaterialStatePropertyAll(
                   //   Color.fromRGBO(124, 180, 70, 1),
                   // ),
                 ),
                 onPressed: () {
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(builder: (context) => const Login()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Verification()));
                 },
                 child: const Text(
                   "Log In",
@@ -95,22 +117,25 @@ class _Login_state extends State {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 60,
+            const Spacer(
+              flex: 2,
             ),
-            SizedBox(
+            Container(
               height: 350,
               width: 350,
-              // decoration: BoxDecoration(
-              //   border: Border.all(style: BorderStyle.solid),
-              // ),
+              margin: const EdgeInsets.only(
+                  bottom: 30, top: 10, left: 10, right: 10),
+              padding: const EdgeInsets.only(
+                  top: 10, bottom: 10, left: 10, right: 10),
+              decoration: const BoxDecoration(boxShadow: [
+                BoxShadow(
+                    blurRadius: 10,
+                    color: Color.fromARGB(255, 236, 235, 235),
+                    spreadRadius: 10)
+              ]),
               child: Image.asset(
                 "assets/plant img2.png",
               ),
-            ),
-            Container(
-              height: 45,
-              color: const Color.fromRGBO(123, 123, 123, 1),
             ),
           ],
         ),
