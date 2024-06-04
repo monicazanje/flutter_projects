@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:plants_app/view/productaddtocart.dart';
 import 'package:provider/provider.dart';
 import 'package:plants_app/controller/productcontroller.dart';
+import 'package:plants_app/model/plantsqimodel.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
@@ -15,6 +16,7 @@ class _DetailScreenState extends State {
   @override
   Widget build(BuildContext context) {
     var productdetail = Provider.of<ProductController>(context, listen: false);
+
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 242, 241, 241),
         body: Column(
@@ -220,6 +222,12 @@ class _DetailScreenState extends State {
                       ),
                       GestureDetector(
                         onTap: () {
+                          final Plant plants = Plant(
+                              mobileno: 1234567890,
+                              plantname: "Snake Plants",
+                              price: 350);
+                          insertOrder(plants);
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(

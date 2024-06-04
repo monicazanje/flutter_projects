@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plants_app/controller/productcontroller.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:plants_app/model/plantsqimodel.dart';
 
 class AddToCart extends StatefulWidget {
   const AddToCart({super.key});
@@ -11,8 +12,18 @@ class AddToCart extends StatefulWidget {
 
 class _AddToCartState extends State {
   @override
+  // void initState() {
+  //   super.initState();
+
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     Provider.of<ProductController>(context, listen: false).getOrderData();
+  //   });
+  // }
+
+  @override
   Widget build(BuildContext context) {
     var productdetail = Provider.of<ProductController>(context, listen: false);
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 148, 190, 93),
@@ -22,11 +33,12 @@ class _AddToCartState extends State {
                 GoogleFonts.dmSans(fontSize: 20, fontWeight: FontWeight.w700),
           ),
         ),
-        body: Consumer(
+        body: Consumer<ProductController>(
           builder: (context, value, child) {
             return ListView.builder(
-                itemCount: productdetail.imglist.length,
+                itemCount: plantlist.length,
                 itemBuilder: (context, index) {
+                  Plant plant = plantlist[index];
                   return Container(
                     height: 100,
                     width: 100,
@@ -43,7 +55,7 @@ class _AddToCartState extends State {
                           flex: 1,
                         ),
                         Text(
-                          "Snake Plants",
+                          plant.plantname,
                           style: GoogleFonts.dmSans(
                               fontSize: 20, fontWeight: FontWeight.w700),
                         ),
@@ -61,7 +73,7 @@ class _AddToCartState extends State {
                               ),
                             ),
                             Text(
-                              "₹ 350",
+                              "${plant.price}",
                               style: GoogleFonts.dmSans(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,

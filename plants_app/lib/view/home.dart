@@ -3,8 +3,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plants_app/view/detailscreen.dart';
 import 'package:plants_app/view/productaddtocart.dart';
-import 'package:provider/provider.dart';
-import 'package:plants_app/controller/productcontroller.dart';
+// import 'package:provider/provider.dart';
+// import 'package:plants_app/controller/productcontroller.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -22,7 +23,7 @@ class _HomeState extends State {
   ];
   @override
   Widget build(BuildContext context) {
-    var productdetail = Provider.of<ProductController>(context, listen: false);
+    //var productdetail = Provider.of<ProductController>(context, listen: false);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 242, 241, 241),
       body: SingleChildScrollView(
@@ -194,6 +195,7 @@ class _HomeState extends State {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
+                            
                             Navigator.push(
                               context,
                               MaterialPageRoute(
