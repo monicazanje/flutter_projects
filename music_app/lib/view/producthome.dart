@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/view/productgallery.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,7 +47,13 @@ class _HomePage extends State {
                     color: Color.fromRGBO(255, 46, 0, 1),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Gallery(),
+                        ));
+                  },
                   child: Text(
                     "Get Started",
                     style: GoogleFonts.inter(

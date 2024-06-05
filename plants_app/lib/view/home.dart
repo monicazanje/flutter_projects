@@ -6,7 +6,6 @@ import 'package:plants_app/view/productaddtocart.dart';
 // import 'package:provider/provider.dart';
 // import 'package:plants_app/controller/productcontroller.dart';
 
-
 class Home extends StatefulWidget {
   const Home({super.key});
   @override
@@ -187,7 +186,7 @@ class _HomeState extends State {
                   ),
                 ),
                 SizedBox(
-                  height: 230,
+                  height: 230, 
                   child: ListView.builder(
                       itemCount: 5,
                       scrollDirection: Axis.horizontal,
@@ -195,7 +194,6 @@ class _HomeState extends State {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            
                             Navigator.push(
                               context,
                               MaterialPageRoute(
