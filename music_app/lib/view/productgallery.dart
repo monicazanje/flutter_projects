@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Gallery extends StatefulWidget {
@@ -10,6 +8,7 @@ class Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,12 +136,15 @@ class _GalleryState extends State {
                   const Spacer(
                     flex: 1,
                   ),
-                  Text(
-                    "See all",
-                    style: GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: const Color.fromARGB(248, 228, 184, 24),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      "See all",
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: const Color.fromARGB(248, 228, 184, 24),
+                      ),
                     ),
                   ),
                 ],
@@ -223,12 +225,15 @@ class _GalleryState extends State {
                   const Spacer(
                     flex: 1,
                   ),
-                  Text(
-                    "See all",
-                    style: GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: const Color.fromARGB(248, 228, 184, 24),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      "See all",
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: const Color.fromARGB(248, 228, 184, 24),
+                      ),
                     ),
                   ),
                 ],
@@ -313,15 +318,46 @@ class _GalleryState extends State {
                               ),
                             ],
                           ),
+                          const Spacer(
+                            flex: 1,
+                          ),
                           GestureDetector(
-                            onTap:(){},
+                            onTap: () {},
                             child: Container(
-                              child: Column(children: [
-                                Container()
-                              ],),
+                              padding: const EdgeInsets.all(15),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 5),
+                                    height: 5,
+                                    width: 5,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color.fromRGBO(203, 200, 200, 1),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 5),
+                                    height: 5,
+                                    width: 5,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color.fromRGBO(203, 200, 200, 1),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 5),
+                                    height: 5,
+                                    width: 5,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color.fromRGBO(203, 200, 200, 1),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           )
-
                         ],
                       ),
                     );
@@ -329,6 +365,27 @@ class _GalleryState extends State {
             )
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.delete_outline),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+          ),
+        ],
+        currentIndex: selectedIndex,
+        selectedItemColor: Colors.amber[800],
       ),
     );
   }
