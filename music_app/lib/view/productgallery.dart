@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/view/producthome.dart';
+import 'package:music_app/view/productplayer.dart';
 
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
@@ -7,8 +9,9 @@ class Gallery extends StatefulWidget {
   State createState() => _GalleryState();
 }
 
+int selectedIndex = 0;
+
 class _GalleryState extends State {
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -174,9 +177,18 @@ class _GalleryState extends State {
                               Radius.circular(10),
                             ),
                           ),
-                          child: Image.asset(
-                            "assets/Rectangle 32.png",
-                            fit: BoxFit.fill,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Player(),
+                                  ));
+                            },
+                            child: Image.asset(
+                              "assets/Rectangle 32.png",
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -367,25 +379,84 @@ class _GalleryState extends State {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.black,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+              icon: Icon(
+                Icons.favorite,
+                color: Color.fromRGBO(203, 200, 200, 1),
+                size: 30,
+              ),
+              label: "Favorite"),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              color: Color.fromRGBO(203, 200, 200, 1),
+              size: 30,
+            ),
+            label: "Search",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-          ),
+              icon: Icon(
+                Icons.home,
+                color: Color.fromRGBO(203, 200, 200, 1),
+                size: 30,
+              ),
+              label: "Home"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-          ),
+              icon: Icon(
+                Icons.delete_outline,
+                color: Color.fromRGBO(203, 200, 200, 1),
+                size: 30,
+              ),
+              label: "Cart"),
           BottomNavigationBarItem(
-            icon: Icon(Icons.delete_outline),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-          ),
+              icon: Icon(
+                Icons.person,
+                color: Color.fromRGBO(203, 200, 200, 1),
+                size: 30,
+              ),
+              label: "Profile"),
         ],
         currentIndex: selectedIndex,
         selectedItemColor: Colors.amber[800],
+        onTap: (int i) {
+          setState(() {
+            selectedIndex = i;
+          });
+          if (selectedIndex == 0) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Player(),
+                ));
+          } else if (selectedIndex == 1) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Player(),
+                ));
+          } else if (selectedIndex == 2) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomePage(),
+                ));
+          } else if (selectedIndex == 3) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Player(),
+                ));
+          } else if (selectedIndex == 4) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Player(),
+                ));
+          }
+        },
       ),
     );
   }

@@ -1,0 +1,48 @@
+name: pet_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  carousel_slider: ^4.2.1
+  flutter:
+    sdk: flutter
+  http: ^1.2.1
+  path: ^1.9.0
+  provider: ^6.1.2
+  sqflite: ^2.3.3+1
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets\Group 12.png
+  - assets/Brandmark Logo.png
+  - assets\image.png
+  - assets\image (1).png
+  - assets\image (2).png
+  - assets\image (3).png
+  - assets\image (4).png
+  - assets\image (5).png
+  - assets\image (6).png
+  - assets\image (7).png
+  - assets\image (8).png
+  - assets\image (9).png
+  - assets\image (10).png
+  - assets\image (11).png
+  - assets\image (12).png
+  - assets\image (13).png
+  - assets\image (14).png
+  - assets\image (15).png
+  - assets\image (16).png
+  - assets\image (17).png
+  - assets\image (18).png
+  - assets\image (19).png
