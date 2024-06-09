@@ -79,7 +79,7 @@ class _TODoListState extends State {
     dateController.clear();
   }
 
-  void removeTasks(SingleModelList obj) {
+  void removeTasks(SingleModelList obj) { 
     setState(() {
       cardList.remove(obj);
     });
