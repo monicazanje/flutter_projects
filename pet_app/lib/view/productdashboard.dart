@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pet_app/view/productgrooming.dart';
+import 'package:pet_app/view/productnotification.dart';
+import 'package:pet_app/view/productshop.dart';
+import 'package:pet_app/view/producttraning.dart';
+import 'package:pet_app/view/productvaternary.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -59,7 +64,14 @@ class _DashBoardScreenState extends State {
                       flex: 1,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NotificationPage(),
+                          ),
+                        );
+                      },
                       child: const Icon(
                         Icons.notifications_outlined,
                         size: 24,
@@ -193,7 +205,14 @@ class _DashBoardScreenState extends State {
                 child: Row(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const VaternaryScreen(),
+                          ),
+                        );
+                      },
                       child: Column(
                         children: [
                           Container(
@@ -216,7 +235,14 @@ class _DashBoardScreenState extends State {
                       flex: 1,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const GroomingScreen(),
+                          ),
+                        );
+                      },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -240,7 +266,14 @@ class _DashBoardScreenState extends State {
                       flex: 1,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ShopScreen(),
+                          ),
+                        );
+                      },
                       child: Column(
                         children: [
                           Container(
@@ -263,7 +296,14 @@ class _DashBoardScreenState extends State {
                       flex: 1,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TraningScreen(),
+                          ),
+                        );
+                      },
                       child: Column(
                         children: [
                           Container(
