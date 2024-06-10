@@ -19,7 +19,7 @@ class _DashBoardScreenState extends State {
       backgroundColor: const Color.fromARGB(255, 252, 251, 251),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.only(left: 24, right: 24, top: 60),
+          margin: const EdgeInsets.only(left: 24, right: 24, top: 30),
           child: Column(
             children: [
               SizedBox(
@@ -91,7 +91,8 @@ class _DashBoardScreenState extends State {
                       color: const Color.fromRGBO(245, 146, 69, 1),
                       style: BorderStyle.solid,
                     ),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(10))),
                 child: Row(
                   children: [
                     SizedBox(
@@ -134,8 +135,8 @@ class _DashBoardScreenState extends State {
                 child: Row(
                   children: [
                     Container(
-                      padding:
-                          const EdgeInsets.only(top: 16, bottom: 16, left: 10),
+                      padding: const EdgeInsets.only(
+                          top: 16, bottom: 16, left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -395,8 +396,8 @@ class _DashBoardScreenState extends State {
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    color: const Color.fromRGBO(
+                                        255, 255, 255, 1),
                                   ),
                                 ),
                               ),
@@ -487,8 +488,8 @@ class _DashBoardScreenState extends State {
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    color: const Color.fromRGBO(
+                                        255, 255, 255, 1),
                                   ),
                                 ),
                               ),
