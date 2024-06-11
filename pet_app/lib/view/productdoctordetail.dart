@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DoctorDetailScreen extends StatefulWidget {
@@ -21,19 +22,24 @@ class _DoctorDetailScreenState extends State {
             margin: const EdgeInsets.only(left: 16, top: 55, right: 16),
             child: Row(
               children: [
-                Container(
-                  height: 24,
-                  width: 24,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    height: 24,
+                    width: 24,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Color.fromRGBO(245, 146, 69, 1),
-                    size: 16,
+                    child: const Icon(
+                      Icons.arrow_back_ios_new,
+                      color: Color.fromRGBO(245, 146, 69, 1),
+                      size: 16,
+                    ),
                   ),
                 ),
                 const Spacer(
@@ -53,9 +59,6 @@ class _DoctorDetailScreenState extends State {
               ],
             ),
           ),
-          // const SizedBox(
-          //   height: 30,
-          // ),
           const Spacer(
             flex: 1,
           ),
