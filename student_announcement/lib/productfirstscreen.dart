@@ -31,7 +31,7 @@ class _FirstScreenState extends State {
                 ),
               ),
             ),
-            StreamBuilder(
+            StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection("Student")
                     .snapshots(),
