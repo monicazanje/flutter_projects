@@ -19,3 +19,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+  - assets\Rectangle 1.png
+  - assets\Rectangle 5 (1).png
+  - assets\Rectangle 5.png
+  - assets\circle-profile-pic.jpg
