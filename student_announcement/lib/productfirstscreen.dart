@@ -85,7 +85,7 @@ class _FirstScreenState extends State {
                                               color: Colors.black),
                                         ),
                                         Text(
-                                          studentmap["title"],
+                                          "title",
                                           style: GoogleFonts.poppins(
                                               fontSize: 13,
                                               fontWeight: FontWeight.w400,
@@ -112,7 +112,7 @@ class _FirstScreenState extends State {
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           child: Text(
-                                            studentmap["description"],
+                                            "asdfghjyfgghn",
                                             style: GoogleFonts.poppins(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w400,

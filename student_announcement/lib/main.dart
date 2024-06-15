@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_announcement/productfirstscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:student_announcement/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
