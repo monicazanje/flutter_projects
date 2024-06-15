@@ -23,11 +23,28 @@ class _FirstScreenState extends State {
         body: Column(
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 30, bottom: 30),
-              child: const Center(
+              margin: const EdgeInsets.only(
+                  top: 30, bottom: 30, left: 30, right: 30),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 20,
+                      spreadRadius: 5,
+                      offset: Offset(0, 4),
+                      //color: Color.fromRGBO(22, 34, 51, 0.08),
+                      color: Color.fromARGB(255, 198, 223, 244)),
+                ],
+              ),
+              child: Center(
                 child: Text(
                   'Announcements',
-                  style: TextStyle(color: Colors.blue, fontSize: 30),
+                  //style: TextStyle(color: Colors.blue, fontSize: 30),
+                  style: GoogleFonts.poppins(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.blue),
                 ),
               ),
             ),
@@ -49,7 +66,11 @@ class _FirstScreenState extends State {
                               return Container(
                                 margin: const EdgeInsets.only(
                                     top: 20, bottom: 20, left: 20, right: 20),
-                                padding: const EdgeInsets.all(20),
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  top: 20,
+                                  bottom: 20,
+                                ),
                                 decoration: const BoxDecoration(
                                   color: Colors.white,
                                   borderRadius:
@@ -108,9 +129,9 @@ class _FirstScreenState extends State {
                                               color: Colors.black),
                                         ),
                                         Container(
-                                          width: 230,
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
+                                          width: 210,
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             studentmap['description'],
                                             style: GoogleFonts.poppins(
