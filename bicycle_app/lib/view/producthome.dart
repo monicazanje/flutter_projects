@@ -1,5 +1,6 @@
+import 'package:bicycle_app/view/productinfo.dart';
+import 'package:bicycle_app/view/productshop.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State {
+  int currentindex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -240,146 +242,72 @@ class _HomePageState extends State {
                   ],
                 ),
               ),
-              // Expanded(
-              //   child: GridView.builder(
-              //     scrollDirection: Axis.vertical,
-              //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              //       crossAxisCount: 2,
-              //     ),
-              //     itemCount: 6,
-              //     itemBuilder: (context, index) {
-              //       return GestureDetector(
-              //         onTap: () {},
-              //         child: Container(
-              //           height: 400,
-              //           margin: const EdgeInsets.only(
-              //               left: 10, right: 30, top: 10, bottom: 20),
-              //           decoration: BoxDecoration(
-              //               borderRadius: const BorderRadius.all(
-              //                 Radius.circular(20),
-              //               ),
-              //               color: Colors.grey.withOpacity(0.1),
-              //               boxShadow: [
-              //                 BoxShadow(
-              //                     spreadRadius: 2,
-              //                     color: Colors.black.withOpacity(0.5),
-              //                     offset: const Offset(10, 10),
-              //                     blurRadius: 3)
-              //               ]),
-              //           child: Container(
-              //             padding: const EdgeInsets.only(left: 10),
-              //             decoration: BoxDecoration(
-              //                 border: Border.all(
-              //                     color: Colors.white,
-              //                     style: BorderStyle.solid)),
-              //             child: Column(
-              //               crossAxisAlignment: CrossAxisAlignment.start,
-              //               children: [
-              //                 Container(
-              //                   padding: const EdgeInsets.only(
-              //                       left: 20, right: 20, top: 20),
-              //                   child: Image.asset(
-              //                     "assets/pngwing (1).png",
-              //                     scale: 1,
-              //                   ),
-              //                 ),
-              //                 Text(
-              //                   "Road Bike",
-              //                   textAlign: TextAlign.start,
-              //                   style: GoogleFonts.poppins(
-              //                     fontSize: 15,
-              //                     fontWeight: FontWeight.w500,
-              //                     color: Colors.white,
-              //                   ),
-              //                 ),
-              //                 Text(
-              //                   "Kiross",
-              //                   textAlign: TextAlign.start,
-              //                   style: GoogleFonts.poppins(
-              //                     fontSize: 20,
-              //                     fontWeight: FontWeight.w500,
-              //                     color: Colors.white,
-              //                   ),
-              //                 ),
-              //                 Text(
-              //                   "1,599.99",
-              //                   textAlign: TextAlign.start,
-              //                   style: GoogleFonts.poppins(
-              //                     fontSize: 15,
-              //                     fontWeight: FontWeight.w500,
-              //                     color: Colors.white,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // ),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    // mainAxisSpacing: 30,
-                    // crossAxisSpacing: 30,
+                    mainAxisSpacing: 5,
                   ),
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onLongPress: () {},
                       child: Container(
-                        margin: const EdgeInsets.all(10),
-                        alignment: Alignment.center,
+                        margin: const EdgeInsets.only(
+                            left: 20, bottom: 10, right: 20),
+                        padding: const EdgeInsets.only(left: 10),
                         decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                            color: Colors.grey.withOpacity(0.1),
-                            boxShadow: [
-                              BoxShadow(
-                                  spreadRadius: 2,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: const Offset(10, 10),
-                                  blurRadius: 3)
-                            ]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          color: Colors.black.withOpacity(0.3),
+                        ),
+                        child: Stack(
                           children: [
-                            SizedBox(
-                              height: 130,
-                              width: 100,
+                            Container(
+                              padding: const EdgeInsets.all(30),
                               child: Image.asset(
-                                'assets/pngwing (1).png',
-                                fit: BoxFit.fill,
+                                "assets/pngwing (1).png",
+                                scale: 1,
                               ),
                             ),
-                            Text(
-                              "Road Bike",
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
+                            Positioned(
+                              bottom: 50,
+                              left: 10,
+                              child: Text(
+                                "Road Bike",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color.fromRGBO(195, 195, 195, 1),
+                                ),
                               ),
                             ),
-                            Text(
-                              "Kiross",
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
+                            Positioned(
+                              bottom: 25,
+                              left: 10,
+                              child: Text(
+                                "Kiross",
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                            Text(
-                              "1,599.99",
-                              textAlign: TextAlign.start,
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
+                            Positioned(
+                              bottom: 10,
+                              left: 10,
+                              child: Text(
+                                "1,599.99",
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color.fromRGBO(195, 195, 195, 1),
+                                ),
                               ),
                             ),
                           ],
@@ -392,6 +320,89 @@ class _HomePageState extends State {
             ],
           )
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: 80,
+        width: 50,
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(36, 44, 59, 1),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const InfoPage();
+                }));
+              },
+              child: Container(
+                padding: const EdgeInsets.only(
+                    bottom: 15, left: 10, right: 10, top: 10),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Color.fromARGB(255, 76, 167, 247),
+                    Color.fromRGBO(75, 76, 237, 1),
+                  ], stops: [
+                    0.0,
+                    1.0
+                  ], transform: GradientRotation(70)),
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                      bottomLeft: Radius.elliptical(200, 50)),
+                ),
+                height: 50,
+                width: 50,
+                child: Image.asset(
+                  "assets/house.png",
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const ShopPage();
+                }));
+              },
+              child: Container(
+                padding: const EdgeInsets.only(
+                    bottom: 15, left: 10, right: 10, top: 10),
+                height: 50,
+                width: 50,
+                child: Image.asset(
+                  "assets/shop.png",
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.only(
+                    bottom: 15, left: 10, right: 10, top: 10),
+                height: 50,
+                width: 50,
+                child: Image.asset(
+                  "assets/vc.png",
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.only(
+                    bottom: 15, left: 10, right: 10, top: 10),
+                height: 50,
+                width: 50,
+                child: Image.asset(
+                  "assets/user.png",
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
