@@ -281,7 +281,7 @@ class _CategoryscreenState extends State {
           // mainAxisSpacing: 30,
           // crossAxisSpacing: 30,
         ),
-        itemCount: 4,
+        itemCount: 2,
         itemBuilder: (context, index) {
           return GestureDetector(
             onLongPress: () {
