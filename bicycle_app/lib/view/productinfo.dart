@@ -1,4 +1,4 @@
-
+import 'package:bicycle_app/view/productshop.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -171,7 +171,9 @@ class _InfoPageState extends State {
                     ),
                     SingleChildScrollView(
                         scrollDirection: Axis.vertical,
-                        child: Container(child: data()))
+                        child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.18,
+                            child: data()))
                   ],
                 ),
               ),
@@ -180,7 +182,7 @@ class _InfoPageState extends State {
               ),
               Container(
                 padding: const EdgeInsets.only(
-                    top: 15, left: 20, right: 20, bottom: 15),
+                    left: 20, right: 20, top: 10, bottom: 10),
                 decoration:
                     const BoxDecoration(color: Color.fromRGBO(36, 44, 59, 1)),
                 width: double.infinity,
@@ -198,7 +200,12 @@ class _InfoPageState extends State {
                       flex: 1,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const ShopPage();
+                        }));
+                      },
                       child: Container(
                         alignment: Alignment.center,
                         decoration: const BoxDecoration(
@@ -229,7 +236,8 @@ class _InfoPageState extends State {
                     ),
                   ],
                 ),
-              )
+              ),
+              
             ],
           ),
         ],

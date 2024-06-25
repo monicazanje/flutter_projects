@@ -251,7 +251,12 @@ class _HomePageState extends State {
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onLongPress: () {},
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const InfoPage();
+                        }));
+                      },
                       child: Container(
                         margin: const EdgeInsets.only(
                             left: 20, bottom: 10, right: 20),
@@ -332,11 +337,7 @@ class _HomePageState extends State {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const InfoPage();
-                }));
-              },
+              onTap: () {},
               child: Container(
                 padding: const EdgeInsets.only(
                     bottom: 15, left: 10, right: 10, top: 10),
