@@ -9,6 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_cache_manager: ^3.3.2
+  flutter_wallpaper_manager: ^0.0.4
+  google_fonts: ^6.2.1
+  http: ^1.2.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +22,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+  - assets\Rectangle 989.png
