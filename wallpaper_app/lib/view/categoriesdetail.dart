@@ -1,15 +1,24 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallpaper_app/controller/productcontroller.dart';
 import 'package:wallpaper_app/view/fullscreen.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  final String category;
+  const DetailScreen({super.key,required this.category});
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  late Future<List<String>> imagefuture;
+  void initState(){
+    super.initState();
+    imagefuture = ProductController.fetchImages(widget.category);
+  }
+  
+  final categories = ProductController.getCategoriesList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +29,8 @@ class _DetailScreenState extends State<DetailScreen> {
             width: MediaQuery.of(context).size.width * 1,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                  "assets/Rectangle 989.png",
-                ),
+                image: NetworkImage(
+                    "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg"),
                 fit: BoxFit.fill,
               ),
             ),
@@ -44,7 +52,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   left: 150,
                   top: 100,
                   child: Text(
-                    " Fashion",
+                    " Car",
                     style: GoogleFonts.poppins(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
@@ -58,36 +66,77 @@ class _DetailScreenState extends State<DetailScreen> {
           const SizedBox(
             height: 20,
           ),
+          // Expanded(
+          //   child: SizedBox(
+          //       child: GridView.builder(
+          //     itemCount: 10,
+          //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //         crossAxisCount: 2,
+          //         crossAxisSpacing: 3,
+          //         childAspectRatio: 2 / 3,
+          //         mainAxisSpacing: 3),
+          //     itemBuilder: (context, index) {
+          //       return GestureDetector(
+          //         onTap: () {
+          //           Navigator.push(context,
+          //               MaterialPageRoute(builder: (context) {
+          //             return const FullScreen(
+          //               imgurl:
+          //                   "https://img.freepik.com/free-photo/black-woman-trendy-grey-leather-jacket-posing-beige-background-studio-winter-autumn-fashion-look_273443-141.jpg",
+          //             );
+          //           }));
+          //         },
+          //         child: Container(
+          //           color: Colors.white,
+          //           child: Image.network(
+          //             "https://animal-images-api.ashutoshswamy397.repl.co/cat",
+          //             fit: BoxFit.cover,
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   )),
+          // ),
           Expanded(
-            child: SizedBox(
-                child: GridView.builder(
-              itemCount: 10,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 3 ,
-                  childAspectRatio: 2 / 3,
-                  mainAxisSpacing: 3),
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const FullScreen(
-                        imgurl:
-                            "https://img.freepik.com/free-photo/black-woman-trendy-grey-leather-jacket-posing-beige-background-studio-winter-autumn-fashion-look_273443-141.jpg",
-                      );
-                    }));
-                  },
-                  child: Container(
-                    color: Colors.white,
-                    child: Image.asset(
-                      "assets/Rectangle 989.png",
-                      fit: BoxFit.cover,
+            child: FutureBuilder<List<String>>(
+              future: imagefuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('Failed to load images'));
+                } else {
+                  List<String>? images = snapshot.data;
+                  return GridView.builder(
+                    itemCount: images!.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 3,
+                      childAspectRatio: 2 / 3,
+                      mainAxisSpacing: 3,
                     ),
-                  ),
-                );
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return FullScreen(
+                              imgurl: images[index],
+                            );
+                          }));
+                        },
+                        child: Container(
+                          color: Colors.white,
+                          child: Image.network(
+                            images[index],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }
               },
-            )),
+            ),
           ),
         ],
       ),
