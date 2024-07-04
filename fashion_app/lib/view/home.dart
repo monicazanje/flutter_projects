@@ -1,3 +1,4 @@
+import 'package:fashion_app/view/details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,54 +13,42 @@ class Data {
   final String img;
   final String name;
   Data({required this.img, required this.name, required this.price});
-  Map<String, dynamic> datamap() {
-    return {'img': img, 'name': name, 'price': price};
-  }
 }
 
 class _HomedingState extends State<Home> {
   int currentindex = 0;
-  List<Data> image = [
-    Data(
-        img: "assets/Rectangle 980 (1).png",
-        name: "Leather Coart",
-        price: 257.30),
-    Data(
-        img: "assets/Rectangle 980.png", name: "Tagerine Shirt", price: 240.32),
+  List image = [
+    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
     Data(
         img: "assets/Rectangle 981 (1).png",
         name: "Tagerine Shirt",
-        price: 126.73),
+        price: 240.32),
     Data(
-        img: "assets/Rectangle 981 (2).png",
+        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+    Data(
+        img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
         price: 257.80),
-    Data(
-        img: "assets/Rectangle 980 (1).png",
-        name: "Leather Coart",
-        price: 257.30),
-    Data(
-        img: "assets/Rectangle 980.png", name: "Tagerine Shirt", price: 240.32),
+    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
     Data(
         img: "assets/Rectangle 981 (1).png",
         name: "Tagerine Shirt",
-        price: 126.73),
+        price: 240.32),
     Data(
-        img: "assets/Rectangle 981 (2).png",
+        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+    Data(
+        img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
         price: 257.80),
-    Data(
-        img: "assets/Rectangle 980 (1).png",
-        name: "Leather Coart",
-        price: 257.30),
-    Data(
-        img: "assets/Rectangle 980.png", name: "Tagerine Shirt", price: 240.32),
+    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
     Data(
         img: "assets/Rectangle 981 (1).png",
         name: "Tagerine Shirt",
-        price: 126.73),
+        price: 240.32),
     Data(
-        img: "assets/Rectangle 981 (2).png",
+        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+    Data(
+        img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
         price: 257.80),
   ];
@@ -229,51 +218,70 @@ class _HomedingState extends State<Home> {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 3 / 4,
-                      crossAxisSpacing: 3),
+                      mainAxisSpacing: 4,
+                      crossAxisSpacing: 4),
                   scrollDirection: Axis.vertical,
                   itemCount: image.length,
                   itemBuilder: (context, index) {
-                    final dataMap = image[index].datamap();
-                    return Container(
-                      child: Column(
-                        children: [
-                          Stack(
-                            children: [
-                              // Container(
-                              //   height: 200,
-                              //   width: 200,
-                              //   decoration: const BoxDecoration(
-                              //     image: DecorationImage(
-                              //         image: AssetImage(
-                              //           "assets/Rectangle 980 (1).png",
-                              //         ),
-                              //         fit: BoxFit.fill),
-                              //   ),
-                              // ),
-                              AspectRatio(
-                                aspectRatio: 1.0,
-                                child: dataMap['img'],
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const Details();
+                        }));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        // decoration: BoxDecoration(
+                        //     border: Border.all(style: BorderStyle.solid)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
+                              children: [
+                                AspectRatio(
+                                  aspectRatio: 0.9,
+                                  child: Image.asset(
+                                    image[index].img,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: -5,
+                                  right: 30,
+                                  child: Image.asset(
+                                    "assets/Cart.png",
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    " \$${image[index].price}",
+                                    style: GoogleFonts.imprima(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    image[index].name,
+                                    style: GoogleFonts.imprima(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black),
+                                  ),
+                                ],
                               ),
-                              Positioned(
-                                child: Image.asset("assets/Cart.png"),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            "${dataMap['price']}",
-                            style: GoogleFonts.imprima(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                          Text(
-                            dataMap['name'],
-                            style: GoogleFonts.imprima(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
