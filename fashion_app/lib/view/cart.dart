@@ -1,5 +1,6 @@
 import 'package:fashion_app/view/checkout.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,8 +21,13 @@ class _CartState extends State<Cart> {
                 const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
             child: Row(
               children: [
-                const Icon(
-                  Icons.arrow_back_ios_new,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Icon(
+                    Icons.arrow_back_ios_new,
+                  ),
                 ),
                 const Spacer(
                   flex: 1,
@@ -282,12 +288,13 @@ class _CartState extends State<Cart> {
               child: Text(
                 "Checkout Now",
                 style: GoogleFonts.imprima(
-                    fontSize: 15,
+                    fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: Colors.white),
               ),
             ),
-          )
+          ),
+          
         ],
       ),
     );

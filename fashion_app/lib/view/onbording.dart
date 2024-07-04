@@ -74,9 +74,9 @@ class _OnbordingState extends State<Onbording> {
                   ),
                 ),
                 const SizedBox(
-                  width: 10,
+                  width: 20,
                 ),
-                Container(
+                SizedBox(
                   height: 62,
                   width: 150,
                   child: ElevatedButton(
