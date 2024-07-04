@@ -1,3 +1,4 @@
+import 'package:fashion_app/view/checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,6 +37,18 @@ class _CartState extends State<Cart> {
                   flex: 1,
                 ),
               ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            margin:
+                const EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 20),
+            child: Text(
+              "My Orders",
+              style: GoogleFonts.imprima(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black),
             ),
           ),
           Expanded(
@@ -174,9 +187,106 @@ class _CartState extends State<Cart> {
                   }),
             ),
           ),
-          const Divider(),
           Container(
-            height: 300,
+            margin: const EdgeInsets.only(left: 40, right: 40),
+            child: const Divider(
+              color: Color.fromRGBO(193, 192, 192, 1),
+            ),
+          ),
+          Container(
+            margin:
+                const EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 20),
+            child: Row(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Total Items (6)",
+                      style: GoogleFonts.imprima(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: const Color.fromRGBO(121, 119, 128, 1),
+                      ),
+                    ),
+                    Text(
+                      "Standard Delivery",
+                      style: GoogleFonts.imprima(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: const Color.fromRGBO(121, 119, 128, 1),
+                      ),
+                    ),
+                    Text(
+                      "Total Payment",
+                      style: GoogleFonts.imprima(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: const Color.fromRGBO(121, 119, 128, 1),
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "\$116.00",
+                      style: GoogleFonts.imprima(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      "\$12.00",
+                      style: GoogleFonts.imprima(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      "\$126.00",
+                      style: GoogleFonts.imprima(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 70,
+            width: 190,
+            margin: const EdgeInsets.only(
+                top: 20, bottom: 20, left: 100, right: 100),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Checkout();
+                }));
+              },
+              style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(
+                  Color.fromRGBO(255, 122, 0, 1),
+                ),
+              ),
+              child: Text(
+                "Checkout Now",
+                style: GoogleFonts.imprima(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white),
+              ),
+            ),
           )
         ],
       ),
