@@ -19,3 +19,32 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+  - assets\Group 10.png
+  - assets\Amazon.png
+  - assets\Facebook_f_logo_(2019) 1.png
+  - assets\Frame 4.png
+  - assets\g1520.png
+  - assets\Group 9.png
+  - assets\Icon (2).png
+  - assets\Icon (3).png
+  - assets\Icon (4).png
+  - assets\Icon (5).png
+  - assets\Icon (6).png
+  - assets\Icon (7).png
+  - assets\Icon (8).png
+  - assets\Icon (9).png
+  - assets\Icon (10).png
+  - assets\Icon (11).png
+  - assets\Icon.png
+  - assets\image 8.png
+  - assets\Jordan (JO).png
+  - assets\Netflix.png
+  - assets\Profile photo (3).png
+  - assets\Profile photo.png
+  - assets\The home depot.png
+  - assets\Topup.png
+  - assets\Group 4.png
+  - assets\Group 4 (1).png
+
+
