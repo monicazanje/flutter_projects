@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_app/view/logint&reg/createacc.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -29,7 +30,7 @@ class _LoginState extends State {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(top: 30),
-                    child: Image.asset("assets/Group 4 (1).png"),
+                    child: Image.asset("assets/Group 4 (2).png"),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 50, bottom: 80),
@@ -59,14 +60,12 @@ class _LoginState extends State {
                 const SizedBox(
                   height: 25,
                 ),
-                Container(
-                  child: Text(
-                    "Mobile number",
-                    style: GoogleFonts.sora(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: const Color.fromRGBO(31, 32, 41, 1),
-                    ),
+                Text(
+                  "Mobile number",
+                  style: GoogleFonts.sora(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: const Color.fromRGBO(31, 32, 41, 1),
                   ),
                 ),
                 Container(
@@ -105,6 +104,7 @@ class _LoginState extends State {
                         child: TextField(
                           controller: phonecontroller,
                           focusNode: phonefocus,
+                          keyboardType: TextInputType.phone,
                           decoration: const InputDecoration(
                             hintText: '7X-XXXXXXX',
                             hintStyle: TextStyle(
@@ -121,7 +121,16 @@ class _LoginState extends State {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const Createacc();
+                        },
+                      ),
+                    );
+                  },
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 40),
                     width: double.infinity,
@@ -142,7 +151,26 @@ class _LoginState extends State {
                     ),
                   ),
                 ),
-                const Divider(),
+                Row(
+                  children: [
+                    const Expanded(child: Divider()),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "or continue using   ",
+                      style: GoogleFonts.sora(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Expanded(child: Divider()),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 40, top: 40),
                   child: Row(
