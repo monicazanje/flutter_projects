@@ -15,6 +15,8 @@ class _HomeState extends State {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(39, 6, 133, 1),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(left: 16, right: 16, top: 50),
@@ -130,9 +132,7 @@ class _HomeState extends State {
                           ],
                         ),
                       ),
-                      const Spacer(
-                        flex: 1,
-                      ),
+                      const Spacer(flex: 1),
                       GestureDetector(
                         onTap: () {},
                         child: Column(
@@ -151,6 +151,11 @@ class _HomeState extends State {
                             ),
                           ],
                         ),
+                      ),
+                      const VerticalDivider(
+                        color: Color.fromARGB(255, 106, 170, 222),
+                        thickness: 1,
+                        width: 20,
                       ),
                       const Spacer(
                         flex: 1,
@@ -182,7 +187,152 @@ class _HomeState extends State {
                 )
               ],
             ),
-          )
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(left: 20, top: 20),
+              decoration: const BoxDecoration(color: Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Recent Transfers",
+                    style: GoogleFonts.sora(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                          bottom: 10,
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 64,
+                              width: 64,
+                              decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(178, 161, 228, 1),
+                                  shape: BoxShape.circle),
+                              child: const Icon(Icons.add),
+                            ),
+                            Text(
+                              "Add",
+                              style: GoogleFonts.sora(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 130,
+                          margin: const EdgeInsets.only(top: 10, right: 10),
+                          child: ListView.builder(
+                            itemCount: 5,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                margin: const EdgeInsets.all(10),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 64,
+                                      width: 64,
+                                      margin: const EdgeInsets.only(top: 10),
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle),
+                                      child: Image.asset(
+                                          "assets/Profile photo.png",
+                                          fit: BoxFit.cover),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Ali",
+                                      style: GoogleFonts.sora(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 10, right: 20),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Latest Transactions",
+                          style: GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Text(
+                            "View all",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: const Color.fromARGB(194, 62, 76, 43),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              decoration: const BoxDecoration(color: Colors.white),
+              child: ListView.builder(
+                itemCount: 7,
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin:
+                        const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 32,
+                          width: 32,
+                          child: Image.asset(
+                            "assets/Wallmart.png",
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
