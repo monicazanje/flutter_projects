@@ -1,0 +1,4 @@
+storePassword=Monikasz@29
+keyPassword=Monikasz@29
+keyAlias=upload
+storeFile=c:\Users\hp\upload-keystore.jks

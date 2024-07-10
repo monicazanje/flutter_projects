@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_app/view/main/navigator.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -208,6 +209,7 @@ class _HomeState extends State {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(
+                          top: 20,
                           bottom: 10,
                         ),
                         child: Column(
@@ -219,6 +221,9 @@ class _HomeState extends State {
                                   color: Color.fromRGBO(178, 161, 228, 1),
                                   shape: BoxShape.circle),
                               child: const Icon(Icons.add),
+                            ),
+                            const SizedBox(
+                              height: 8,
                             ),
                             Text(
                               "Add",
@@ -273,6 +278,9 @@ class _HomeState extends State {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Container(
                     margin: const EdgeInsets.only(left: 10, right: 20),
                     child: Row(
@@ -316,16 +324,90 @@ class _HomeState extends State {
                   return Container(
                     margin:
                         const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Container(
-                          height: 32,
-                          width: 32,
-                          child: Image.asset(
-                            "assets/Wallmart.png",
-                            fit: BoxFit.cover,
-                          ),
-                        )
+                        Row(
+                          children: [
+                            Container(
+                              height: 35,
+                              width: 35,
+                              child: Image.asset(
+                                "assets/Wallmart.png",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Walmart",
+                                  style: GoogleFonts.sora(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    color: const Color.fromRGBO(25, 25, 25, 1),
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Today",
+                                      style: GoogleFonts.sora(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        color: const Color.fromRGBO(
+                                            120, 131, 141, 1),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    Text(
+                                      "12:32",
+                                      style: GoogleFonts.sora(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                        color: const Color.fromRGBO(
+                                            120, 131, 141, 1),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.add,
+                              size: 12,
+                              color: Color.fromRGBO(40, 155, 79, 1),
+                            ),
+                            Text(
+                              "\$430.00",
+                              style: GoogleFonts.sora(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: const Color.fromRGBO(40, 155, 79, 1),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: Color.fromRGBO(83, 93, 102, 1),
+                                size: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
                       ],
                     ),
                   );
@@ -333,8 +415,10 @@ class _HomeState extends State {
               ),
             ),
           ),
+          const Divider(),
         ],
       ),
+      bottomNavigationBar: const BottomNavigator(),
     );
   }
 }
