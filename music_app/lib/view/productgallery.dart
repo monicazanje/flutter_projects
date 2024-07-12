@@ -1,7 +1,10 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/view/producthome.dart';
 import 'package:music_app/view/productplayer.dart';
+import 'package:carousel_slider/carousel_controller.dart';
 
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
@@ -10,6 +13,7 @@ class Gallery extends StatefulWidget {
 }
 
 int selectedIndex = 0;
+int currentindex = 0;
 
 class _GalleryState extends State {
   @override
@@ -19,110 +23,104 @@ class _GalleryState extends State {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              //alignment: Alignment.bottomLeft,
-              height: 450,
-
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/111 1.png'),
-                  fit: BoxFit.cover,
-                ),
-                // boxShadow: [
-                //   BoxShadow(
-                //     blurRadius: 10,
-                //     // offset: const Offset(0, 3),
-                //     color: Colors.black,
-                //   )
-                // ]
-              ),
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 100, left: 30),
-                alignment: Alignment.bottomLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
+            CarouselSlider.builder(
+              itemCount: 4,
+              itemBuilder: (context, index, realindex) {
+                return Stack(
                   children: [
-                    Text(
-                      'A.L.O.N.E',
-                      style: GoogleFonts.inter(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w600,
-                          color: const Color.fromRGBO(255, 255, 255, 1)),
-                    ),
-                    const SizedBox(
-                      height: 11,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                          top: 10, bottom: 10, left: 20, right: 20),
-                      decoration: const BoxDecoration(
-                          color: Color.fromRGBO(255, 46, 0, 1),
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Gallery(),
-                              ));
-                        },
-                        child: Text(
-                          "Subscribe",
-                          style: GoogleFonts.inter(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: const Color.fromARGB(255, 0, 0, 0)),
+                    Positioned(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/111 1.png'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
+                    Positioned(
+                      bottom: 100,
+                      left: 30,
+                      child: Text(
+                        'A.L.O.N.E',
+                        style: GoogleFonts.inter(
+                            fontSize: 36,
+                            fontWeight: FontWeight.w600,
+                            color: const Color.fromRGBO(255, 255, 255, 1)),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 50,
+                      left: 30,
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            top: 10, bottom: 10, left: 20, right: 20),
+                        decoration: const BoxDecoration(
+                            color: Color.fromRGBO(255, 46, 0, 1),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Gallery(),
+                                ));
+                          },
+                          child: Text(
+                            "Subscribe",
+                            style: GoogleFonts.inter(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: const Color.fromARGB(255, 0, 0, 0)),
+                          ),
+                        ),
+                      ),
+                    )
                   ],
-                ),
-              ),
+                );
+              },
+              options: CarouselOptions(
+                  autoPlay: true,
+                  aspectRatio: 10 / 9,
+                  viewportFraction: 1,
+                  initialPage: 0,
+                  autoPlayAnimationDuration: const Duration(seconds: 2),
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentindex = index;
+                    });
+                  }),
             ),
             const SizedBox(
               height: 15,
             ),
-            SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 7,
-                    width: 21,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < 4; i++)
+                  currentindex == i
+                      ? Container(
+                          height: 7,
+                          width: 21,
+                          margin: const EdgeInsets.all(5),
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              color: Color.fromRGBO(255, 61, 0, 1)),
+                        )
+                      : Container(
+                          height: 7,
+                          width: 7,
+                          margin: const EdgeInsets.all(2),
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              color: Color.fromRGBO(159, 159, 159, 1)),
                         ),
-                        color: Color.fromRGBO(255, 61, 0, 1)),
-                  ),
-                  const SizedBox(
-                    width: 3,
-                  ),
-                  Container(
-                    height: 7,
-                    width: 7,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: Color.fromRGBO(159, 159, 159, 1)),
-                  ),
-                  const SizedBox(
-                    width: 3,
-                  ),
-                  Container(
-                    height: 7,
-                    width: 7,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: Color.fromRGBO(159, 159, 159, 1)),
-                  )
-                ],
-              ),
+              ],
             ),
             Container(
               margin: const EdgeInsets.all(10),
@@ -152,9 +150,6 @@ class _GalleryState extends State {
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 15,
             ),
             SizedBox(
               height: 200,
@@ -201,7 +196,7 @@ class _GalleryState extends State {
                             style: GoogleFonts.inter(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: const Color.fromARGB(203, 200, 200, 24),
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -212,7 +207,7 @@ class _GalleryState extends State {
                             style: GoogleFonts.inter(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: const Color.fromARGB(203, 200, 200, 24),
+                              color: const Color.fromRGBO(134, 133, 133, 1),
                             ),
                           ),
                         )
@@ -251,9 +246,13 @@ class _GalleryState extends State {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
             SizedBox(
               child: ListView.builder(
                   itemCount: 5,
+                  padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -290,43 +289,42 @@ class _GalleryState extends State {
                                   ),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 15, right: 15),
-                                    child: Text(
-                                      "2020",
-                                      style: GoogleFonts.inter(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color.fromRGBO(
-                                            203, 200, 200, 1),
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "2020",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: const Color.fromRGBO(
+                                              134, 133, 133, 1),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Text(
-                                    "*",
-                                    style: GoogleFonts.inter(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: const Color.fromRGBO(
-                                          203, 200, 200, 1),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      "Easy Living",
-                                      style: GoogleFonts.inter(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color.fromRGBO(
-                                            203, 200, 200, 1),
+                                      TextSpan(
+                                        text: " * ",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: const Color.fromRGBO(
+                                              134, 133, 133, 1),
+                                        ),
                                       ),
-                                    ),
+                                      TextSpan(
+                                        text: "Easy Living",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: const Color.fromRGBO(
+                                              134, 133, 133, 1),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ],
                           ),
