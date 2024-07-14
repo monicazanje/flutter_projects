@@ -1,4 +1,7 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:music_app/view/music.dart';
 import 'package:music_app/view/productgallery.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/view/producthome.dart';
@@ -10,6 +13,15 @@ class Player extends StatefulWidget {
 }
 
 class _PlayerState extends State {
+  // Duration progress = const Duration(minutes: 1);
+  // Duration total = const Duration(minutes: 5, seconds: 30);
+  late AudioPlayer advancedplayer;
+  @override
+  void initState() {
+    super.initState();
+    advancedplayer = AudioPlayer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +29,7 @@ class _PlayerState extends State {
       body: Column(
         children: [
           Container(
-            height: 550,
+            height: 500,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/Rectangle 38.png'),
@@ -59,109 +71,112 @@ class _PlayerState extends State {
           const SizedBox(
             height: 20,
           ),
-          Container(
-            margin: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Text(
-                  "Dynamic Warmup |",
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                Text(
-                  "4 min",
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 6,
-            width: 370,
-            margin: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              border: Border.all(
-                style: BorderStyle.solid,
-                color: const Color.fromARGB(255, 177, 174, 174),
-              ),
-            ),
-            child: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Container(
-                  height: constraints.maxHeight * 0.5,
-                  width: constraints.maxWidth * 0.5,
-                  alignment: Alignment.centerLeft,
-                  decoration: const BoxDecoration(
-                      color: Color.fromRGBO(230, 154, 21, 1)),
-                );
-              },
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                const Spacer(
-                  flex: 1,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.repeat_one_rounded),
-                  iconSize: 20,
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.skip_previous_rounded),
-                  iconSize: 25,
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.play_circle_fill),
-                  iconSize: 50,
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.skip_next_rounded),
-                  iconSize: 25,
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.volume_up_rounded),
-                  iconSize: 24,
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-              ],
-            ),
+          // Container(
+          //   margin: const EdgeInsets.all(10),
+          //   child: Row(
+          //     children: [
+          //       Text(
+          //         "Dynamic Warmup |",
+          //         style: GoogleFonts.inter(
+          //           fontSize: 14,
+          //           fontWeight: FontWeight.w400,
+          //           color: const Color.fromRGBO(255, 255, 255, 1),
+          //         ),
+          //       ),
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //       Text(
+          //         "4 min",
+          //         style: GoogleFonts.inter(
+          //           fontSize: 15,
+          //           fontWeight: FontWeight.w400,
+          //           color: const Color.fromRGBO(255, 255, 255, 1),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // Container(
+          //   margin:
+          //       const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+          //   child: ProgressBar(
+          //     progress: progress,
+          //     total: total,
+          //     buffered: const Duration(milliseconds: 10000),
+          //     thumbColor: Colors.amber,
+          //     // baseBarColor: Colors.red,
+          //     bufferedBarColor: Colors.white,
+          //     progressBarColor: const Color.fromRGBO(230, 154, 21, 1),
+          //     baseBarColor: const Color.fromRGBO(217, 217, 217, 0.19),
+          //     timeLabelTextStyle: const TextStyle(color: Colors.white),
+          //     timeLabelLocation: TimeLabelLocation.below,
+
+          //     thumbRadius: 7,
+          //     onSeek: (duration) {
+          //       progress = duration;
+          //     },
+          //   ),
+          // ),
+          Music(
+            advancedplayer: advancedplayer,
           )
+          //*************************************************************************************************************************** */
+          // Container(
+          //   margin: const EdgeInsets.all(10),
+          //   child: Row(
+          //     children: [
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //       IconButton(
+          //         onPressed: () {},
+          //         icon: const Icon(Icons.repeat_one_rounded),
+          //         iconSize: 20,
+          //         color: const Color.fromRGBO(255, 255, 255, 1),
+          //       ),
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //       IconButton(
+          //         onPressed: () {},
+          //         icon: const Icon(Icons.skip_previous_rounded),
+          //         iconSize: 25,
+          //         color: const Color.fromRGBO(255, 255, 255, 1),
+          //       ),
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //       IconButton(
+          //         onPressed: () {},
+          //         icon: const Icon(Icons.play_circle_fill),
+          //         iconSize: 50,
+          //         color: const Color.fromRGBO(255, 255, 255, 1),
+          //       ),
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //       IconButton(
+          //         onPressed: () {},
+          //         icon: const Icon(Icons.skip_next_rounded),
+          //         iconSize: 25,
+          //         color: const Color.fromRGBO(255, 255, 255, 1),
+          //       ),
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //       IconButton(
+          //         onPressed: () {},
+          //         icon: const Icon(Icons.volume_up_rounded),
+          //         iconSize: 24,
+          //         color: const Color.fromRGBO(255, 255, 255, 1),
+          //       ),
+          //       const Spacer(
+          //         flex: 1,
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
