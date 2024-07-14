@@ -27,6 +27,11 @@ class _MusicState extends State<Music> {
     initPlayer();
   }
 
+  void _seek(Duration value) {
+    final position = value;
+    player.seek(position);
+  }
+
   void dispose() {
     super.dispose();
     player.dispose();
@@ -107,8 +112,9 @@ class _MusicState extends State<Music> {
               timeLabelLocation: TimeLabelLocation.below,
 
               thumbRadius: 7,
+              onDragUpdate: (duration) {},
               onSeek: (duration) {
-                _duration;
+                _seek(duration);
               },
             ),
           ),
