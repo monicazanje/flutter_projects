@@ -1,7 +1,7 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/view/music.dart';
+import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productgallery.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/view/producthome.dart';
@@ -120,7 +120,8 @@ class _PlayerState extends State {
           // ),
           Music(
             advancedplayer: advancedplayer,
-          )
+          ),
+
           //*************************************************************************************************************************** */
           // Container(
           //   margin: const EdgeInsets.all(10),
@@ -179,86 +180,87 @@ class _PlayerState extends State {
           // )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite,
-                color: Color.fromRGBO(203, 200, 200, 1),
-                size: 30,
-              ),
-              label: "Favorite"),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: Color.fromRGBO(203, 200, 200, 1),
-              size: 30,
-            ),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: Color.fromRGBO(203, 200, 200, 1),
-                size: 30,
-              ),
-              label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.delete_outline,
-                color: Color.fromRGBO(203, 200, 200, 1),
-                size: 30,
-              ),
-              label: "Cart"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Color.fromRGBO(203, 200, 200, 1),
-                size: 30,
-              ),
-              label: "Profile"),
-        ],
-        currentIndex: selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: (int i) {
-          setState(() {
-            selectedIndex = i;
-          });
-          if (selectedIndex == 0) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
-          } else if (selectedIndex == 1) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
-          } else if (selectedIndex == 2) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ));
-          } else if (selectedIndex == 3) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
-          } else if (selectedIndex == 4) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
-          }
-        },
-      ),
+      bottomNavigationBar: const NavigatorScreen(),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   type: BottomNavigationBarType.fixed,
+      //   backgroundColor: Colors.black,
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.favorite,
+      //           color: Color.fromRGBO(203, 200, 200, 1),
+      //           size: 30,
+      //         ),
+      //         label: "Favorite"),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.search,
+      //         color: Color.fromRGBO(203, 200, 200, 1),
+      //         size: 30,
+      //       ),
+      //       label: "Search",
+      //     ),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.home,
+      //           color: Color.fromRGBO(203, 200, 200, 1),
+      //           size: 30,
+      //         ),
+      //         label: "Home"),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.delete_outline,
+      //           color: Color.fromRGBO(203, 200, 200, 1),
+      //           size: 30,
+      //         ),
+      //         label: "Cart"),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(
+      //           Icons.person,
+      //           color: Color.fromRGBO(203, 200, 200, 1),
+      //           size: 30,
+      //         ),
+      //         label: "Profile"),
+      //   ],
+      //   currentIndex: selectedIndex,
+      //   selectedItemColor: Colors.amber[800],
+      //   onTap: (int i) {
+      //     setState(() {
+      //       selectedIndex = i;
+      //     });
+      //     if (selectedIndex == 0) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => const Player(),
+      //           ));
+      //     } else if (selectedIndex == 1) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => const Player(),
+      //           ));
+      //     } else if (selectedIndex == 2) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => const HomePage(),
+      //           ));
+      //     } else if (selectedIndex == 3) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => const Player(),
+      //           ));
+      //     } else if (selectedIndex == 4) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => const Player(),
+      //           ));
+      //     }
+      //   },
+      // ),
     );
   }
 }

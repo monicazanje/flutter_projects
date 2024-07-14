@@ -15,7 +15,7 @@ class _MusicState extends State<Music> {
   bool isPlaying = true;
   final player = AudioPlayer();
   late AssetSource path;
-  PlayerState _PlayerState = PlayerState.stopped;
+  // PlayerState _PlayerState = PlayerState.stopped;
   // Duration progress = const Duration(minutes: 1);
   // Duration total = const Duration(minutes: 5, seconds: 30);
 
@@ -31,7 +31,7 @@ class _MusicState extends State<Music> {
     final position = value;
     player.seek(position);
   }
-
+  @override
   void dispose() {
     super.dispose();
     player.dispose();
