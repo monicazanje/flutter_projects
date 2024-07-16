@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
 import "package:music_app/view/favoriteproduct.dart";
-import "package:music_app/view/productplayer.dart";
+// import "package:music_app/view/productplayer.dart";
 
 class NavigatorScreen extends StatefulWidget {
+  
   const NavigatorScreen({super.key});
   @override
   State<NavigatorScreen> createState() => _NavigatorState();

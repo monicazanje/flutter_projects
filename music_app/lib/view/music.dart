@@ -2,11 +2,18 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/model/itemlist.dart';
 
 class Music extends StatefulWidget {
   final AudioPlayer advancedplayer;
+  final List<ItemList> musicList;
+  final int currentIndex;
 
-  const Music({super.key, required this.advancedplayer});
+  const Music(
+      {super.key,
+      required this.advancedplayer,
+      required this.musicList,
+      required this.currentIndex});
   @override
   State<Music> createState() => _MusicState();
 }
@@ -31,6 +38,7 @@ class _MusicState extends State<Music> {
     final position = value;
     player.seek(position);
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -39,8 +47,9 @@ class _MusicState extends State<Music> {
 
   Future initPlayer() async {
     // player = AudioPlayer();
-    String audiopath = "audio/musics.mp3";
-    path = AssetSource(audiopath);
+    final currentsong = widget.musicList[widget.currentIndex];
+    // String audiopath = "audio/musics.mp3";
+    path = AssetSource(currentsong.songUrl);
 
     player.onDurationChanged.listen((Duration d) {
       setState(() => _duration = d);
@@ -66,6 +75,7 @@ class _MusicState extends State<Music> {
 
   @override
   Widget build(BuildContext context) {
+    final currentSong = widget.musicList[widget.currentIndex];
     return Container(
       margin: const EdgeInsets.all(10),
       child: Column(
@@ -75,7 +85,7 @@ class _MusicState extends State<Music> {
             child: Row(
               children: [
                 Text(
-                  "Dynamic Warmup |",
+                  currentSong.name,
                   style: GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,

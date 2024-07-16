@@ -1,12 +1,14 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:music_app/model/itemlist.dart';
 import 'package:music_app/view/music.dart';
 import 'package:music_app/view/navigator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/view/productgallery.dart';
 import 'package:path/path.dart';
 
 class Player extends StatefulWidget {
-  final List songList;
+  final List<ItemList> songList;
   int currentIndex;
   Player({super.key, required this.currentIndex, required this.songList});
   @override
@@ -34,7 +36,7 @@ class _PlayerState extends State<Player> {
             height: 500,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(currentSong["imageUrl"]!),
+                image: AssetImage(currentSong.imageUrl),
                 fit: BoxFit.fill,
               ),
             ),
@@ -45,14 +47,14 @@ class _PlayerState extends State<Player> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    currentSong['name']!,
+                    currentSong.name,
                     style: GoogleFonts.inter(
                         fontSize: 24,
                         fontWeight: FontWeight.w400,
                         color: const Color.fromRGBO(230, 154, 21, 1)),
                   ),
                   Text(
-                    currentSong['description']!,
+                    currentSong.description,
                     style: GoogleFonts.inter(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -122,6 +124,8 @@ class _PlayerState extends State<Player> {
           // ),
           Music(
             advancedplayer: advancedplayer,
+            musicList: widget.songList,
+            currentIndex: currentindex,
           ),
 
           //*************************************************************************************************************************** */

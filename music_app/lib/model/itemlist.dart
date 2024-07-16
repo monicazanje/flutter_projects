@@ -1,8 +1,23 @@
 import 'package:music_app/model/musicmodel.dart';
 
 class ItemList {
-  static List songsList = [
-    MusicModel(
+  final String name;
+  final String songUrl;
+  final String imageUrl;
+  final String year;
+  String description;
+  bool isFavorite;
+
+  ItemList({
+    required this.name,
+    required this.description,
+    required this.songUrl,
+    required this.imageUrl,
+    required this.year,
+    required this.isFavorite,
+  });
+  static List<ItemList> songsList = [
+    ItemList(
       name: "Suniya Suniya",
       description: "MixSingh",
       songUrl: "audio/Suniya Suniya Rata(PagalWorld.com.so).mp3",
@@ -10,7 +25,7 @@ class ItemList {
       year: "2024",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Balam Pichkari",
       description: "Pritam Chakraborty",
       songUrl: "audio/Balam Pichkari(PagalWorld.com.so).mp3",
@@ -18,7 +33,7 @@ class ItemList {
       year: "2013",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "alone",
       description: "Noonie Bao",
       songUrl: "audio/alone.mp3",
@@ -26,7 +41,7 @@ class ItemList {
       year: "2016",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Dead Inside",
       description: "NITA STRAUSS",
       songUrl: "audio/Dead_Inside_1.mp3",
@@ -34,7 +49,7 @@ class ItemList {
       year: "2015",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Faded",
       description: " Iselin Solheim",
       songUrl: "audio/Faded(PagalWorld.com.so).mp3",
@@ -42,7 +57,7 @@ class ItemList {
       year: "2015",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Gulabi Sadi",
       description: "Sanju Rathod",
       songUrl: "audio/Gulabi Sadi(PagalWorld.com.so).mp3",
@@ -50,7 +65,7 @@ class ItemList {
       year: "2024",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "joker-bgm",
       description: "	Hildur Guðnadóttir",
       songUrl: "audio/joker-bgm-52415.mp3",
@@ -58,7 +73,7 @@ class ItemList {
       year: "2019",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "money-heist",
       description: " Ciwan Haco",
       songUrl: "audio/money-heist-ringtone-128k-53891.mp3",
@@ -66,7 +81,7 @@ class ItemList {
       year: "2017",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Nadaniya",
       description: " Abhishek Ghatak",
       songUrl: "audio/Nadaniya(PagalWorld.com.so).mp3",
@@ -74,7 +89,7 @@ class ItemList {
       year: "2024",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "pirates",
       description: "Klaus Badelt",
       songUrl: "audio/pirates-163389.mp3",
@@ -82,7 +97,7 @@ class ItemList {
       year: "2003",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Tamil Comedy",
       description: "MixSingh",
       songUrl: "audio/tamil-comedy-bgm-for-reels-and-shorts-139304.mp3",
@@ -90,7 +105,7 @@ class ItemList {
       year: "2024",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Tu Hai Kahan",
       description: "MixSingh",
       songUrl: "audio/Tu Hai Kahan(PagalWorld.com.so).mp3",
@@ -98,7 +113,7 @@ class ItemList {
       year: "2021",
       isFavorite: false,
     ),
-    MusicModel(
+    ItemList(
       name: "Suniya Suniya",
       description: "MixSingh",
       songUrl: "audio/musics.mp3",

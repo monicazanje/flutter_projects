@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/model/itemlist.dart';
 import 'package:music_app/view/navigator.dart';
+import 'package:music_app/view/productplayer.dart';
 // import 'package:music_app/view/productplayer.dart';
 
 class Discography extends StatefulWidget {
-  final List discoList;
- 
+  final List<ItemList> discoList;
 
- const Discography({super.key,required this.discoList});
+  const Discography({super.key, required this.discoList});
   @override
   State<Discography> createState() => _DiscographyState();
 }
@@ -53,15 +54,21 @@ class _DiscographyState extends State<Discography> {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) => const Player(),
-                          //     ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Player(
+                                    currentIndex: index,
+                                    songList: widget.discoList),
+                              ));
                         },
-                        child: Image.asset(
-                          item["imageUrl"],
-                          fit: BoxFit.fill,
+                        child: SizedBox(
+                          height: 150,
+                          width: 150,
+                          child: Image.asset(
+                            item.imageUrl,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ),
@@ -73,7 +80,7 @@ class _DiscographyState extends State<Discography> {
                       width: 100,
                       margin: const EdgeInsets.only(left: 15),
                       child: Text(
-                        item["name"],
+                        item.name,
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -84,7 +91,7 @@ class _DiscographyState extends State<Discography> {
                     Container(
                       margin: const EdgeInsets.only(left: 15),
                       child: Text(
-                        item['year'],
+                        item.year,
                         style: GoogleFonts.inter(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/model/itemlist.dart';
 import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
+// import 'package:music_app/view/productplayer.dart';
 
 class Singles extends StatefulWidget {
-  List singleList;
-  Singles({super.key, required this.singleList});
+  final List<ItemList> singleList;
+  const Singles({super.key, required this.singleList});
   @override
   State<Singles> createState() => _SinglesState();
 }
@@ -42,11 +44,13 @@ class _SinglesState extends State<Singles> {
                     final item = widget.singleList[index];
                     return GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => const Player(),
-                        //     ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Player(
+                                  currentIndex: index,
+                                  songList: widget.singleList),
+                            ));
                       },
                       child: Container(
                         margin: const EdgeInsets.only(right: 15, bottom: 15),
@@ -64,10 +68,14 @@ class _SinglesState extends State<Singles> {
                                   Radius.circular(10),
                                 ),
                               ),
-                              child: Image.asset(
-                                item['imageUrl'],
-                                fit: BoxFit.fill,
-                                scale: 4,
+                              child: SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Image.asset(
+                                  item.imageUrl,
+                                  fit: BoxFit.fill,
+                                  scale: 4,
+                                ),
                               ),
                             ),
                             Column(
@@ -77,7 +85,7 @@ class _SinglesState extends State<Singles> {
                                 Container(
                                   margin: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    item['name'],
+                                    item.name,
                                     style: GoogleFonts.inter(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
@@ -93,7 +101,7 @@ class _SinglesState extends State<Singles> {
                                     TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: item['year'],
+                                          text: item.year,
                                           style: GoogleFonts.inter(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -111,7 +119,7 @@ class _SinglesState extends State<Singles> {
                                           ),
                                         ),
                                         TextSpan(
-                                          text: item['description'],
+                                          text: item.description,
                                           style: GoogleFonts.inter(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,

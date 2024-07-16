@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/model/musicmodel.dart';
+// import 'package:music_app/model/musicmodel.dart';
 import 'package:music_app/view/discography.dart';
 import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
@@ -17,7 +17,14 @@ class Gallery extends StatefulWidget {
 int currentindex = 0;
 
 class _GalleryState extends State {
-  List songs = ItemList.songsList;
+  List<ItemList> songs = ItemList.songsList;
+  List<dynamic> cursorlist = [
+    "assets/111 1.png",
+    "assets/Faded.png",
+    "assets/jocker.jpg",
+    "assets/music4.jpeg",
+    "assets/moneyh.jpg",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,15 +33,16 @@ class _GalleryState extends State {
         child: Column(
           children: [
             CarouselSlider.builder(
-              itemCount: 4,
+              itemCount: 5,
               itemBuilder: (context, index, realindex) {
+                final imageurl = cursorlist[index];
                 return Stack(
                   children: [
                     Positioned(
                       child: Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/111 1.png'),
+                            image: AssetImage(imageurl),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -100,7 +108,7 @@ class _GalleryState extends State {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 5; i++)
                   currentindex == i
                       ? Container(
                           height: 7,
