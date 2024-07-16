@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/model/musicmodel.dart';
+import 'package:music_app/view/discography.dart';
 import 'package:music_app/view/navigator.dart';
-import 'package:music_app/view/producthome.dart';
 import 'package:music_app/view/productplayer.dart';
-import 'package:carousel_slider/carousel_controller.dart';
+import 'package:music_app/view/singles.dart';
+import 'package:music_app/model/itemlist.dart';
 
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
@@ -12,10 +14,10 @@ class Gallery extends StatefulWidget {
   State createState() => _GalleryState();
 }
 
-int selectedIndex = 0;
 int currentindex = 0;
 
 class _GalleryState extends State {
+  List songs = ItemList.songsList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +140,12 @@ class _GalleryState extends State {
                     flex: 1,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Discography(discoList: songs);
+                      }));
+                    },
                     child: Text(
                       "See all",
                       style: GoogleFonts.inter(
@@ -154,7 +161,7 @@ class _GalleryState extends State {
             SizedBox(
               height: 200,
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: songs.length,
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -177,12 +184,18 @@ class _GalleryState extends State {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const Player(),
+                                    builder: (context) => Player(
+                                        currentIndex: index, songList: songs),
                                   ));
                             },
-                            child: Image.asset(
-                              "assets/Rectangle 32.png",
-                              fit: BoxFit.fill,
+                            child: SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.asset(
+                                songs[index].imageUrl,
+                                fit: BoxFit.fill,
+                                // scale: 4,
+                              ),
                             ),
                           ),
                         ),
@@ -192,7 +205,7 @@ class _GalleryState extends State {
                         Container(
                           margin: const EdgeInsets.only(left: 15),
                           child: Text(
-                            "Dead inside",
+                            songs[index].name,
                             style: GoogleFonts.inter(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -203,7 +216,7 @@ class _GalleryState extends State {
                         Container(
                           margin: const EdgeInsets.only(left: 15),
                           child: Text(
-                            "2020",
+                            songs[index].year,
                             style: GoogleFonts.inter(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -233,7 +246,16 @@ class _GalleryState extends State {
                     flex: 1,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Singles(singleList: songs);
+                          },
+                        ),
+                      );
+                    },
                     child: Text(
                       "See all",
                       style: GoogleFonts.inter(
@@ -256,119 +278,137 @@ class _GalleryState extends State {
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.only(
-                          left: 15, right: 15, bottom: 15),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
-                            child: Image.asset(
-                              "assets/Rectangle 34.png",
-                              fit: BoxFit.fill,
-                            ),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Player(
+                                  currentIndex: index, songList: songs);
+                            },
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 15),
-                                child: Text(
-                                  "We Are Chaos",
-                                  style: GoogleFonts.inter(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color:
-                                        const Color.fromRGBO(203, 200, 200, 1),
-                                  ),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                            left: 15, right: 15, bottom: 15),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
                                 ),
                               ),
-                              Container(
-                                margin:
-                                    const EdgeInsets.only(left: 15, right: 15),
-                                child: Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: "2020",
-                                        style: GoogleFonts.inter(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: const Color.fromRGBO(
-                                              134, 133, 133, 1),
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: " * ",
-                                        style: GoogleFonts.inter(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: const Color.fromRGBO(
-                                              134, 133, 133, 1),
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: "Easy Living",
-                                        style: GoogleFonts.inter(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: const Color.fromRGBO(
-                                              134, 133, 133, 1),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                              child: SizedBox(
+                                height: 70,
+                                width: 70,
+                                child: Image.asset(
+                                  songs[index].imageUrl,
+                                  fit: BoxFit.fill,
+                                  scale: 4,
                                 ),
                               ),
-                            ],
-                          ),
-                          const Spacer(
-                            flex: 1,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              padding: const EdgeInsets.all(15),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 5),
-                                    height: 5,
-                                    width: 5,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color.fromRGBO(203, 200, 200, 1),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 5),
-                                    height: 5,
-                                    width: 5,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color.fromRGBO(203, 200, 200, 1),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 5),
-                                    height: 5,
-                                    width: 5,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color.fromRGBO(203, 200, 200, 1),
-                                    ),
-                                  )
-                                ],
-                              ),
                             ),
-                          )
-                        ],
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    songs[index].name,
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: const Color.fromRGBO(
+                                          203, 200, 200, 1),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                      left: 15, right: 15),
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: songs[index].year,
+                                          style: GoogleFonts.inter(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color.fromRGBO(
+                                                134, 133, 133, 1),
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: " * ",
+                                          style: GoogleFonts.inter(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color.fromRGBO(
+                                                134, 133, 133, 1),
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: "Easy Living",
+                                          style: GoogleFonts.inter(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color.fromRGBO(
+                                                134, 133, 133, 1),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Spacer(
+                              flex: 1,
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                padding: const EdgeInsets.all(15),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 5),
+                                      height: 5,
+                                      width: 5,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(203, 200, 200, 1),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 5),
+                                      height: 5,
+                                      width: 5,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(203, 200, 200, 1),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 5),
+                                      height: 5,
+                                      width: 5,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(203, 200, 200, 1),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }),

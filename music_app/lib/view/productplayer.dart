@@ -2,17 +2,18 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/view/music.dart';
 import 'package:music_app/view/navigator.dart';
-import 'package:music_app/view/productgallery.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/view/producthome.dart';
+import 'package:path/path.dart';
 
 class Player extends StatefulWidget {
-  const Player({super.key});
+  final List songList;
+  int currentIndex;
+  Player({super.key, required this.currentIndex, required this.songList});
   @override
-  State createState() => _PlayerState();
+  State<Player> createState() => _PlayerState();
 }
 
-class _PlayerState extends State {
+class _PlayerState extends State<Player> {
   // Duration progress = const Duration(minutes: 1);
   // Duration total = const Duration(minutes: 5, seconds: 30);
   late AudioPlayer advancedplayer;
@@ -24,15 +25,16 @@ class _PlayerState extends State {
 
   @override
   Widget build(BuildContext context) {
+    final currentSong = widget.songList[widget.currentIndex];
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
         children: [
           Container(
             height: 500,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/Rectangle 38.png'),
+                image: AssetImage(currentSong["imageUrl"]!),
                 fit: BoxFit.fill,
               ),
             ),
@@ -43,14 +45,14 @@ class _PlayerState extends State {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'Alone in the Abyss',
+                    currentSong['name']!,
                     style: GoogleFonts.inter(
                         fontSize: 24,
                         fontWeight: FontWeight.w400,
                         color: const Color.fromRGBO(230, 154, 21, 1)),
                   ),
                   Text(
-                    'Youlakou',
+                    currentSong['description']!,
                     style: GoogleFonts.inter(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,

@@ -67,29 +67,29 @@ class _NavigatorState extends State<NavigatorScreen> {
                   builder: (context) => const FavoriteScreen(),
                 ));
           } else if (selectedIndex == 1) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const Player(currentIndex: se,),
+            //     ));
           } else if (selectedIndex == 2) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const Player(),
+            //     ));
           } else if (selectedIndex == 3) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const Player(),
+            //     ));
           } else if (selectedIndex == 4) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Player(),
-                ));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const Player(),
+            //     ));
           }
         },
     
