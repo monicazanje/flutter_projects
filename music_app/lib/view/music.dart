@@ -8,29 +8,33 @@ class Music extends StatefulWidget {
   final AudioPlayer advancedplayer;
   final List<ItemList> musicList;
   final int currentIndex;
+  final VoidCallback next;
+  final VoidCallback previous;
 
   const Music(
       {super.key,
       required this.advancedplayer,
       required this.musicList,
-      required this.currentIndex});
+      required this.currentIndex,
+      required this.next,
+      required this.previous});
   @override
   State<Music> createState() => _MusicState();
 }
 
 class _MusicState extends State<Music> {
   bool isPlaying = true;
-  final player = AudioPlayer();
+  late AudioPlayer player;
   late AssetSource path;
-  // PlayerState _PlayerState = PlayerState.stopped;
-  // Duration progress = const Duration(minutes: 1);
-  // Duration total = const Duration(minutes: 5, seconds: 30);
-
   Duration _duration = const Duration();
   Duration _position = const Duration();
+  int currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
+    player = widget.advancedplayer;
+    currentIndex = widget.currentIndex;
     initPlayer();
   }
 
@@ -46,10 +50,8 @@ class _MusicState extends State<Music> {
   }
 
   Future initPlayer() async {
-    // player = AudioPlayer();
-    final currentsong = widget.musicList[widget.currentIndex];
-    // String audiopath = "audio/musics.mp3";
-    path = AssetSource(currentsong.songUrl);
+    final currentsong1 = widget.musicList[currentIndex];
+    path = AssetSource(currentsong1.songUrl);
 
     player.onDurationChanged.listen((Duration d) {
       setState(() => _duration = d);
@@ -59,23 +61,44 @@ class _MusicState extends State<Music> {
     });
     player.onPlayerComplete.listen((_) {
       setState(() => _position = _duration);
+      widget.next;
     });
+
+    await player.setSource(path);
+    playPause();
   }
 
   void playPause() async {
-    if (isPlaying == false) {
+    if (isPlaying) {
       await player.pause();
-      isPlaying = true;
     } else {
       await player.play(path);
-      isPlaying = false;
     }
-    setState(() {});
+    setState(() {
+      isPlaying = !isPlaying;
+    });
+  }
+
+  void _nextSong() {
+    setState(() {
+      currentIndex = (currentIndex + 1) % widget.musicList.length;
+      widget.next;
+    });
+    initPlayer();
+  }
+
+  void _previousSong() {
+    setState(() {
+      currentIndex = (currentIndex - 1 + widget.musicList.length) %
+          widget.musicList.length;
+      widget.previous;
+    });
+    initPlayer();
   }
 
   @override
   Widget build(BuildContext context) {
-    final currentSong = widget.musicList[widget.currentIndex];
+    final currentSong = widget.musicList[currentIndex];
     return Container(
       margin: const EdgeInsets.all(10),
       child: Column(
@@ -114,15 +137,12 @@ class _MusicState extends State<Music> {
               total: _duration,
               buffered: const Duration(milliseconds: 10000),
               thumbColor: Colors.amber,
-              // baseBarColor: Colors.red,
               bufferedBarColor: Colors.white,
               progressBarColor: const Color.fromRGBO(230, 154, 21, 1),
               baseBarColor: const Color.fromRGBO(217, 217, 217, 0.19),
               timeLabelTextStyle: const TextStyle(color: Colors.white),
               timeLabelLocation: TimeLabelLocation.below,
-
               thumbRadius: 7,
-              onDragUpdate: (duration) {},
               onSeek: (duration) {
                 _seek(duration);
               },
@@ -143,7 +163,7 @@ class _MusicState extends State<Music> {
                 flex: 1,
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: _previousSong,
                 icon: const Icon(Icons.skip_previous_rounded),
                 iconSize: 25,
                 color: const Color.fromRGBO(255, 255, 255, 1),
@@ -152,17 +172,15 @@ class _MusicState extends State<Music> {
                 flex: 1,
               ),
               IconButton(
-                  onPressed: () {
-                    playPause();
-                  },
+                  onPressed: playPause,
                   icon: isPlaying
                       ? const Icon(
-                          Icons.play_circle_fill,
+                          Icons.pause_circle_filled,
                           size: 50,
                           color: Color.fromRGBO(255, 255, 255, 1),
                         )
                       : const Icon(
-                          Icons.pause_circle_filled,
+                          Icons.play_circle_fill,
                           size: 50,
                           color: Color.fromRGBO(255, 255, 255, 1),
                         )),
@@ -170,7 +188,7 @@ class _MusicState extends State<Music> {
                 flex: 1,
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: _nextSong,
                 icon: const Icon(Icons.skip_next_rounded),
                 iconSize: 25,
                 color: const Color.fromRGBO(255, 255, 255, 1),

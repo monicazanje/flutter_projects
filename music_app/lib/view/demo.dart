@@ -1,410 +1,198 @@
-// import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:music_app/view/discography.dart';
-// import 'package:music_app/view/navigator.dart';
-// import 'package:music_app/view/productplayer.dart';
-// import 'package:music_app/view/singles.dart';
-// import 'package:music_app/model/itemlist.dart';
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/model/itemlist.dart';
 
-// class Gallery extends StatefulWidget {
-//   const Gallery({super.key});
-//   @override
-//   State createState() => _GalleryState();
-// }
+class Music extends StatefulWidget {
+  final AudioPlayer advancedplayer;
+  final List<ItemList> musicList;
+  final int currentIndex;
+  final VoidCallback next;
+  final VoidCallback previous;
 
-// int currentindex = 0;
+  const Music({
+    super.key,
+    required this.advancedplayer,
+    required this.musicList,
+    required this.currentIndex,
+    required this.next,
+    required this.previous,
+  });
 
-// class _GalleryState extends State<Gallery> {
-//   List song=ItemList.songsList;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.black,
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [
-//             CarouselSlider.builder(
-//               itemCount: 4,
-//               itemBuilder: (context, index, realindex) {
-//                 return Stack(
-//                   children: [
-//                     Positioned(
-//                       child: Container(
-//                         decoration: const BoxDecoration(
-//                           image: DecorationImage(
-//                             image: AssetImage('assets/111 1.png'),
-//                             fit: BoxFit.cover,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: 100,
-//                       left: 30,
-//                       child: Text(
-//                         'A.L.O.N.E',
-//                         style: GoogleFonts.inter(
-//                             fontSize: 36,
-//                             fontWeight: FontWeight.w600,
-//                             color: const Color.fromRGBO(255, 255, 255, 1)),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: 50,
-//                       left: 30,
-//                       child: Container(
-//                         padding: const EdgeInsets.only(
-//                             top: 10, bottom: 10, left: 20, right: 20),
-//                         decoration: const BoxDecoration(
-//                             color: Color.fromRGBO(255, 46, 0, 1),
-//                             borderRadius:
-//                                 BorderRadius.all(Radius.circular(20))),
-//                         child: GestureDetector(
-//                           onTap: () {
-//                             Navigator.push(
-//                                 context,
-//                                 MaterialPageRoute(
-//                                   builder: (context) => const Gallery(),
-//                                 ));
-//                           },
-//                           child: Text(
-//                             "Subscribe",
-//                             style: GoogleFonts.inter(
-//                                 fontSize: 16,
-//                                 fontWeight: FontWeight.w600,
-//                                 color: const Color.fromARGB(255, 0, 0, 0)),
-//                           ),
-//                         ),
-//                       ),
-//                     )
-//                   ],
-//                 );
-//               },
-//               options: CarouselOptions(
-//                   autoPlay: true,
-//                   aspectRatio: 10 / 9,
-//                   viewportFraction: 1,
-//                   initialPage: 0,
-//                   autoPlayAnimationDuration: const Duration(seconds: 2),
-//                   onPageChanged: (index, reason) {
-//                     setState(() {
-//                       currentindex = index;
-//                     });
-//                   }),
-//             ),
-//             const SizedBox(
-//               height: 15,
-//             ),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 for (int i = 0; i < 4; i++)
-//                   currentindex == i
-//                       ? Container(
-//                           height: 7,
-//                           width: 21,
-//                           margin: const EdgeInsets.all(5),
-//                           decoration: const BoxDecoration(
-//                               borderRadius: BorderRadius.all(
-//                                 Radius.circular(10),
-//                               ),
-//                               color: Color.fromRGBO(255, 61, 0, 1)),
-//                         )
-//                       : Container(
-//                           height: 7,
-//                           width: 7,
-//                           margin: const EdgeInsets.all(2),
-//                           decoration: const BoxDecoration(
-//                               borderRadius: BorderRadius.all(
-//                                 Radius.circular(10),
-//                               ),
-//                               color: Color.fromRGBO(159, 159, 159, 1)),
-//                         ),
-//               ],
-//             ),
-//             Container(
-//               margin: const EdgeInsets.all(10),
-//               child: Row(
-//                 children: [
-//                   Text(
-//                     "Discography",
-//                     style: GoogleFonts.inter(
-//                       fontSize: 16,
-//                       fontWeight: FontWeight.w600,
-//                       color: const Color.fromRGBO(255, 61, 0, 1),
-//                     ),
-//                   ),
-//                   const Spacer(
-//                     flex: 1,
-//                   ),
-//                   GestureDetector(
-//                     onTap: () {
-//                       Navigator.push(context,
-//                           MaterialPageRoute(builder: (context) {
-//                         return const Discography();
-//                       }));
-//                     },
-//                     child: Text(
-//                       "See all",
-//                       style: GoogleFonts.inter(
-//                         fontSize: 14,
-//                         fontWeight: FontWeight.w400,
-//                         color: const Color.fromARGB(248, 228, 184, 24),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             SizedBox(
-//               height: 200,
-//               child: ListView.builder(
-//                 itemCount: songList.length,
-//                 scrollDirection: Axis.horizontal,
-//                 shrinkWrap: true,
-//                 itemBuilder: (context, index) {
-//                   final song = songs[index];
-//                   return GestureDetector(
-//                     onTap: () {},
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Container(
-//                           margin: const EdgeInsets.only(
-//                               top: 10, bottom: 10, left: 15, right: 15),
-//                           decoration: const BoxDecoration(
-//                             borderRadius: BorderRadius.all(
-//                               Radius.circular(10),
-//                             ),
-//                           ),
-//                           child: GestureDetector(
-//                             onTap: () {
-//                               Navigator.push(
-//                                 context,
-//                                 MaterialPageRoute(
-//                                   builder: (context) => const Player(),
-//                                 ),
-//                               );
-//                             },
-//                             child: Image.asset(
-//                               song.imageUrl,
-//                               fit: BoxFit.fill,
-//                             ),
-//                           ),
-//                         ),
-//                         const SizedBox(
-//                           height: 5,
-//                         ),
-//                         Container(
-//                           margin: const EdgeInsets.only(left: 15),
-//                           child: Text(
-//                             song.name,
-//                             style: GoogleFonts.inter(
-//                               fontSize: 12,
-//                               fontWeight: FontWeight.w600,
-//                               color: Colors.white,
-//                             ),
-//                           ),
-//                         ),
-//                         Container(
-//                           margin: const EdgeInsets.only(left: 15),
-//                           child: Text(
-//                             song.year,
-//                             style: GoogleFonts.inter(
-//                               fontSize: 12,
-//                               fontWeight: FontWeight.w600,
-//                               color: const Color.fromRGBO(134, 133, 133, 1),
-//                             ),
-//                           ),
-//                         )
-//                       ],
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ),
-//             Container(
-//               margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
-//               child: Row(
-//                 children: [
-//                   Text(
-//                     "Popular singles",
-//                     style: GoogleFonts.inter(
-//                       fontSize: 14,
-//                       fontWeight: FontWeight.w600,
-//                       color: const Color.fromRGBO(203, 200, 200, 1),
-//                     ),
-//                   ),
-//                   const Spacer(
-//                     flex: 1,
-//                   ),
-//                   GestureDetector(
-//                     onTap: () {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(
-//                           builder: (context) {
-//                             return const Singles();
-//                           },
-//                         ),
-//                       );
-//                     },
-//                     child: Text(
-//                       "See all",
-//                       style: GoogleFonts.inter(
-//                         fontSize: 14,
-//                         fontWeight: FontWeight.w400,
-//                         color: const Color.fromARGB(248, 228, 184, 24),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             const SizedBox(
-//               height: 20,
-//             ),
-//             SizedBox(
-//               child: ListView.builder(
-//                   itemCount: 5,
-//                   padding: EdgeInsets.zero,
-//                   scrollDirection: Axis.vertical,
-//                   shrinkWrap: true,
-//                   itemBuilder: (context, index) {
-//                     return GestureDetector(
-//                       onTap: () {
-//                         Navigator.push(
-//                           context,
-//                           MaterialPageRoute(
-//                             builder: (context) {
-//                               return const Player();
-//                             },
-//                           ),
-//                         );
-//                       },
-//                       child: Container(
-//                         margin: const EdgeInsets.only(
-//                             left: 15, right: 15, bottom: 15),
-//                         child: Row(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children: [
-//                             Container(
-//                               decoration: const BoxDecoration(
-//                                 borderRadius: BorderRadius.all(
-//                                   Radius.circular(10),
-//                                 ),
-//                               ),
-//                               child: Image.asset(
-//                                 "assets/Rectangle 34.png",
-//                                 fit: BoxFit.fill,
-//                               ),
-//                             ),
-//                             Column(
-//                               mainAxisAlignment: MainAxisAlignment.start,
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: [
-//                                 Container(
-//                                   margin: const EdgeInsets.only(left: 15),
-//                                   child: Text(
-//                                     "We Are Chaos",
-//                                     style: GoogleFonts.inter(
-//                                       fontSize: 12,
-//                                       fontWeight: FontWeight.w600,
-//                                       color: const Color.fromRGBO(
-//                                           203, 200, 200, 1),
-//                                     ),
-//                                   ),
-//                                 ),
-//                                 Container(
-//                                   margin: const EdgeInsets.only(
-//                                       left: 15, right: 15),
-//                                   child: Text.rich(
-//                                     TextSpan(
-//                                       children: [
-//                                         TextSpan(
-//                                           text: "2020",
-//                                           style: GoogleFonts.inter(
-//                                             fontSize: 12,
-//                                             fontWeight: FontWeight.w600,
-//                                             color: const Color.fromRGBO(
-//                                                 134, 133, 133, 1),
-//                                           ),
-//                                         ),
-//                                         TextSpan(
-//                                           text: " * ",
-//                                           style: GoogleFonts.inter(
-//                                             fontSize: 12,
-//                                             fontWeight: FontWeight.w600,
-//                                             color: const Color.fromRGBO(
-//                                                 134, 133, 133, 1),
-//                                           ),
-//                                         ),
-//                                         TextSpan(
-//                                           text: "Easy Living",
-//                                           style: GoogleFonts.inter(
-//                                             fontSize: 12,
-//                                             fontWeight: FontWeight.w600,
-//                                             color: const Color.fromRGBO(
-//                                                 134, 133, 133, 1),
-//                                           ),
-//                                         ),
-//                                       ],
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                             const Spacer(
-//                               flex: 1,
-//                             ),
-//                             GestureDetector(
-//                               onTap: () {},
-//                               child: Container(
-//                                 padding: const EdgeInsets.all(15),
-//                                 child: Column(
-//                                   children: [
-//                                     Container(
-//                                       margin: const EdgeInsets.only(top: 5),
-//                                       height: 5,
-//                                       width: 5,
-//                                       decoration: const BoxDecoration(
-//                                         shape: BoxShape.circle,
-//                                         color: Color.fromRGBO(203, 200, 200, 1),
-//                                       ),
-//                                     ),
-//                                     Container(
-//                                       margin: const EdgeInsets.only(top: 5),
-//                                       height: 5,
-//                                       width: 5,
-//                                       decoration: const BoxDecoration(
-//                                         shape: BoxShape.circle,
-//                                         color: Color.fromRGBO(203, 200, 200, 1),
-//                                       ),
-//                                     ),
-//                                     Container(
-//                                       margin: const EdgeInsets.only(top: 5),
-//                                       height: 5,
-//                                       width: 5,
-//                                       decoration: const BoxDecoration(
-//                                         shape: BoxShape.circle,
-//                                         color: Color.fromRGBO(203, 200, 200, 1),
-//                                       ),
-//                                     )
-//                                   ],
-//                                 ),
-//                               ),
-//                             )
-//                           ],
-//                         ),
-//                       ),
-//                     );
-//                   }),
-//             )
-//           ],
-//         ),
-//       ),
-//       bottomNavigationBar: const NavigatorScreen(),
-//     );
-//   }
-// }
+  @override
+  State<Music> createState() => _MusicState();
+}
+
+class _MusicState extends State<Music> {
+  bool isPlaying = true;
+  late AudioPlayer player;
+  late AssetSource path;
+  Duration _duration = const Duration();
+  Duration _position = const Duration();
+  int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    player = widget.advancedplayer;
+    currentIndex = widget.currentIndex;
+    initPlayer();
+  }
+
+  void _seek(Duration value) {
+    final position = value;
+    player.seek(position);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    player.dispose();
+  }
+
+  Future initPlayer() async {
+    final currentsong1 = widget.musicList[currentIndex];
+    path = AssetSource(currentsong1.songUrl);
+
+    player.onDurationChanged.listen((Duration d) {
+      setState(() => _duration = d);
+    });
+    player.onPositionChanged.listen((Duration p) {
+      setState(() => _position = p);
+    });
+    player.onPlayerComplete.listen((_) {
+      setState(() => _position = _duration);
+      widget.next();
+    });
+
+    await player.setSource(path);
+    playPause();
+  }
+
+  void playPause() async {
+    if (isPlaying) {
+      await player.pause();
+    } else {
+      await player.play(path);
+    }
+    setState(() {
+      isPlaying = !isPlaying;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final currentSong = widget.musicList[currentIndex];
+    return Container(
+      margin: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text(
+                  currentSong.name,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+                Text(
+                  "${_duration.inMinutes}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}",
+                  style: GoogleFonts.inter(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+            child: ProgressBar(
+              progress: _position,
+              total: _duration,
+              buffered: const Duration(milliseconds: 10000),
+              thumbColor: Colors.amber,
+              bufferedBarColor: Colors.white,
+              progressBarColor: const Color.fromRGBO(230, 154, 21, 1),
+              baseBarColor: const Color.fromRGBO(217, 217, 217, 0.19),
+              timeLabelTextStyle: const TextStyle(color: Colors.white),
+              timeLabelLocation: TimeLabelLocation.below,
+              thumbRadius: 7,
+              onSeek: (duration) {
+                _seek(duration);
+              },
+            ),
+          ),
+          Row(
+            children: [
+              const Spacer(
+                flex: 1,
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.repeat_one_rounded),
+                iconSize: 20,
+                color: const Color.fromRGBO(255, 255, 255, 1),
+              ),
+              const Spacer(
+                flex: 1,
+              ),
+              IconButton(
+                onPressed: widget.previous,
+                icon: const Icon(Icons.skip_previous_rounded),
+                iconSize: 25,
+                color: const Color.fromRGBO(255, 255, 255, 1),
+              ),
+              const Spacer(
+                flex: 1,
+              ),
+              IconButton(
+                  onPressed: playPause,
+                  icon: isPlaying
+                      ? const Icon(
+                          Icons.pause_circle_filled,
+                          size: 50,
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        )
+                      : const Icon(
+                          Icons.play_circle_fill,
+                          size: 50,
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        )),
+              const Spacer(
+                flex: 1,
+              ),
+              IconButton(
+                onPressed: widget.next,
+                icon: const Icon(Icons.skip_next_rounded),
+                iconSize: 25,
+                color: const Color.fromRGBO(255, 255, 255, 1),
+              ),
+              const Spacer(
+                flex: 1,
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.volume_up_rounded),
+                iconSize: 24,
+                color: const Color.fromRGBO(255, 255, 255, 1),
+              ),
+              const Spacer(
+                flex: 1,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

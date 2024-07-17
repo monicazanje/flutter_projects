@@ -173,67 +173,64 @@ class _GalleryState extends State {
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                              top: 10, bottom: 10, left: 15, right: 15),
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
+                  return Column(
+                    //mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                            top: 10, bottom: 10, left: 15, right: 15),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
                           ),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Player(
-                                        currentIndex: index, songList: songs),
-                                  ));
-                            },
-                            child: SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Image.asset(
-                                songs[index].imageUrl,
-                                fit: BoxFit.fill,
-                                // scale: 4,
-                              ),
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Player(
+                                      currentIndex: index, songList: songs),
+                                ));
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Image.asset(
+                              songs[index].imageUrl,
+                              fit: BoxFit.fill,
+                              // scale: 4,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 15),
-                          child: Text(
-                            songs[index].name,
-                            style: GoogleFonts.inter(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 15),
+                        child: Text(
+                          songs[index].name,
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 15),
-                          child: Text(
-                            songs[index].year,
-                            style: GoogleFonts.inter(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: const Color.fromRGBO(134, 133, 133, 1),
-                            ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 15),
+                        child: Text(
+                          songs[index].year,
+                          style: GoogleFonts.inter(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: const Color.fromRGBO(134, 133, 133, 1),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   );
                 },
               ),
@@ -428,3 +425,4 @@ class _GalleryState extends State {
     );
   }
 }
+

@@ -1,4 +1,4 @@
-import 'package:music_app/model/musicmodel.dart';
+// import 'package:music_app/model/musicmodel.dart';
 
 class ItemList {
   final String name;
@@ -121,6 +121,5 @@ class ItemList {
       year: "2024",
       isFavorite: false,
     ),
-
   ];
 }
