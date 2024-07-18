@@ -106,7 +106,9 @@ class _DiscographyState extends State<Discography> {
           },
         ),
       ),
-      bottomNavigationBar: const NavigatorScreen(),
+      bottomNavigationBar: NavigatorScreen(
+        favolist: widget.discoList,
+      ),
     );
   }
 }

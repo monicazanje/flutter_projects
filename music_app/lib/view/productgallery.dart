@@ -421,7 +421,7 @@ class _GalleryState extends State {
           ],
         ),
       ),
-      bottomNavigationBar: const NavigatorScreen(),
+      bottomNavigationBar: NavigatorScreen(favolist: songs,),
     );
   }
 }

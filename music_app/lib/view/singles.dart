@@ -182,7 +182,7 @@ class _SinglesState extends State<Singles> {
           ],
         ),
       ),
-      bottomNavigationBar: const NavigatorScreen(),
+      bottomNavigationBar:  NavigatorScreen(favolist:widget. singleList,),
     );
   }
 }

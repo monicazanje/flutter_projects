@@ -43,7 +43,7 @@ class _PlayerState extends State<Player> {
       body: Column(
         children: [
           Container(
-            height: 450,
+            height: 550,
             decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(currentSong.imageUrl),
@@ -83,7 +83,7 @@ class _PlayerState extends State<Player> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 50,
           ),
           Music(
             advancedplayer: advancedplayer,
@@ -94,7 +94,7 @@ class _PlayerState extends State<Player> {
           ),
         ],
       ),
-      bottomNavigationBar: const NavigatorScreen(),
+      bottomNavigationBar: NavigatorScreen(favolist:widget.songList ),
     );
   }
 }
