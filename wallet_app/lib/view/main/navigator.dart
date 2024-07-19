@@ -70,13 +70,15 @@ class _BottomNavigator extends State {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
       height: 62,
       width: MediaQuery.of(context).size.width * 0.7,
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(
           top: BorderSide(
             width: 1,
-            color: Color.fromRGBO(225, 227, 237, 1),
+            // color: Color.fromRGBO(225, 227, 237, 1),
           ),
         ),
       ),
@@ -134,11 +136,11 @@ class _BottomNavigator extends State {
         children: [
           // Container(
           //   height: 2,
-          //   decoration: BoxDecoration(color: Colors.white
-          //       // color: isselecte
-          //       //     ? const Color.fromRGBO(111, 69, 233, 1)
-          //       //     : const Color.fromRGBO(255, 255, 255, 1),
-          //       ),
+          //   decoration: BoxDecoration(
+          //     color: isselecte
+          //         ? const Color.fromRGBO(111, 69, 233, 1)
+          //         : const Color.fromRGBO(255, 255, 255, 1),
+          //   ),
           // ),
           const Spacer(),
           Image(

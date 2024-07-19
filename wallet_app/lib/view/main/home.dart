@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallet_app/view/main/navigator.dart';
 
@@ -415,7 +413,6 @@ class _HomeState extends State {
               ),
             ),
           ),
-          const Divider(),
         ],
       ),
       bottomNavigationBar: const BottomNavigator(),
