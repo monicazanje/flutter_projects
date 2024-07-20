@@ -53,7 +53,7 @@ class _BottomNavigator extends State {
             },
           ),
         );
-      case 4:
+      case 3:
         fillmore = true;
         Navigator.push(
           context,

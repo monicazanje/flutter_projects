@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallet_app/view/main/navigator.dart';
+import 'package:wallet_app/view/main/settings.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -56,7 +57,12 @@ class _HomeState extends State {
                   flex: 1,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const Settings();
+                    }));
+                  },
                   child: const Icon(
                     Icons.settings,
                     color: Colors.white,
