@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CardPay extends StatefulWidget{
+class CardPay extends StatefulWidget {
   const CardPay({super.key});
   @override
-  State createState()=>_CardPayState();
+  State createState() => _CardPayState();
 }
-class _CardPayState extends State{
+
+class _CardPayState extends State {
   @override
-  Widget build(BuildContext context){
-    return Scaffold();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.greenAccent,
+    );
   }
 }

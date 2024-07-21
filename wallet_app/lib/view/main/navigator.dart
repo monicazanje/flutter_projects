@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_app/view/cards/productcard.dart';
 import 'package:wallet_app/view/main/history.dart';
 import 'package:wallet_app/view/main/home.dart';
 import 'package:wallet_app/view/main/more.dart';
@@ -49,7 +50,7 @@ class _BottomNavigator extends State {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return const Card();
+              return const ProductCard();
             },
           ),
         );
