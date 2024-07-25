@@ -18,6 +18,10 @@ dependencies:
   percent_indicator: ^4.2.3
   audio_video_progress_bar: ^2.0.3
   audioplayers: ^6.0.0
+  firebase_core: ^3.2.0
+  firebase_storage: ^12.1.1
+  cloud_firestore: ^5.1.0
+  firebase_auth: ^5.1.2
 
 dev_dependencies:
   flutter_test:
@@ -47,5 +51,12 @@ flutter:
   - assets\suniyas.jpg
   - assets\yjhd.jpg
   - assets\imgprofile.png
+  - assets\Icon (8).png
+  - assets\Icon (9).png
+  - assets\Icon (10).png
+  - assets\Icon (11).png
+  - assets\equalizer-line.png
+
+
 
 

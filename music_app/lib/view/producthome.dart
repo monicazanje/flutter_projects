@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/view/login.dart';
 import 'package:music_app/view/productgallery.dart';
 
 class HomePage extends StatefulWidget {
@@ -78,7 +79,9 @@ class _HomePage extends State {
                       color: const Color.fromRGBO(255, 46, 0, 1),
                     )),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context){return const SignIn();}));
+                  },
                   child: Text(
                     "Continue with Email",
                     style: GoogleFonts.inter(

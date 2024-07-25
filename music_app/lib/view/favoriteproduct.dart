@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:music_app/model/itemlist.dart";
 
+// ignore: must_be_immutable
 class FavoriteScreen extends StatefulWidget {
   List<ItemList> favorite;
   FavoriteScreen({super.key, required this.favorite});

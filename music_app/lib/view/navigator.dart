@@ -5,6 +5,7 @@ import "package:music_app/view/productgallery.dart";
 import "package:music_app/view/profile.dart";
 // import "package:music_app/view/productplayer.dart";
 
+// ignore: must_be_immutable
 class NavigatorScreen extends StatefulWidget {
   List<ItemList> favolist;
   NavigatorScreen({super.key, required this.favolist});
