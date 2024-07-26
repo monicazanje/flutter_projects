@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_app/view/billpayments/paybill.dart';
 import 'package:wallet_app/view/main/navigator.dart';
 import 'package:wallet_app/view/main/staticcontent.dart';
+import 'package:wallet_app/view/transfer/transfer.dart';
 
 class More extends StatefulWidget {
   const More({super.key});
@@ -51,7 +53,16 @@ class _MoreState extends State {
                   ),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const Paybill();
+                          },
+                        ),
+                      );
+                    },
                     icon: const Icon(
                       Icons.arrow_forward_ios,
                       size: 15,
@@ -82,7 +93,12 @@ class _MoreState extends State {
                   ),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const Transfer();
+                      }));
+                    },
                     icon: const Icon(
                       Icons.arrow_forward_ios,
                       size: 15,
