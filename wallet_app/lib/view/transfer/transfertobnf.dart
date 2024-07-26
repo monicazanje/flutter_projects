@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_app/view/transfer/paymentfail.dart';
 
 class TransfertoBnf extends StatefulWidget {
   const TransfertoBnf({super.key});
@@ -170,6 +171,42 @@ class _TransfertoBnfState extends State<TransfertoBnf> {
                     ),
                   ),
                 ),
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const TransferFail();
+                  },
+                ),
+              );
+            },
+            child: Container(
+              height: 50,
+              margin: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
+              decoration: const BoxDecoration(color: Colors.amber),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.security_rounded,
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                  ),
+                  Text(
+                    "Secure payment",
+                    style: GoogleFonts.sora(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: const Color.fromRGBO(0, 0, 0, 1),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
