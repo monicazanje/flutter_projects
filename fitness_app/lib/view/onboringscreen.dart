@@ -1,5 +1,6 @@
 import 'package:fitness_app/view/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OnboringScreen extends StatefulWidget {
@@ -66,11 +67,40 @@ Health Is Number One''',
           ),
           Text(
             "There is no instant way to a healthy life",
-            style: GoogleFonts.sora(
+            style: GoogleFonts.lato(
               fontSize: 15,
               fontWeight: FontWeight.w400,
               color: const Color.fromRGBO(31, 32, 41, 1),
             ),
+          ),
+          Stack(
+            children: [
+              Container(
+                height: 7,
+                width: 65,
+                margin: const EdgeInsets.all(30),
+                decoration: BoxDecoration(
+                    border: Border.all(style: BorderStyle.solid),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: Colors.black),
+              ),
+              Positioned(
+                top: 30,
+                left: 20,
+                child: Container(
+                  height: 7,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        style: BorderStyle.solid,
+                        color: Colors.black,
+                        width: 1.5),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: const Color.fromRGBO(187, 242, 70, 1),
+                  ),
+                ),
+              ),
+            ],
           ),
           const Spacer(),
           GestureDetector(
@@ -85,7 +115,7 @@ Health Is Number One''',
               );
             },
             child: Container(
-              margin: const EdgeInsets.only(bottom: 40, left: 20, right: 20),
+              margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
               width: double.infinity,
               height: 60,
               decoration: BoxDecoration(
