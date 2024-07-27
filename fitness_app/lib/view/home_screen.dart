@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -69,7 +70,7 @@ class _HomeState extends State<HomeScreen> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 20, right: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: Text(
               "Popular Workouts",
               style: GoogleFonts.lato(
@@ -80,22 +81,30 @@ class _HomeState extends State<HomeScreen> {
             ),
           ),
           Expanded(
+            flex: 2,
             child: SizedBox(
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 4,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                    ),
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(style: BorderStyle.solid),
+                    //   color: Colors.pink,
+                    // ),
                     child: Stack(
+                      alignment: Alignment.topCenter,
                       children: [
                         ClipRRect(
                           borderRadius: const BorderRadius.all(
                             Radius.circular(20),
                           ),
-                          clipBehavior: Clip.antiAlias,
                           child: Container(
-                            height: 180,
+                            height: 200,
                             width: 280,
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(
@@ -228,47 +237,39 @@ Training''',
               ),
             ),
           ),
-          Text(
-            "  Today Plan",
-            style: GoogleFonts.lato(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: const Color.fromRGBO(31, 32, 41, 1),
+          Container(
+            margin: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
+            child: Text(
+              "Today Plan",
+              style: GoogleFonts.lato(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: const Color.fromRGBO(31, 32, 41, 1),
+              ),
             ),
           ),
-          Text(
-            "  Today Plan",
-            style: GoogleFonts.lato(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: const Color.fromRGBO(31, 32, 41, 1),
-            ),
-          ),
-          Text(
-            "  Today Plan",
-            style: GoogleFonts.lato(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: const Color.fromRGBO(31, 32, 41, 1),
-            ),
-          ),
-          Text(
-            "  Today Plan",
-            style: GoogleFonts.lato(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: const Color.fromRGBO(31, 32, 41, 1),
-            ),
-          ),
-          Text(
-            "  Today Plan",
-            style: GoogleFonts.lato(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: const Color.fromRGBO(31, 32, 41, 1),
-            ),
-          ),
-          const Spacer()
+          Expanded(
+              flex: 3,
+              child: SizedBox(
+                child: ListView.builder(
+                    itemCount: 5,
+                    padding: EdgeInsets.zero,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.all(10),
+                        height: 120,
+                        width: 400,
+                        color: Colors.amber,
+                      );
+                    }),
+              )),
+        ],
+      ),
+      bottomNavigationBar: NavigationBar(
+        destinations: [
+          NavigationDestination(icon: Icon(Icons.home), label: "home"),
+          NavigationDestination(icon: Icon(Icons.people), label: "profile")
         ],
       ),
     );
