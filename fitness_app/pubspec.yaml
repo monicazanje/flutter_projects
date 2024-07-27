@@ -1,0 +1,47 @@
+name: fitness_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_slidable: ^3.1.1
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  provider: ^6.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets\Box 5.png
+  - assets\Box 12.png
+  - assets\box4.png
+  - assets\Group 2.png
+  - assets\Group 5.png
+  - assets\Group 7.png
+  - assets\Home.png
+  - assets\ic_burn.png
+  - assets\ic_steps.png
+  - assets\icon (15).png
+  - assets\icon (16).png
+  - assets\Image (1).png
+  - assets\image (2).png
+  - assets\Image (3).png
+  - assets\Image (4).png
+  - assets\image 63 (1).png
+  - assets\image 63.png
+  - assets\image 64.png
+  - assets\image 67.png
+  - assets\image 70.png
+  - assets\Map.png
+  - assets\Profile.png
+
