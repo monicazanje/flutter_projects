@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:fitness_app/view/navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,6 +14,7 @@ class _HomeState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 245, 244, 244),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,7 +238,7 @@ Training''',
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
+            margin: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
             child: Text(
               "Today Plan",
               style: GoogleFonts.lato(
@@ -252,26 +252,105 @@ Training''',
               flex: 3,
               child: SizedBox(
                 child: ListView.builder(
-                    itemCount: 5,
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.all(10),
-                        height: 120,
-                        width: 400,
-                        color: Colors.amber,
-                      );
-                    }),
+                  itemCount: 5,
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: const EdgeInsets.only(
+                          left: 20, right: 20, top: 10, bottom: 10),
+                      decoration: const BoxDecoration(
+                          // border: Border.all(style: BorderStyle.solid),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white),
+                      child: Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                              child: Image.asset("assets/pushup.png"),
+                            ),
+                          ),
+                          Positioned(
+                            left: 125,
+                            top: 20,
+                            child: Text(
+                              "Push Up",
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(31, 32, 41, 1),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 125,
+                            top: 45,
+                            child: Text(
+                              "100 Push up a day",
+                              style: GoogleFonts.poppins(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: const Color.fromRGBO(25, 33, 38, 0.5),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 125,
+                            top: 85,
+                            child: LinearPercentIndicator(
+                              width: 230,
+                              lineHeight: 20,
+                              percent: 0.5,
+                              padding: EdgeInsets.zero,
+                              center: Text(
+                                "50%",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color.fromRGBO(31, 32, 41, 1),
+                                ),
+                              ),
+                              progressColor:
+                                  const Color.fromRGBO(187, 242, 70, 1),
+                              backgroundColor:
+                                  const Color.fromRGBO(242, 242, 242, 1),
+                            ),
+                          ),
+                          Positioned(
+                            right: 25,
+                            top: 0,
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 5, bottom: 5),
+                              decoration: const BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10)),
+                              ),
+                              child: Text(
+                                "Intermediate",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color.fromRGBO(251, 251, 253, 1),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               )),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        destinations: [
-          NavigationDestination(icon: Icon(Icons.home), label: "home"),
-          NavigationDestination(icon: Icon(Icons.people), label: "profile")
-        ],
-      ),
+      bottomNavigationBar:const  BottomNavigator()
     );
   }
 }

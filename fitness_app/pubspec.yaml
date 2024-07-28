@@ -7,11 +7,13 @@ environment:
   sdk: '>=3.3.1 <4.0.0'
 
 dependencies:
+  advanced_icon: ^0.1.2
   flutter:
     sdk: flutter
   flutter_slidable: ^3.1.1
   google_fonts: ^6.2.1
   http: ^1.2.2
+  percent_indicator: ^4.2.3
   provider: ^6.1.2
 
 dev_dependencies:
@@ -44,4 +46,7 @@ flutter:
   - assets\image 70.png
   - assets\Map.png
   - assets\Profile.png
+  - assets\situp.png
+  - assets\pushup.png
+  - assets\kneepushup.png
 
