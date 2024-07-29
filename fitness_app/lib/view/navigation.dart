@@ -1,5 +1,3 @@
-
-
 import 'package:fitness_app/view/activity_screen.dart';
 import 'package:fitness_app/view/exploral_screen.dart';
 import 'package:fitness_app/view/home_screen.dart';
@@ -35,6 +33,7 @@ class _BottomNavigator extends State {
             },
           ),
         );
+
       case 1:
         fillhistory = true;
         Navigator.push(
@@ -45,6 +44,7 @@ class _BottomNavigator extends State {
             },
           ),
         );
+
       case 2:
         fillcard = true;
 
@@ -56,6 +56,7 @@ class _BottomNavigator extends State {
             },
           ),
         );
+
       case 3:
         fillmore = true;
         Navigator.push(
@@ -70,6 +71,16 @@ class _BottomNavigator extends State {
     }
   }
 
+  void backstate() {
+    setState(() {
+      _selectindex = 0;
+      fillhome = false;
+      fillhistory = false;
+      fillcard = false;
+      fillmore = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,7 +88,14 @@ class _BottomNavigator extends State {
       height: 62,
       width: MediaQuery.of(context).size.width * 0.7,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: Colors.black,
+        borderRadius: BorderRadius.all(Radius.circular(40)),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black, offset: Offset(20, 20), blurRadius: 10),
+          BoxShadow(
+              color: Colors.black, blurRadius: 10, offset: Offset(-20, 20)),
+        ],
         border: Border(
           top: BorderSide(
             width: 1,
@@ -87,41 +105,41 @@ class _BottomNavigator extends State {
       ),
       child: Row(
         children: [
-          // fillhome
-          //     ? navigationData(0, "assets/home-3-line.png", "Home")
-          //     : navigationData(0, "assets/home-3-fill.png", "Home"),
-          // const Spacer(),
-          // fillhistory
-          //     ? navigationData(1, "assets/file-list-3-line.png", "History")
-          //     : navigationData(1, "assets/file-list-3-fill.png", "History"),
-          // const Spacer(),
-          // fillcard
-          //     ? navigationData(2, "assets/bank-card-2-line.png", "Card")
-          //     : navigationData(2, "assets/bank-card-2-fill.png", "Card"),
-          // const Spacer(),
-          // fillmore
-          //     ? navigationData(3, "assets/wallet-line.png", "More")
-          //     : navigationData(3, "assets/wallet-fill.png", "More"),
-          navigationData(0, "assets/home-3-line.png", "Home"),
-          const Spacer(
-            flex: 1,
-          ),
-          navigationData(1, "assets/file-list-3-line.png", "History"),
-          const Spacer(
-            flex: 1,
-          ),
-          navigationData(2, "assets/bank-card-2-line.png", "Card"),
-          const Spacer(
-            flex: 1,
-          ),
-          navigationData(3, "assets/wallet-line.png", "More")
+          fillhome
+              ? navigationData(0, "assets/Home.png", "Home")
+              : navigationImg(0, "assets/Home.png"),
+          const Spacer(),
+          fillhistory
+              ? navigationData(1, "assets/Box 5.png", "History")
+              : navigationImg(1, "assets/Box 5.png"),
+          const Spacer(),
+          fillcard
+              ? navigationData(2, "assets/box4.png", "Card")
+              : navigationImg(2, "assets/box4.png"),
+          const Spacer(),
+          fillmore
+              ? navigationData(3, "assets/Profile.png", "More")
+              : navigationImg(3, "assets/Profile.png"),
+          // navigationImg(0, "assets/Home.png"),
+          // const Spacer(
+          //   flex: 1,
+          // ),
+          // navigationImg(1, "assets/Box 5.png"),
+          // const Spacer(
+          //   flex: 1,
+          // ),
+          // navigationImg(2, "assets/box4.png"),
+          // const Spacer(
+          //   flex: 1,
+          // ),
+          // navigationImg(3, "assets/Profile.png")
         ],
       ),
     );
   }
 
-  Widget navigationData(int index, String icon, String lable) {
-    bool isselecte = _selectindex == index;
+  Widget navigationImg(int index, String icon) {
+    // bool isselecte = _selectindex == index;
     //Size size = MediaQuery.of(context).size;
 
     return InkWell(
@@ -133,40 +151,47 @@ class _BottomNavigator extends State {
           },
         );
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Image(
+        image: AssetImage(icon),
+        height: 30,
+        width: 30,
+        fit: BoxFit.fill,
+      ),
+    );
+  }
+
+  // ignore: non_constant_identifier_names
+  Widget navigationData(int index, String icon, String label) {
+    return Container(
+      height: 36,
+      width: 120,
+      padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+        color: Color.fromRGBO(187, 242, 70, 1),
+      ),
+      child: Row(
         children: [
-          // Container(
-          //   height: 2,
-          //   decoration: BoxDecoration(
-          //     color: isselecte
-          //         ? const Color.fromRGBO(111, 69, 233, 1)
-          //         : const Color.fromRGBO(255, 255, 255, 1),
-          //   ),
-          // ),
-          const Spacer(),
           Image(
             image: AssetImage(icon),
-            height: 24,
-            width: 24,
+            height: 30,
+            width: 30,
             fit: BoxFit.fill,
-            color: isselecte
-                ? const Color.fromRGBO(111, 69, 233, 1)
-                : const Color.fromRGBO(83, 93, 102, 1),
+            color: Colors.black,
           ),
-          const Spacer(),
+          const SizedBox(
+            width: 5,
+          ),
           Text(
-            lable,
-            style: GoogleFonts.sora(
-              fontWeight: FontWeight.w600,
-              fontSize: 12,
-              color: isselecte
-                  ? const Color.fromRGBO(111, 69, 233, 1)
-                  : const Color.fromRGBO(83, 93, 102, 1),
+            label,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              color: const Color.fromRGBO(31, 32, 41, 1),
             ),
           ),
-          const Spacer()
         ],
       ),
     );
