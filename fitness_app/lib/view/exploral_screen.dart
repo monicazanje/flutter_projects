@@ -1,7 +1,5 @@
 import 'package:fitness_app/view/navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -22,7 +20,7 @@ class _ExploreState extends State<ExploreScreen> {
           Container(
             margin: const EdgeInsets.only(),
             width: MediaQuery.of(context).size.width * 1,
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.25,
             child: Stack(
               children: [
                 ClipRRect(
@@ -113,7 +111,7 @@ Workout''',
           ),
           Container(
             margin:
-                const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 25),
+                const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 15),
             child: Text(
               "Best for you",
               style: GoogleFonts.lato(
@@ -124,6 +122,7 @@ Workout''',
             ),
           ),
           Expanded(
+            flex: 4,
             child: SizedBox(
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -135,7 +134,7 @@ Workout''',
                       children: [
                         Container(
                           padding: const EdgeInsets.only(
-                              left: 10, top: 10, bottom: 10, right: 10),
+                              left: 10, bottom: 10, right: 10, top: 10),
                           decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(
@@ -147,14 +146,14 @@ Workout''',
                           child: Row(
                             children: [
                               SizedBox(
-                                height: 90,
-                                width: 80,
+                                height: 72,
+                                width: 72,
                                 child: ClipRRect(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10)),
                                     child: Image.asset(
                                       "assets/image 63.png",
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                     )),
                               ),
                               const SizedBox(
@@ -176,7 +175,7 @@ Workout''',
                                     margin: const EdgeInsets.only(
                                         top: 12, bottom: 5),
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
+                                        left: 10, right: 10, top: 2, bottom: 2),
                                     decoration: const BoxDecoration(
                                       color: Color.fromRGBO(241, 241, 241, 1),
                                       borderRadius: BorderRadius.all(
@@ -195,7 +194,7 @@ Workout''',
                                   ),
                                   Container(
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
+                                        left: 10, right: 10, top: 2, bottom: 2),
                                     decoration: const BoxDecoration(
                                       color: Color.fromRGBO(241, 241, 241, 1),
                                       borderRadius: BorderRadius.all(
@@ -235,8 +234,8 @@ Workout''',
                           child: Row(
                             children: [
                               SizedBox(
-                                height: 90,
-                                width: 80,
+                                height: 70,
+                                width: 70,
                                 child: ClipRRect(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10)),
@@ -246,7 +245,7 @@ Workout''',
                                     )),
                               ),
                               const SizedBox(
-                                width: 10,
+                                width: 15,
                               ),
                               Column(
                                 mainAxisAlignment:
@@ -264,9 +263,9 @@ Workout''',
                                   ),
                                   Container(
                                     margin: const EdgeInsets.only(
-                                        top: 12, bottom: 5),
+                                        top: 10, bottom: 5),
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
+                                        left: 10, right: 10, bottom: 2, top: 2),
                                     decoration: const BoxDecoration(
                                       color: Color.fromRGBO(241, 241, 241, 1),
                                       borderRadius: BorderRadius.all(
@@ -285,7 +284,7 @@ Workout''',
                                   ),
                                   Container(
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
+                                        left: 10, right: 10, top: 2, bottom: 2),
                                     decoration: const BoxDecoration(
                                       color: Color.fromRGBO(241, 241, 241, 1),
                                       borderRadius: BorderRadius.all(
@@ -315,8 +314,7 @@ Workout''',
             ),
           ),
           Container(
-            margin:
-                const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: Text(
               "Challenge",
               style: GoogleFonts.lato(
@@ -327,7 +325,7 @@ Workout''',
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -446,7 +444,114 @@ Challenge''',
                 )
               ],
             ),
-          )
+          ),
+          Container(
+            margin:
+                const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
+            child: Text(
+              "Fast Warmup",
+              style: GoogleFonts.lato(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: const Color.fromRGBO(31, 32, 41, 1),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: SizedBox(
+              child: ListView.builder(
+                itemCount: 4,
+                physics: const ScrollPhysics(),
+                padding: EdgeInsets.zero,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(left: 20, bottom: 5),
+                    padding: const EdgeInsets.only(
+                        left: 10, top: 10, right: 10, bottom: 10),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    // height: 90,
+                    // width: 200,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 80,
+                          width: 70,
+                          child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                              child: Image.asset(
+                                "assets/image 67.png",
+                                fit: BoxFit.fill,
+                              )),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Leg excercises",
+                              style: GoogleFonts.lato(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: const Color.fromRGBO(31, 32, 41, 1),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 10, bottom: 5),
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              decoration: const BoxDecoration(
+                                color: Color.fromRGBO(241, 241, 241, 1),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: Text(
+                                "10 min",
+                                style: GoogleFonts.lato(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color.fromRGBO(31, 32, 41, 1),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 5),
+                              decoration: const BoxDecoration(
+                                color: Color.fromRGBO(241, 241, 241, 1),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: Text(
+                                "Beginner",
+                                style: GoogleFonts.lato(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color.fromRGBO(31, 32, 41, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: const BottomNavigator(),

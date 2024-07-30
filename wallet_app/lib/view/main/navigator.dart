@@ -116,7 +116,7 @@ class _BottomNavigator extends State {
         ],
       ),
     );
-  }
+  }col
 
   Widget navigationData(int index, String icon, String lable) {
     bool isselecte = _selectindex == index;
