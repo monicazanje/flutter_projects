@@ -1,9 +1,8 @@
 import 'package:fitness_app/view/navigation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({super.key});
@@ -33,7 +32,7 @@ class _ActivityState extends State<ActivityScreen> {
         children: [
           Container(
             margin:
-                const EdgeInsets.only(left: 20, right: 20, top: 40, bottom: 10),
+                const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
             child: Text(
               "July 2022",
               style: GoogleFonts.lato(
@@ -62,7 +61,7 @@ class _ActivityState extends State<ActivityScreen> {
                       });
                     },
                     child: Container(
-                      margin: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(5),
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, top: 5, bottom: 5),
                       // height: 50,
@@ -117,7 +116,7 @@ class _ActivityState extends State<ActivityScreen> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 20, right: 20),
+            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 5),
             child: Row(
               children: [
                 Column(
@@ -244,7 +243,7 @@ class _ActivityState extends State<ActivityScreen> {
                         padding: const EdgeInsets.all(5),
                         margin: const EdgeInsets.all(10),
                         width: 180,
-                        height: 146,
+                        height: 130,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
@@ -261,7 +260,8 @@ class _ActivityState extends State<ActivityScreen> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 10, right: 10),
+            margin:
+                const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
             child: Row(
               children: [
                 Container(
@@ -351,37 +351,213 @@ class _ActivityState extends State<ActivityScreen> {
                           Radius.circular(20),
                         ),
                       ),
-                      child: Row(
+                      child: Column(
                         children: [
-                          Container(
-                            margin: const EdgeInsets.only(left: 20),
-                            padding: const EdgeInsets.all(5),
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(248, 211, 157, 1),
-                            ),
-                            child: Image.asset(
-                              "assets/ic_steps.png",
-                              fit: BoxFit.cover,
-                            ),
+                          Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(left: 20),
+                                padding: const EdgeInsets.all(5),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(248, 211, 157, 1),
+                                ),
+                                child: Image.asset(
+                                  "assets/ic_steps.png",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Steps",
+                                style: GoogleFonts.lato(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w800,
+                                  color: const Color.fromRGBO(0, 0, 0, 1),
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(
-                            width: 10,
+                            height: 10,
                           ),
                           Text(
-                            "Steps",
+                            "999/2000",
                             style: GoogleFonts.lato(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
                               color: const Color.fromRGBO(0, 0, 0, 1),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 5),
+                            child: LinearPercentIndicator(
+                              percent: 0.5,
+                              width: 115,
+                              lineHeight: 12,
+                              barRadius: const Radius.circular(10),
+                              backgroundColor:
+                                  const Color.fromRGBO(255, 237, 209, 1),
+                              progressColor:
+                                  const Color.fromRGBO(252, 196, 111, 1),
                             ),
                           ),
                         ],
                       ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(left: 10, top: 16),
+                      padding: const EdgeInsets.all(16),
+                      decoration: const BoxDecoration(
+                        color: Color.fromRGBO(246, 207, 207, 1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Text(
+                        "Keep it Up! 💪",
+                        style: GoogleFonts.lato(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                        ),
+                      ),
                     )
                   ],
-                )
+                ),
               ],
             ),
+          ),
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(
+                    left: 20, top: 10, bottom: 10, right: 10),
+                padding: const EdgeInsets.only(
+                    top: 15, left: 10, right: 10, bottom: 15),
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(239, 226, 255, 1),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(left: 10),
+                          padding: const EdgeInsets.all(5),
+                          decoration: const BoxDecoration(
+                            color: Color.fromRGBO(164, 138, 237, 1),
+                          ),
+                          child: Image.asset(
+                            "assets/Vector (13).png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Sleep",
+                          style: GoogleFonts.lato(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Image.asset(
+                        "assets/Group 26.png",
+                        fit: BoxFit.fill,
+                        scale: 1,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 10, right: 10, bottom: 10),
+                padding: const EdgeInsets.only(left: 15, top: 15, bottom: 15),
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(216, 230, 236, 1),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(left: 10),
+                          padding: const EdgeInsets.all(5),
+                          decoration: const BoxDecoration(
+                            color: Color.fromRGBO(149, 204, 227, 1),
+                          ),
+                          child: Image.asset(
+                            "assets/Group 9 (1).png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Sleep",
+                          style: GoogleFonts.lato(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Image.asset(
+                              "assets/Rectangle 853.png",
+                              fit: BoxFit.fill,
+                              scale: 1,
+                            ),
+                          ),
+                          Positioned(
+                            top: 15,
+                            left: 40,
+                            child: Text(
+                              "6/8 Cups",
+                              style: GoogleFonts.lato(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: const Color.fromRGBO(0, 0, 0, 1),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           )
         ],
       ),
