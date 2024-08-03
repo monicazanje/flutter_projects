@@ -1,0 +1,67 @@
+name: travenor_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  advanced_icon: ^0.1.2
+  carousel_slider: ^4.2.1
+  cloud_firestore: ^5.2.0
+  firebase_auth: ^5.1.3
+  firebase_storage: ^12.1.2
+  flutter:
+    sdk: flutter
+  flutter_slidable: ^3.1.1
+  google_fonts: ^6.2.1
+  provider: ^6.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets :
+  - assets\bookmark.png
+  - assets\Caht.png
+  - assets\Calendar.png
+  - assets\Edit.png
+  - assets\Ellipse 897.png
+  - assets\Ellipse 899.png
+  - assets\Ellipse 901 (1).png
+  - assets\Ellipse 901.png
+  - assets\Ellipse 903.png
+  - assets\Group 30.png
+  - assets\Group 41.png
+  - assets\Group 96 (1).png
+  - assets\Group 96.png
+  - assets\Group 200.png
+  - assets\Group 332.png
+  - assets\Group 333.png
+  - assets\Group 334.png
+  - assets\img1.png
+  - assets\img2.png
+  - assets\img3.png
+  - assets\img4.png
+  - assets\plane.png
+  - assets\Rectangle 27.png
+  - assets\Rectangle 29 (1).png
+  - assets\Rectangle 29.png
+  - assets\Rectangle 822.png
+  - assets\Rectangle 823.png
+  - assets\Rectangle 824.png
+  - assets\Rectangle 826.png
+  - assets\Rectangle 833.png
+  - assets\Rectangle 838.png
+  - assets\Rectangle 839.png
+  - assets\Rectangle 833 (1).png
+  - assets\Settings (1).png
+  - assets\Vector (14).png
+  - assets\Vector 2524.png
+  - assets\Version.png
+  
+

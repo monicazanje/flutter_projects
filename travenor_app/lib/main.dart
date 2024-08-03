@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/view/splash.dart';
-
+import 'package:travenor_app/view/splash.dart';
 
 void main() {
   runApp(const MainApp());

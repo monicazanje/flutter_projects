@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/view/splash.dart';
-
+import 'package:travel__app/view/splash.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,9 +10,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Splash(),
-    );
+    return const MaterialApp(debugShowCheckedModeBanner: false, home: Splash());
   }
 }
