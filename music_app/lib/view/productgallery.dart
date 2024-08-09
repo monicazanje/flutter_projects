@@ -1,13 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/model/cursormodel.dart';
 // import 'package:music_app/model/musicmodel.dart';
 import 'package:music_app/view/discography.dart';
 import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
 import 'package:music_app/view/singles.dart';
 import 'package:music_app/model/itemlist.dart';
-
 
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
@@ -19,12 +19,16 @@ int currentindex = 0;
 
 class _GalleryState extends State {
   List<ItemList> songs = ItemList.songsList;
-  List<dynamic> cursorlist = [
-    "assets/111 1.png",
-    "assets/Faded.png",
-    "assets/jocker.jpg",
-    "assets/music4.jpeg",
-    "assets/moneyh.jpg",
+  List<CursorModel> cursorlist = [
+    CursorModel(curseImage: 'assets/111 1.png', curseName: "A.L.O.N.E"),
+    CursorModel(
+      curseImage: 'assets/272cf15a08dcca3bd22e258e7635e9c2 1.png',
+      curseName: "W.A.N.K",
+    ),
+    CursorModel(
+      curseImage: 'assets/music4.jpeg',
+      curseName: "R.E.S.S.O",
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,16 +38,16 @@ class _GalleryState extends State {
         child: Column(
           children: [
             CarouselSlider.builder(
-              itemCount: 5,
+              itemCount: cursorList.length,
               itemBuilder: (context, index, realindex) {
-                final imageurl = cursorlist[index];
+                final imageurl = cursorList[index];
                 return Stack(
                   children: [
                     Positioned(
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(imageurl),
+                            image: AssetImage("${imageurl.curseImage}"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -53,7 +57,7 @@ class _GalleryState extends State {
                       bottom: 100,
                       left: 30,
                       child: Text(
-                        'A.L.O.N.E',
+                        '${imageurl.curseName}',
                         style: GoogleFonts.inter(
                             fontSize: 36,
                             fontWeight: FontWeight.w600,
@@ -109,7 +113,7 @@ class _GalleryState extends State {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                   currentindex == i
                       ? Container(
                           height: 7,
@@ -422,8 +426,9 @@ class _GalleryState extends State {
           ],
         ),
       ),
-      bottomNavigationBar: NavigatorScreen(favolist: songs,),
+      bottomNavigationBar: NavigatorScreen(
+        favolist: songs,
+      ),
     );
   }
 }
-
