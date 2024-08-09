@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/model/cursormodel.dart';
-// import 'package:music_app/model/musicmodel.dart';
 import 'package:music_app/view/discography.dart';
 import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
@@ -19,17 +18,8 @@ int currentindex = 0;
 
 class _GalleryState extends State {
   List<ItemList> songs = ItemList.songsList;
-  List<CursorModel> cursorlist = [
-    CursorModel(curseImage: 'assets/111 1.png', curseName: "A.L.O.N.E"),
-    CursorModel(
-      curseImage: 'assets/272cf15a08dcca3bd22e258e7635e9c2 1.png',
-      curseName: "W.A.N.K",
-    ),
-    CursorModel(
-      curseImage: 'assets/music4.jpeg',
-      curseName: "R.E.S.S.O",
-    ),
-  ];
+  List<ItemList> popularsong = ItemList.popularlist;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -261,7 +251,7 @@ class _GalleryState extends State {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Singles(singleList: songs);
+                            return Singles(singleList: popularsong);
                           },
                         ),
                       );
@@ -283,7 +273,7 @@ class _GalleryState extends State {
             ),
             SizedBox(
               child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 3,
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -295,7 +285,7 @@ class _GalleryState extends State {
                           MaterialPageRoute(
                             builder: (context) {
                               return Player(
-                                  currentIndex: index, songList: songs);
+                                  currentIndex: index, songList: popularsong);
                             },
                           ),
                         );
@@ -316,7 +306,7 @@ class _GalleryState extends State {
                                 height: 70,
                                 width: 70,
                                 child: Image.asset(
-                                  songs[index].imageUrl,
+                                  popularsong[index].imageUrl,
                                   fit: BoxFit.fill,
                                   scale: 4,
                                 ),
@@ -329,7 +319,7 @@ class _GalleryState extends State {
                                 Container(
                                   margin: const EdgeInsets.only(left: 15),
                                   child: Text(
-                                    songs[index].name,
+                                    popularsong[index].name,
                                     style: GoogleFonts.inter(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
@@ -345,7 +335,7 @@ class _GalleryState extends State {
                                     TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: songs[index].year,
+                                          text: popularsong[index].year,
                                           style: GoogleFonts.inter(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -363,7 +353,7 @@ class _GalleryState extends State {
                                           ),
                                         ),
                                         TextSpan(
-                                          text: "Easy Living",
+                                          text: popularsong[index].description,
                                           style: GoogleFonts.inter(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
