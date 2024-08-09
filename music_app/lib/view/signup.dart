@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -66,6 +67,7 @@ class _SignInState extends State<SignUp> {
           Navigator.of(context).pop();
         }
       } on FirebaseAuthException catch (ex) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Already Available "),
@@ -135,7 +137,7 @@ class _SignInState extends State<SignUp> {
                       ),
                       onChanged: (value) {
                         email = value;
-                        print("Value=$value");
+                        // print("Value=$value");
                       },
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.emailAddress,
@@ -175,7 +177,7 @@ class _SignInState extends State<SignUp> {
                       ),
                       onChanged: (value) {
                         password = value;
-                        print("Value=$value");
+                        // print("Value=$value");
                       },
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.emailAddress,

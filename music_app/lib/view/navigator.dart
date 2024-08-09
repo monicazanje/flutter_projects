@@ -3,6 +3,8 @@ import "package:music_app/model/itemlist.dart";
 import "package:music_app/view/favoriteproduct.dart";
 import "package:music_app/view/productgallery.dart";
 import "package:music_app/view/profile.dart";
+import "package:music_app/view/search.dart";
+
 // import "package:music_app/view/productplayer.dart";
 
 // ignore: must_be_immutable
@@ -72,11 +74,11 @@ class _NavigatorState extends State<NavigatorScreen> {
                 builder: (context) => FavoriteScreen(favorite: widget.favolist),
               ));
         } else if (selectedIndex == 1) {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => const FavoriteScreen(),
-          //     ));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SearchScreen(),
+              ));
         } else if (selectedIndex == 2) {
           Navigator.push(
               context,

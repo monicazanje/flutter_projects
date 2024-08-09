@@ -34,6 +34,11 @@ class _PlayerState extends State<Player> {
           (currentIndex - 1 + widget.songList.length) % widget.songList.length;
     });
   }
+  @override
+  void dispose(){
+    advancedplayer.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

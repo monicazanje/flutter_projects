@@ -8,6 +8,7 @@ import 'package:music_app/view/productplayer.dart';
 import 'package:music_app/view/singles.dart';
 import 'package:music_app/model/itemlist.dart';
 
+
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
   @override
