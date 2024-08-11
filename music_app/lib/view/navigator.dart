@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:music_app/model/itemlist.dart";
 import "package:music_app/view/favoriteproduct.dart";
+import "package:music_app/view/productcart.dart";
 import "package:music_app/view/productgallery.dart";
 import "package:music_app/view/profile.dart";
 import "package:music_app/view/search.dart";
@@ -9,96 +10,112 @@ import "package:music_app/view/search.dart";
 
 // ignore: must_be_immutable
 class NavigatorScreen extends StatefulWidget {
-  List<ItemList> favolist;
-  NavigatorScreen({super.key, required this.favolist});
+  final List<ItemList> favolist;
+
+  const NavigatorScreen({super.key, required this.favolist});
 
   @override
   State<NavigatorScreen> createState() => _NavigatorState();
 }
 
 class _NavigatorState extends State<NavigatorScreen> {
-  int selectedIndex = 0;
+  int selectedIndex = 2;
+  late List<Widget> screen;
+  @override
+  void initState() {
+    super.initState();
+    screen = [
+      FavoriteScreen(favorite: widget.favolist),
+      const SearchScreen(),
+      const Gallery(),
+      const ProductCart(),
+      const Profile(),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.black,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              color: Color.fromRGBO(203, 200, 200, 1),
-              size: 30,
-            ),
-            label: "Favorite"),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.search,
-            color: Color.fromRGBO(203, 200, 200, 1),
-            size: 30,
-          ),
-          label: "Search",
+    return Scaffold(
+      body: screen[selectedIndex],
+      bottomNavigationBar: NavigationBarTheme(
+        data: const NavigationBarThemeData(
+          backgroundColor: Color.fromRGBO(19, 19, 19, 1),
+          indicatorColor: Colors.transparent,
         ),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Color.fromRGBO(203, 200, 200, 1),
-              size: 30,
+        child: NavigationBar(
+          backgroundColor: const Color.fromRGBO(19, 19, 19, 1),
+          onDestinationSelected: (int index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          indicatorColor: Colors.transparent,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+          selectedIndex: selectedIndex,
+          destinations: const [
+            NavigationDestination(
+              selectedIcon: Icon(
+                Icons.favorite,
+                size: 30,
+                color: Color.fromRGBO(230, 154, 21, 1),
+              ),
+              icon: Icon(
+                Icons.favorite_border_outlined,
+                size: 30,
+              ),
+              label: 'Favorite',
             ),
-            label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.delete_outline,
-              color: Color.fromRGBO(203, 200, 200, 1),
-              size: 30,
+            NavigationDestination(
+              selectedIcon: Icon(
+                Icons.search,
+                size: 30,
+                color: Color.fromRGBO(230, 154, 21, 1),
+              ),
+              icon: Icon(
+                Icons.search,
+                size: 30,
+              ),
+              label: 'Search',
             ),
-            label: "Cart"),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: Color.fromRGBO(203, 200, 200, 1),
-              size: 30,
+            NavigationDestination(
+              selectedIcon: Icon(
+                Icons.home,
+                size: 30,
+                color: Color.fromRGBO(230, 154, 21, 1),
+              ),
+              icon: Icon(
+                Icons.home,
+                size: 30,
+              ),
+              label: 'Home',
             ),
-            label: "Profile"),
-      ],
-      currentIndex: selectedIndex,
-      selectedItemColor: Colors.amber[800],
-      onTap: (int i) {
-        setState(() {
-          selectedIndex = i;
-        });
-        if (selectedIndex == 0) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => FavoriteScreen(favorite: widget.favolist),
-              ));
-        } else if (selectedIndex == 1) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SearchScreen(),
-              ));
-        } else if (selectedIndex == 2) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Gallery(),
-              ));
-        } else if (selectedIndex == 3) {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => const Player(),
-          //     ));
-        } else if (selectedIndex == 4) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Profile(),
-              ));
-        }
-      },
+            NavigationDestination(
+              selectedIcon: Icon(
+                Icons.delete_outline,
+                size: 30,
+                color: Color.fromRGBO(230, 154, 21, 1),
+              ),
+              icon: Icon(
+                Icons.delete_outline,
+                size: 30,
+              ),
+              label: 'cart',
+            ),
+            NavigationDestination(
+              selectedIcon: Icon(
+                Icons.person_sharp,
+                size: 30,
+                color: Color.fromRGBO(230, 154, 21, 1),
+              ),
+              icon: Icon(
+                Icons.person_sharp,
+                size: 30,
+              ),
+              label: 'Profile',
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

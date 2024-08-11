@@ -416,9 +416,9 @@ class _GalleryState extends State {
           ],
         ),
       ),
-      bottomNavigationBar: NavigatorScreen(
-        favolist: songs,
-      ),
+      // bottomNavigationBar: NavigatorScreen(
+      //   favolist: songs,
+      // ),
     );
   }
 }

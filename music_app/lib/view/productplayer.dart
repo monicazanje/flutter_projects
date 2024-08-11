@@ -1,7 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:music_app/model/itemlist.dart';
 import 'package:music_app/view/music.dart';
 import 'package:music_app/view/navigator.dart';

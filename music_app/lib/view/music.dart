@@ -38,6 +38,19 @@ class _MusicState extends State<Music> {
     initPlayer();
   }
 
+  void volum() async {
+    if (isPlaying == true) {
+      await player.setVolume(0);
+      isPlaying = false;
+    } else {
+      await player.setVolume(1);
+      isPlaying = true;
+    }
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   void _seek(Duration value) {
     final position = value;
     player.seek(position);
@@ -105,28 +118,14 @@ class _MusicState extends State<Music> {
         children: [
           Container(
             margin: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Text(
-                  currentSong.name,
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                Text(
-                  "${_duration.inMinutes}:${(_duration.inSeconds % 60).toString().padLeft(2, '0')}",
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                ),
-              ],
+            alignment: Alignment.topLeft,
+            child: Text(
+              currentSong.name,
+              style: GoogleFonts.inter(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                color: const Color.fromRGBO(255, 255, 255, 1),
+              ),
             ),
           ),
           Container(
@@ -197,10 +196,20 @@ class _MusicState extends State<Music> {
                 flex: 1,
               ),
               IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.volume_up_rounded),
-                iconSize: 24,
-                color: const Color.fromRGBO(255, 255, 255, 1),
+                onPressed: () {
+                  volum();
+                },
+                icon: isPlaying == true
+                    ? const Icon(
+                        Icons.volume_up_rounded,
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        size: 30,
+                      )
+                    : const Icon(
+                        Icons.volume_off,
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        size: 30,
+                      ),
               ),
               const Spacer(
                 flex: 1,

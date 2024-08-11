@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/model/itemlist.dart';
-import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -145,9 +143,6 @@ class _SearchScreenState extends State<SearchScreen> {
             ))
           ],
         ),
-      ),
-      bottomNavigationBar: NavigatorScreen(
-        favolist: _foundUser,
       ),
     );
   }
