@@ -1,5 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:music_app/model/itemlist.dart';
 import 'package:music_app/view/music.dart';
 import 'package:music_app/view/navigator.dart';
@@ -15,6 +17,7 @@ class Player extends StatefulWidget {
 
 class _PlayerState extends State<Player> {
   int currentIndex = 0;
+  bool audiovolum = true;
   late AudioPlayer advancedplayer;
   @override
   void initState() {
@@ -34,8 +37,9 @@ class _PlayerState extends State<Player> {
           (currentIndex - 1 + widget.songList.length) % widget.songList.length;
     });
   }
+
   @override
-  void dispose(){
+  void dispose() {
     advancedplayer.dispose();
     super.dispose();
   }
@@ -57,23 +61,53 @@ class _PlayerState extends State<Player> {
             ),
             child: Container(
               alignment: Alignment.bottomCenter,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
+              child: Stack(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    currentSong.name,
-                    style: GoogleFonts.inter(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w400,
-                        color: const Color.fromRGBO(230, 154, 21, 1)),
+                  Positioned(
+                    bottom: 120,
+                    left: 180,
+                    child: Text(
+                      currentSong.name,
+                      style: GoogleFonts.inter(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                          color: const Color.fromRGBO(230, 154, 21, 1)),
+                    ),
                   ),
-                  Text(
-                    currentSong.description,
-                    style: GoogleFonts.inter(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromRGBO(255, 255, 255, 1)),
+                  Positioned(
+                    bottom: 100,
+                    left: 180,
+                    child: Text(
+                      currentSong.description,
+                      style: GoogleFonts.inter(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: const Color.fromRGBO(255, 255, 255, 1)),
+                    ),
+                  ),
+                  Positioned(
+                    left: 30,
+                    bottom: 0,
+                    child: IconButton(
+                      icon: currentSong.isFavorite == true
+                          ? const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                              size: 30,
+                            )
+                          : const Icon(
+                              Icons.favorite_border_outlined,
+                              color: Colors.red,
+                              size: 30,
+                            ),
+                      onPressed: () {
+                        setState(() {
+                          currentSong.isFavorite = !currentSong.isFavorite;
+                        });
+                      },
+                    ),
                   ),
                   Container(
                     alignment: Alignment.bottomRight,
@@ -99,7 +133,7 @@ class _PlayerState extends State<Player> {
           ),
         ],
       ),
-      bottomNavigationBar: NavigatorScreen(favolist:widget.songList ),
+      bottomNavigationBar: NavigatorScreen(favolist: widget.songList),
     );
   }
 }

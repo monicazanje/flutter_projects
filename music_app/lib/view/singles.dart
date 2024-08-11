@@ -56,9 +56,11 @@ class _SinglesState extends State<Singles> {
                         margin: const EdgeInsets.only(right: 15, bottom: 15),
                         padding: const EdgeInsets.all(10),
                         decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 34, 34, 34),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
+                          color: Color.fromARGB(255, 34, 34, 34),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                        ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -182,7 +184,9 @@ class _SinglesState extends State<Singles> {
           ],
         ),
       ),
-      bottomNavigationBar:  NavigatorScreen(favolist:widget. singleList,),
+      bottomNavigationBar: NavigatorScreen(
+        favolist: widget.singleList,
+      ),
     );
   }
 }
