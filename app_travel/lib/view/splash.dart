@@ -1,6 +1,6 @@
+import 'package:app_travel/view/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travenor_app/view/onboard.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -27,7 +27,7 @@ class _SplashState extends State<Splash> {
           },
           child: Text(
             "Discography",
-            style: GoogleFonts.inter(
+            style: GoogleFonts.poppins(
               fontSize: 20,
               fontWeight: FontWeight.w600,
               color: const Color.fromRGBO(255, 61, 0, 1),
