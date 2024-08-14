@@ -26,11 +26,11 @@ class _SplashState extends State<Splash> {
             );
           },
           child: Text(
-            "Discography",
-            style: GoogleFonts.inter(
-              fontSize: 20,
+            "Travenor",
+            style: GoogleFonts.aclonica(
+              fontSize: 34,
               fontWeight: FontWeight.w600,
-              color: const Color.fromRGBO(255, 61, 0, 1),
+              color: const Color.fromRGBO(255, 255, 255, 1),
             ),
           ),
         ),

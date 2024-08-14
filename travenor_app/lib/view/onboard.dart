@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travenor_app/model/cursormodel.dart';
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -9,52 +12,91 @@ class Onboard extends StatefulWidget {
 }
 
 class _OnboardState extends State<Onboard> {
-  List<dynamic> cursorlist = [
-    "assets/img4.png",
-    "assets/img1.png",
-    "assets/img3.png",
-  ];
+  // List<dynamic> cursorlist = [
+  //   "assets/img4.png",
+  //   "assets/img1.png",
+  //   "assets/img3.png",
+  // ];
+  // Map<String,List<String>> cursormap={
+  //   "img":[]
+  // };
+
   int currentindex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.7,
+            // height: MediaQuery.of(context).size.height * 0.8,
+            width: MediaQuery.of(context).size.width * 1,
+            decoration:
+                BoxDecoration(border: Border.all(style: BorderStyle.solid)),
             child: CarouselSlider.builder(
               itemCount: 3,
               itemBuilder: (context, index, realIndex) {
-                final imageurl = cursorlist[index];
-                return Column(
+                final imageurl = Cursor.cursorlist[index];
+                return Stack(
                   children: [
                     Image.asset(
-                      imageurl,
+                      imageurl.img,
                       fit: BoxFit.cover,
                       width: double.infinity,
                     ),
-                    Container(
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Life is short and the world is',
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromARGB(255, 0, 0, 0),
+                    Positioned(
+                      bottom: 10,
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        width: 400,
+                        height: 100,
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: imageurl.name,
+                                style: GoogleFonts.aclonica(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color.fromARGB(255, 0, 0, 0),
+                                ),
                               ),
-                            ),
-                          ],
+                              TextSpan(
+                                text: imageurl.dec,
+                                style: GoogleFonts.aclonica(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color.fromRGBO(207, 82, 10, 1),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    
+                    // Container(
+                    //   margin: const EdgeInsets.only(left: 20, right: 20),
+                    //   height: 70,
+                    //   child: Text(
+                    //     imageurl.detail,
+                    //     style: GoogleFonts.inter(
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.w600,
+                    //       color: const Color.fromRGBO(112, 41, 1, 1),
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 );
               },
               options: CarouselOptions(
                   autoPlay: true,
-                  aspectRatio: 7 / 9,
+                  aspectRatio: 8 / 12,
                   viewportFraction: 1,
                   initialPage: 0,
                   autoPlayAnimationDuration: const Duration(seconds: 3),
@@ -65,9 +107,10 @@ class _OnboardState extends State<Onboard> {
                   }),
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          // const SizedBox(
+          //   height: 15,
+          // ),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
