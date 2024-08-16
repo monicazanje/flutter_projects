@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpaper_app/controller/productcontroller.dart';
-import 'package:wallpaper_app/model/photomodel.dart';
 import 'package:wallpaper_app/view/categoriesdetail.dart';
 
 class Categories extends StatefulWidget {
@@ -82,6 +80,7 @@ class _CategoriesState extends State<Categories> {
                             builder: (context) {
                               return DetailScreen(
                                 category: categories[index].catname,
+                                currentindex: index,
                               );
                             },
                           ),
@@ -98,17 +97,20 @@ class _CategoriesState extends State<Categories> {
                                   blurRadius: 10,
                                   spreadRadius: 5,
                                   color: Colors.black.withOpacity(1),
-                                  offset: Offset(10, 4))
+                                  offset: const Offset(10, 4))
                             ]),
                         child: Row(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.network(
-                                categories[index].catimg,
-                                height: 80,
-                                width: 100,
-                                fit: BoxFit.cover,
+                            Container(
+                              margin: const EdgeInsets.all(5),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.network(
+                                  categories[index].catimg,
+                                  height: 80,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             const Spacer(

@@ -6,19 +6,24 @@ import 'package:wallpaper_app/view/fullscreen.dart';
 
 class DetailScreen extends StatefulWidget {
   final String category;
-  const DetailScreen({super.key,required this.category});
+  final int currentindex;
+
+  const DetailScreen({super.key, required this.category,required this.currentindex});
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
   late Future<List<String>> imagefuture;
-  void initState(){
+  final index=widget.currentindex;
+  @override
+  void initState() {
     super.initState();
     imagefuture = ProductController.fetchImages(widget.category);
   }
-  
+
   final categories = ProductController.getCategoriesList();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +32,11 @@ class _DetailScreenState extends State<DetailScreen> {
           Container(
             height: 200,
             width: MediaQuery.of(context).size.width * 1,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                    "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg"),
+                  categories[index].catimg,
+                ),
                 fit: BoxFit.fill,
               ),
             ),
@@ -52,7 +58,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   left: 150,
                   top: 100,
                   child: Text(
-                    " Car",
+                    categories[index].catname,
                     style: GoogleFonts.poppins(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
@@ -109,7 +115,8 @@ class _DetailScreenState extends State<DetailScreen> {
                   List<String>? images = snapshot.data;
                   return GridView.builder(
                     itemCount: images!.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 3,
                       childAspectRatio: 2 / 3,
@@ -118,7 +125,8 @@ class _DetailScreenState extends State<DetailScreen> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
                             return FullScreen(
                               imgurl: images[index],
                             );
