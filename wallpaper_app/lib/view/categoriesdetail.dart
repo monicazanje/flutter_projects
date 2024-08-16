@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpaper_app/controller/productcontroller.dart';
@@ -8,22 +7,25 @@ class DetailScreen extends StatefulWidget {
   final String category;
   final int currentindex;
 
-  const DetailScreen({super.key, required this.category,required this.currentindex});
+  const DetailScreen(
+      {super.key, required this.category, required this.currentindex});
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
   late Future<List<String>> imagefuture;
-  final index=widget.currentindex;
+
+  late int index;
   @override
   void initState() {
     super.initState();
     imagefuture = ProductController.fetchImages(widget.category);
+    index = widget.currentindex;
   }
 
   final categories = ProductController.getCategoriesList();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class _DetailScreenState extends State<DetailScreen> {
           Container(
             height: 200,
             width: MediaQuery.of(context).size.width * 1,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
                   categories[index].catimg,
@@ -40,33 +42,50 @@ class _DetailScreenState extends State<DetailScreen> {
                 fit: BoxFit.fill,
               ),
             ),
-            child: Stack(
-              children: [
-                Positioned(
-                  left: 150,
-                  top: 100,
-                  child: Container(
-                    height: 50,
-                    width: 140,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.black38),
-                  ),
+            // child: Stack(
+            //   children: [
+            //     Positioned(
+            //       left: 150,
+            //       top: 100,
+            //       child: Container(
+            //         height: 50,
+            //         width: 140,
+            //         padding: const EdgeInsets.all(10),
+            //         decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(12),
+            //             color: Colors.black38),
+            //       ),
+            //     ),
+            //     Positioned(
+            //       // right: 200,
+            //       left: 150,
+            //       top: 100,
+            //       child: Text(
+            //         categories[index].catname,
+            //         style: GoogleFonts.poppins(
+            //           fontSize: 30,
+            //           fontWeight: FontWeight.w600,
+            //           color: Colors.white,
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
+            child: Container(
+              margin: const EdgeInsets.only(
+                  left: 100, right: 100, top: 70, bottom: 70),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: const Color.fromRGBO(0, 0, 0, 0.6)),
+              alignment: Alignment.center,
+              child: Text(
+                categories[index].catname,
+                style: GoogleFonts.poppins(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
-                Positioned(
-                  // right: 200,
-                  left: 150,
-                  top: 100,
-                  child: Text(
-                    categories[index].catname,
-                    style: GoogleFonts.poppins(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
           ),
           const SizedBox(

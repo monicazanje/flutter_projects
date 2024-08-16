@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -11,7 +10,7 @@ class ProductController {
       {
         "name": "Cars",
         "imgUrl":
-            "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg"
+            "https://img.freepik.com/free-photo/luxurious-car-parked-highway-with-illuminated-headlight-sunset_181624-60607.jpg",
       },
       {
         "name": "Nature",
@@ -87,7 +86,7 @@ class ProductController {
     return trendinglist;
   }
 
-   static Future<List<String>> fetchImages(String category) async {
+  static Future<List<String>> fetchImages(String category) async {
     final response = await http.get(Uri.parse(
         "https://api.pexels.com/v1/search?query=$category&per_page=1"));
 
