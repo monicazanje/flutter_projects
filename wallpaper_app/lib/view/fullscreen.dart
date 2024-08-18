@@ -19,10 +19,24 @@ class _FullScreenState extends State<FullScreen> {
         child: Column(
           children: [
             Expanded(
-              child: ClipRRect(
-                borderRadius:const BorderRadius.all(Radius.circular(10)),
-                child: SizedBox(
-                  child: Image.network(widget.imgurl),
+              child: Container(
+                margin: const EdgeInsets.only(
+                    left: 30, right: 30, bottom: 30, top: 60),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 5,
+                        color: Colors.black.withOpacity(1),
+                        offset: const Offset(10, 10))
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  child: Image.network(
+                    widget.imgurl,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
@@ -32,24 +46,25 @@ class _FullScreenState extends State<FullScreen> {
                   setwallpaper();
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(20),
-                  margin: const EdgeInsets.only(bottom: 50),
+                  padding: const EdgeInsets.all(15),
+                  margin: const EdgeInsets.only(bottom: 50, top: 100),
                   decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 10,
-                            spreadRadius: 5,
-                            color: Colors.black.withOpacity(0.1),
-                            offset: const Offset(10, 4))
-                      ]),
+                    color: Colors.grey.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                          color: Colors.white.withOpacity(0.1),
+                          offset: const Offset(5, 5))
+                    ],
+                  ),
                   child: Text(
                     "Set WallPaper",
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.aclonica(
                       fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      fontWeight: FontWeight.w200,
+                      color: const Color.fromARGB(255, 232, 232, 232),
                     ),
                   ),
                 ),

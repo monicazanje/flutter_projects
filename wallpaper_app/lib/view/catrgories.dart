@@ -17,7 +17,7 @@ class _CategoriesState extends State<Categories> {
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 50),
+            margin: const EdgeInsets.only(top: 30),
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 107, 107, 107),
               borderRadius: BorderRadius.only(
@@ -36,13 +36,13 @@ class _CategoriesState extends State<Categories> {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.45,
                     alignment: Alignment.center,
                     child: Text(
                       "HOME",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.aclonica(
                         fontSize: 20,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
                     ),
@@ -55,9 +55,9 @@ class _CategoriesState extends State<Categories> {
                     alignment: Alignment.center,
                     child: Text(
                       "CATEGORIES",
-                      style: GoogleFonts.poppins(
+                      style: GoogleFonts.aclonica(
                         fontSize: 20,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
                     ),
@@ -118,9 +118,9 @@ class _CategoriesState extends State<Categories> {
                             Container(
                               child: Text(
                                 categories[index].catname,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
+                                style: GoogleFonts.aclonica(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w200,
                                   color: Colors.white,
                                 ),
                               ),

@@ -52,9 +52,9 @@ class _DetailScreenState extends State<DetailScreen> {
               alignment: Alignment.center,
               child: Text(
                 categories[index].catname,
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.aclonica(
                   fontSize: 30,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w400,
                   color: Colors.white,
                 ),
               ),
