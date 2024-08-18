@@ -19,8 +19,11 @@ class _FullScreenState extends State<FullScreen> {
         child: Column(
           children: [
             Expanded(
-              child: SizedBox(
-                child: Image.network(widget.imgurl),
+              child: ClipRRect(
+                borderRadius:const BorderRadius.all(Radius.circular(10)),
+                child: SizedBox(
+                  child: Image.network(widget.imgurl),
+                ),
               ),
             ),
             SizedBox(
@@ -30,15 +33,16 @@ class _FullScreenState extends State<FullScreen> {
                 },
                 child: Container(
                   padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.only(bottom: 50),
                   decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
                             blurRadius: 10,
                             spreadRadius: 5,
                             color: Colors.black.withOpacity(0.1),
-                            offset:const  Offset(10, 4))
+                            offset: const Offset(10, 4))
                       ]),
                   child: Text(
                     "Set WallPaper",
@@ -59,7 +63,7 @@ class _FullScreenState extends State<FullScreen> {
 
   Future<void> setwallpaper() async {
     int location = WallpaperManager.HOME_SCREEN;
-  
+
     var file = await DefaultCacheManager().getSingleFile(widget.imgurl);
     bool result =
         await WallpaperManager.setWallpaperFromFile(file.path, location);

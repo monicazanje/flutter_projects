@@ -87,12 +87,20 @@ class ProductController {
   }
 
   static Future<List<String>> fetchImages(String category) async {
-    final response = await http.get(Uri.parse(
-        "https://api.pexels.com/v1/search?query=$category&per_page=1"));
+    Uri url = Uri.parse(
+        'https://api.pexels.com/v1/search?query=$category&per_page=100');
+    http.Response response = await http.get(
+      url,
+      headers: {
+        'Authorization':
+            'YCAOi5EDyJehI6DZTdlA8LXUgC37jxfndTMyezGIMN0uC8KiUOzIvo0R',
+      },
+    );
 
     if (response.statusCode == 200) {
-      List<dynamic> data = json.decode(response.body);
-      return data.map((item) => item[''] as String).toList();
+      Map<String, dynamic> data = json.decode(response.body);
+      List<dynamic> photos = data['photos'];
+      return photos.map((item) => item['src']['medium'] as String).toList();
     } else {
       throw Exception('Failed to load images');
     }

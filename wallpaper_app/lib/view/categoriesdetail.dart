@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpaper_app/controller/productcontroller.dart';
 import 'package:wallpaper_app/view/fullscreen.dart';
@@ -42,35 +43,6 @@ class _DetailScreenState extends State<DetailScreen> {
                 fit: BoxFit.fill,
               ),
             ),
-            // child: Stack(
-            //   children: [
-            //     Positioned(
-            //       left: 150,
-            //       top: 100,
-            //       child: Container(
-            //         height: 50,
-            //         width: 140,
-            //         padding: const EdgeInsets.all(10),
-            //         decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(12),
-            //             color: Colors.black38),
-            //       ),
-            //     ),
-            //     Positioned(
-            //       // right: 200,
-            //       left: 150,
-            //       top: 100,
-            //       child: Text(
-            //         categories[index].catname,
-            //         style: GoogleFonts.poppins(
-            //           fontSize: 30,
-            //           fontWeight: FontWeight.w600,
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //     )
-            //   ],
-            // ),
             child: Container(
               margin: const EdgeInsets.only(
                   left: 100, right: 100, top: 70, bottom: 70),
@@ -91,37 +63,6 @@ class _DetailScreenState extends State<DetailScreen> {
           const SizedBox(
             height: 20,
           ),
-          // Expanded(
-          //   child: SizedBox(
-          //       child: GridView.builder(
-          //     itemCount: 10,
-          //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //         crossAxisCount: 2,
-          //         crossAxisSpacing: 3,
-          //         childAspectRatio: 2 / 3,
-          //         mainAxisSpacing: 3),
-          //     itemBuilder: (context, index) {
-          //       return GestureDetector(
-          //         onTap: () {
-          //           Navigator.push(context,
-          //               MaterialPageRoute(builder: (context) {
-          //             return const FullScreen(
-          //               imgurl:
-          //                   "https://img.freepik.com/free-photo/black-woman-trendy-grey-leather-jacket-posing-beige-background-studio-winter-autumn-fashion-look_273443-141.jpg",
-          //             );
-          //           }));
-          //         },
-          //         child: Container(
-          //           color: Colors.white,
-          //           child: Image.network(
-          //             "https://animal-images-api.ashutoshswamy397.repl.co/cat",
-          //             fit: BoxFit.cover,
-          //           ),
-          //         ),
-          //       );
-          //     },
-          //   )),
-          // ),
           Expanded(
             child: FutureBuilder<List<String>>(
               future: imagefuture,
@@ -136,10 +77,10 @@ class _DetailScreenState extends State<DetailScreen> {
                     itemCount: images!.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 3,
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 15,
                       childAspectRatio: 2 / 3,
-                      mainAxisSpacing: 3,
+                      mainAxisSpacing: 40,
                     ),
                     itemBuilder: (context, index) {
                       return GestureDetector(
@@ -151,11 +92,15 @@ class _DetailScreenState extends State<DetailScreen> {
                             );
                           }));
                         },
-                        child: Container(
-                          color: Colors.white,
-                          child: Image.network(
-                            images[index],
-                            fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                          child: Container(
+                            color: Colors.white,
+                            child: Image.network(
+                              images[index],
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       );
