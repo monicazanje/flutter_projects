@@ -131,7 +131,7 @@ class _PlayerState extends State<Player> {
           ),
         ],
       ),
-      bottomNavigationBar: NavigatorScreen(favolist: widget.songList),
+      
     );
   }
 }

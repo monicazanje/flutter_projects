@@ -184,9 +184,7 @@ class _SinglesState extends State<Singles> {
           ],
         ),
       ),
-      bottomNavigationBar: NavigatorScreen(
-        favolist: widget.singleList,
-      ),
+      
     );
   }
 }
