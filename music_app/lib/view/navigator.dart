@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:music_app/model/itemlist.dart";
+// import "package:music_app/model/itemlist.dart";
 import "package:music_app/view/favoriteproduct.dart";
 import "package:music_app/view/productcart.dart";
 import "package:music_app/view/productgallery.dart";
@@ -10,9 +10,9 @@ import "package:music_app/view/search.dart";
 
 // ignore: must_be_immutable
 class NavigatorScreen extends StatefulWidget {
-  final List<ItemList> favolist;
+ 
 
-  const NavigatorScreen({super.key, required this.favolist});
+  const NavigatorScreen({super.key});
 
   @override
   State<NavigatorScreen> createState() => _NavigatorState();
@@ -25,7 +25,7 @@ class _NavigatorState extends State<NavigatorScreen> {
   void initState() {
     super.initState();
     screen = [
-      FavoriteScreen(favorite: widget.favolist),
+      const FavoriteScreen(),
       const SearchScreen(),
       const Gallery(),
       const ProductCart(),
@@ -36,6 +36,7 @@ class _NavigatorState extends State<NavigatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: screen[selectedIndex],
       bottomNavigationBar: NavigationBarTheme(
         data: const NavigationBarThemeData(

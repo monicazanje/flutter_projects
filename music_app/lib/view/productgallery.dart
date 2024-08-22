@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/model/cursormodel.dart';
 import 'package:music_app/view/discography.dart';
-import 'package:music_app/view/navigator.dart';
+// import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
 import 'package:music_app/view/singles.dart';
 import 'package:music_app/model/itemlist.dart';
@@ -33,6 +33,7 @@ class _GalleryState extends State {
                 final imageurl = cursorList[index];
                 return Stack(
                   children: [
+                    
                     Positioned(
                       child: Container(
                         decoration: BoxDecoration(
@@ -186,7 +187,7 @@ class _GalleryState extends State {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => Player(
-                                      currentIndex: index, songList: songs),
+                                      initialindex: index, songList: songs),
                                 ));
                           },
                           child: SizedBox(
@@ -285,7 +286,7 @@ class _GalleryState extends State {
                           MaterialPageRoute(
                             builder: (context) {
                               return Player(
-                                  currentIndex: index, songList: popularsong);
+                                  initialindex: index, songList: popularsong);
                             },
                           ),
                         );

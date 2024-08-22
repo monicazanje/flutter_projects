@@ -2,22 +2,25 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/model/cartmodel.dart';
+import 'package:music_app/model/favoritemodel.dart';
 import 'package:music_app/model/itemlist.dart';
+
 
 class Music extends StatefulWidget {
   final AudioPlayer advancedplayer;
   final List<ItemList> musicList;
+  
+
   final int currentIndex;
-  final VoidCallback next;
-  final VoidCallback previous;
+
 
   const Music(
       {super.key,
       required this.advancedplayer,
       required this.musicList,
       required this.currentIndex,
-      required this.next,
-      required this.previous});
+      });
   @override
   State<Music> createState() => _MusicState();
 }
@@ -26,6 +29,8 @@ class _MusicState extends State<Music> {
   bool isPlaying = true;
   late AudioPlayer player;
   late AssetSource path;
+  List<ItemList> favoritelist=[];
+  List<ItemList> cartlist=[];
   Duration _duration = const Duration();
   Duration _position = const Duration();
   int currentIndex = 0;
@@ -37,6 +42,7 @@ class _MusicState extends State<Music> {
     currentIndex = widget.currentIndex;
     initPlayer();
   }
+
 
   void volum() async {
     if (isPlaying == true) {
@@ -74,7 +80,7 @@ class _MusicState extends State<Music> {
     });
     player.onPlayerComplete.listen((_) {
       setState(() => _position = _duration);
-      widget.next;
+      
     });
 
     await player.setSource(path);
@@ -95,8 +101,9 @@ class _MusicState extends State<Music> {
   void _nextSong() {
     setState(() {
       currentIndex = (currentIndex + 1) % widget.musicList.length;
-      widget.next;
+      
     });
+    
     initPlayer();
   }
 
@@ -104,8 +111,9 @@ class _MusicState extends State<Music> {
     setState(() {
       currentIndex = (currentIndex - 1 + widget.musicList.length) %
           widget.musicList.length;
-      widget.previous;
+      
     });
+   
     initPlayer();
   }
 
@@ -116,6 +124,87 @@ class _MusicState extends State<Music> {
       margin: const EdgeInsets.all(10),
       child: Column(
         children: [
+          Container(
+                        height: 550,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(currentSong.imageUrl),
+                  fit: BoxFit.fill,
+                  scale: 4),
+            ),
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              child: Stack(
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Positioned(
+                    bottom: 120,
+                    left: 180,
+                    child: Text(
+                      currentSong.name,
+                      style: GoogleFonts.inter(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                          color: const Color.fromRGBO(230, 154, 21, 1)),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 100,
+                    left: 180,
+                    child: Text(
+                      currentSong.description,
+                      style: GoogleFonts.inter(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: const Color.fromRGBO(255, 255, 255, 1)),
+                    ),
+                  ),
+                  Positioned(
+                    left: 30,
+                    bottom: 0,
+                    child: IconButton(
+                      icon: currentSong.isFavorite == true
+                          ? const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                              size: 30,
+                            )
+                          : const Icon(
+                              Icons.favorite_border_outlined,
+                              color: Colors.red,
+                              size: 30,
+                            ),
+                      onPressed: (){
+                        setState(() {
+                          currentSong.isFavorite = !currentSong.isFavorite;
+                          // FavoriteModel.addfavorite(currentSong);
+                           if (FavoriteModel.instance.isFavorite(currentSong)) {
+                            FavoriteModel.instance.removeFavorite(currentSong);
+                          } else {
+                            FavoriteModel.instance.addFavorite(currentSong);
+                          }
+                        });
+                      }
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    child: IconButton(
+                      icon: const Icon(Icons.ios_share,
+                          size: 25, color: Color.fromRGBO(230, 154, 21, 1)),
+                      onPressed: () {
+                         setState(() {
+                          CartModel.instance.addCart(currentSong);
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const  SizedBox(height: 50,),
           Container(
             margin: const EdgeInsets.all(10),
             alignment: Alignment.topLeft,

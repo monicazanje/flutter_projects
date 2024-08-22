@@ -22,7 +22,7 @@ class _AddToCartState extends State {
 
   @override
   Widget build(BuildContext context) {
-    var productdetail = Provider.of<ProductController>(context, listen: false);
+    // var productdetail = Provider.of<ProductController>(context, listen: false);
 
     return Scaffold(
         appBar: AppBar(

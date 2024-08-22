@@ -247,13 +247,13 @@ class _SignInState extends State<SignIn> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: const MaterialStatePropertyAll(
+                      backgroundColor: const WidgetStatePropertyAll(
                         Color.fromRGBO(255, 46, 0, 1),
                       ),
-                      fixedSize: MaterialStateProperty.all<Size>(
+                      fixedSize: WidgetStateProperty.all<Size>(
                         const Size(350.0, 50.0),
                       ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),

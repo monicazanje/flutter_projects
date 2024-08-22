@@ -23,9 +23,10 @@ class _HomeScreenState extends State {
     super.initState();
     fetchapi();
   }
+  
 
-  fetchapi() async {
-    Uri url = Uri.parse("https://api.pexels.com/v1/curated?per_page=80");
+   Future<void> fetchapi() async {
+    Uri url = Uri.parse("https://api.pexels.com/v1/curated?page=10&per_page=40");
     http.Response response = await http.get(
       url,
       headers: {

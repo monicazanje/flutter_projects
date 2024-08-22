@@ -63,6 +63,7 @@ class _SignInState extends State<SignUp> {
           ),
         );
         if (userCredential.user != null) {
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
         }
       } on FirebaseAuthException catch (ex) {

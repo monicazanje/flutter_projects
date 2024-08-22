@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/view/login.dart';
-import 'package:music_app/view/productgallery.dart';
+import 'package:music_app/view/navigator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -52,7 +52,7 @@ class _HomePage extends State {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Gallery(),
+                          builder: (context) => const NavigatorScreen(),
                         ));
                   },
                   child: Text(

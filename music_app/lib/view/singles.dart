@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/model/itemlist.dart';
-import 'package:music_app/view/navigator.dart';
+// import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
 // import 'package:music_app/view/productplayer.dart';
 
@@ -37,7 +37,6 @@ class _SinglesState extends State<Singles> {
             Expanded(
               child: ListView.builder(
                   itemCount: widget.singleList.length,
-                  // padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -48,7 +47,7 @@ class _SinglesState extends State<Singles> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => Player(
-                                  currentIndex: index,
+                                  initialindex: index,
                                   songList: widget.singleList),
                             ));
                       },

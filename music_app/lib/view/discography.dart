@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/model/itemlist.dart';
-import 'package:music_app/view/navigator.dart';
+// import 'package:music_app/view/navigator.dart';
 import 'package:music_app/view/productplayer.dart';
 // import 'package:music_app/view/productplayer.dart';
 
@@ -22,7 +22,6 @@ class _DiscographyState extends State<Discography> {
         margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
         child: GridView.builder(
           itemCount: widget.discoList.length,
-          // padding: EdgeInsets.zero,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 20,
@@ -58,7 +57,7 @@ class _DiscographyState extends State<Discography> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => Player(
-                                    currentIndex: index,
+                                    initialindex: index,
                                     songList: widget.discoList),
                               ));
                         },
@@ -106,9 +105,7 @@ class _DiscographyState extends State<Discography> {
           },
         ),
       ),
-      bottomNavigationBar: NavigatorScreen(
-        favolist: widget.discoList,
-      ),
+      
     );
   }
 }

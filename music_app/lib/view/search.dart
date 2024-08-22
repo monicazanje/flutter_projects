@@ -58,10 +58,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 controller: search,
                 focusNode: searchfocus,
                 backgroundColor:
-                    const MaterialStatePropertyAll(Colors.transparent),
+                    const WidgetStatePropertyAll(Colors.transparent),
                 constraints: const BoxConstraints(
                     minHeight: 50, minWidth: 400, maxHeight: 60, maxWidth: 420),
-                shape: const MaterialStatePropertyAll(
+                shape: const WidgetStatePropertyAll(
                   BeveledRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                 ),
@@ -69,22 +69,22 @@ class _SearchScreenState extends State<SearchScreen> {
                   Icons.search,
                   color: Color.fromRGBO(186, 194, 199, 13),
                 ),
-                elevation: const MaterialStatePropertyAll(0),
-                side: const MaterialStatePropertyAll(
+                elevation: const WidgetStatePropertyAll(0),
+                side: const WidgetStatePropertyAll(
                   BorderSide(
                       style: BorderStyle.solid,
                       color: Color.fromRGBO(186, 194, 199, 13),
                       width: 0.5),
                 ),
                 hintText: "Search ",
-                hintStyle: MaterialStatePropertyAll(
+                hintStyle: WidgetStatePropertyAll(
                   GoogleFonts.inter(
                     fontSize: 17,
                     fontWeight: FontWeight.w400,
                     color: const Color.fromRGBO(186, 194, 199, 13),
                   ),
                 ),
-                textStyle: MaterialStatePropertyAll(
+                textStyle: WidgetStatePropertyAll(
                   GoogleFonts.inter(
                     fontSize: 17,
                     fontWeight: FontWeight.w400,
@@ -117,7 +117,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return Player(
-                            songList: _foundUser, currentIndex: index);
+                            songList: _foundUser, initialindex: index);
                       }));
                     },
                     child: ListTile(

@@ -1,19 +1,20 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
-import "package:music_app/model/itemlist.dart";
+import "package:music_app/model/favoritemodel.dart";
+
 
 // ignore: must_be_immutable
 class FavoriteScreen extends StatefulWidget {
-  List<ItemList> favorite;
-  FavoriteScreen({super.key, required this.favorite});
-
+  const FavoriteScreen({super.key, });
   @override
   State<FavoriteScreen> createState() => _FavoriteState();
 }
 
 class _FavoriteState extends State<FavoriteScreen> {
+  final favoriteList = FavoriteModel.instance.favorites;
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 45, 45, 45),
       body: Container(
@@ -65,21 +66,15 @@ class _FavoriteState extends State<FavoriteScreen> {
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: 5,
+                itemCount: favoriteList.length,
                 // padding: EdgeInsets.zero,
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  final item = widget.favorite[index];
+                  final item = favoriteList[index];
                   return GestureDetector(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => Player(
-                      //           currentIndex: index,
-                      //           songList: widget.singleList),
-                      //     ));
+                      
                     },
                     child: Container(
                       margin: const EdgeInsets.only(right: 15, bottom: 15),
