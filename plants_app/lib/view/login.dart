@@ -1,17 +1,35 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plants_app/view/verification.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
   @override
-  State createState() => _Loginstate();
+  State<Login> createState() => _Loginstate();
 }
 
-class _Loginstate extends State {
+class _Loginstate extends State<Login> {
   TextEditingController mobileno = TextEditingController();
   FocusNode mobilenofocus = FocusNode();
+  void sendotp()async{
+    String phone="+91${mobileno.text.trim()}";
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: phone,
+      codeSent: (verificationId,resendToken){
+         Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Verification(verificationId:verificationId )));
+      },
+    verificationCompleted: (credential){},
+    verificationFailed: (ex){print(ex.code.toString());},
+    codeAutoRetrievalTimeout: (verificationId){},
+    timeout:const  Duration(seconds: 30),);
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,10 +120,8 @@ class _Loginstate extends State {
                   // ),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Verification()));
+                  sendotp();
+                 
                 },
                 child: const Text(
                   "Log In",
