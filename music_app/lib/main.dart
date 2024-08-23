@@ -1,8 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:music_app/view/login.dart';
-import 'package:music_app/view/navigator.dart';
 import 'package:provider/provider.dart';
 import 'package:music_app/controller/productcontroller.dart';
 import 'package:music_app/view/producthome.dart';

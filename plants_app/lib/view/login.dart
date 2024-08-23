@@ -19,13 +19,24 @@ class _Loginstate extends State<Login> {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: phone,
       codeSent: (verificationId,resendToken){
+        ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Phone Verify Successfully"),
+        ),
+      );
          Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => Verification(verificationId:verificationId )));
       },
     verificationCompleted: (credential){},
-    verificationFailed: (ex){print(ex.code.toString());},
+    verificationFailed: (ex){
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please Enter Valid Phone Number"), 
+        ),
+      );
+      print(ex.code.toString());},
     codeAutoRetrievalTimeout: (verificationId){},
     timeout:const  Duration(seconds: 30),);
 
@@ -124,12 +135,25 @@ class _Loginstate extends State<Login> {
                  
                 },
                 child: const Text(
-                  "Log In",
+                  "Sign In",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                   ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap:(){},
+              child: Container(
+                margin: const EdgeInsets.only(right: 40,top: 5),
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  " Sign up ? ",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                      fontSize: 14, fontWeight: FontWeight.w600,color:Colors.blue,),
                 ),
               ),
             ),
@@ -148,7 +172,8 @@ class _Loginstate extends State<Login> {
                     blurRadius: 10,
                     color: Color.fromARGB(255, 236, 235, 235),
                     spreadRadius: 10)
-              ]),
+              ],),
+
               child: Image.asset(
                 "assets/plant img2.png",
               ),

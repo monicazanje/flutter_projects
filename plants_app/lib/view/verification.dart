@@ -27,12 +27,12 @@ class _Verificationstate extends State<Verification> {
       UserCredential userCredential=await FirebaseAuth.instance.signInWithCredential(credential);
       if(userCredential.user !=null){
          Navigator.push(
+                    // ignore: use_build_context_synchronously
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Home(),
                     ),
                   );
-
       }
 
     } on FirebaseAuthException catch(ex){
