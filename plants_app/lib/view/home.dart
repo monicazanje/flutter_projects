@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:plants_app/model/plantsmodel.dart';
 import 'package:plants_app/view/detailscreen.dart';
 import 'package:plants_app/view/productaddtocart.dart';
 // import 'package:provider/provider.dart';
@@ -14,11 +15,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State {
   int currentIndex = 0;
+  List<Plant>plantindoorlist=indoorlist;
+  List<Plant>plantoutdoorlist=outdoorlist;
 
   final List<String> imagelist = [
     "assets/Group 5318.png",
-    "assets/Group 5318.png",
-    "assets/Group 5318.png"
+    "assets/dracaena.jpeg",
+    "assets/zamia green.jpeg"
   ];
   @override
   Widget build(BuildContext context) {
@@ -30,10 +33,11 @@ class _HomeState extends State {
         child: Column(
           children: [
             const SizedBox(
-              height: 100,
+              height: 50,
             ),
             Container(
               margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              // padding: const EdgeInsets.all(10),
               child: Row(
                 children: [
                   SizedBox(
@@ -93,83 +97,96 @@ class _HomeState extends State {
                 ],
               ),
             ),
+            
             Container(
               margin: const EdgeInsets.only(
                   top: 10, bottom: 20, left: 20, right: 20),
               child: Column(
                 children: [
-                  CarouselSlider(
-                    items: imagelist
-                        .map((imagelist) => Container(
-                              margin: const EdgeInsets.only(
-                                  top: 20, bottom: 10, left: 10, right: 10),
-                              padding: const EdgeInsets.all(20),
-                              decoration: const BoxDecoration(
-                                color: Color.fromRGBO(204, 231, 185, 1),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
+                  CarouselSlider.builder(itemCount: imagelist.length, itemBuilder:(context, index, realIndex) {
+              return Container(
+                        margin: const EdgeInsets.only(
+                            top: 20, bottom: 10, left: 10, right: 10),
+                        padding: const EdgeInsets.only(left: 20),
+                        decoration: const BoxDecoration(
+                          color: Color.fromRGBO(204, 231, 185, 1),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            const Spacer(
+                              flex: 1,
+                            ),
+                            Column(
+                              children: [
+                                const Spacer(
+                                  flex: 1,
                                 ),
-                              ),
-                              child: Row(
-                                children: [
-                                  const Spacer(
-                                    flex: 1,
-                                  ),
-                                  Column(
-                                    children: [
-                                      const Spacer(
-                                        flex: 1,
-                                      ),
-                                      Text(
-                                        "30% OFF",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Text(
-                                        "02-23 April",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      const Spacer(
-                                        flex: 1,
-                                      ),
-                                    ],
-                                  ),
-                                  const Spacer(
-                                    flex: 1,
-                                  ),
-                                  SizedBox(
-                                    height: 100,
-                                    width: 120,
-                                    child: Image.asset("assets/Group 5318.png"),
-                                  )
-                                ],
-                              ),
-                            ))
-                        .toList(),
-                    options: CarouselOptions(
-                      height: 150,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 4),
-                    ),
-                  ),
+                                Text(
+                                  "30% OFF",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "02-23 April",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                const Spacer(
+                                  flex: 1,
+                                ),
+                              ],
+                            ),
+                            
+                            SizedBox(
+                              height: 100,
+                              width: 150,
+                              child: Image.asset(imagelist[index]),
+                            )
+                          ],
+                        ),
+                      );
+            }, options: CarouselOptions(
+                height: 150,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 4),
+                onPageChanged: (index, reason) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  }
+              ),),
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: imagelist.asMap().entries.map((entry) {
-                      return Container(
-                        width: 8.0,
-                        height: 8.0,
-                        margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            //  color: currentIndex == entry.key
-                            // ? Colors.red // Active dot color
-                            // : Colors.grey,
-                            color: Colors.black),
-                      );
-                    }).toList(),
+                    children: [
+                      for (int i = 0; i < 3; i++)
+                      currentIndex == i
+                      ? Container(
+                          height: 7,
+                          width: 21,
+                          margin: const EdgeInsets.all(5),
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              color: Color.fromRGBO(131, 173, 101, 1),),
+                        )
+                      : Container(
+                          height: 7,
+                          width: 7,
+                          margin: const EdgeInsets.all(2),
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              color: Color.fromRGBO(159, 159, 159, 1)),
+                        ),
+                    ]
                   ),
                 ],
               ),
@@ -188,10 +205,11 @@ class _HomeState extends State {
                 SizedBox(
                   height: 230, 
                   child: ListView.builder(
-                      itemCount: 5,
+                      itemCount: plantindoorlist.length,
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
+                        final item=indoorlist;
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -216,13 +234,18 @@ class _HomeState extends State {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image.asset(
-                                  "assets/plant img2.png",
+                                Container(
+                                  height: 130,
+                                  width: 150,
+                                  child: Image.asset(
+                                    item[index].img,
+                                    fit:BoxFit.fill
+                                  ),
                                 ),
                                 SizedBox(
                                   //height: 20,
                                   child: Text(
-                                    "Snake Plants",
+                                    item[index].plantname,
                                     style: GoogleFonts.dmSans(
                                         fontSize: 13,
                                         fontWeight: FontWeight.w400),
@@ -230,12 +253,9 @@ class _HomeState extends State {
                                 ),
                                 Row(
                                   children: [
-                                    const Icon(
-                                      Icons.currency_rupee,
-                                      size: 20,
-                                    ),
+                                    
                                     Text(
-                                      "350",
+                                      "\$ ${item[index].price}",
                                       style: GoogleFonts.dmSans(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600),
@@ -283,10 +303,11 @@ class _HomeState extends State {
                 SizedBox(
                   height: 220,
                   child: ListView.builder(
-                      itemCount: 5,
+                      itemCount: plantoutdoorlist.length,
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
+                        final item=plantindoorlist;
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -313,13 +334,18 @@ class _HomeState extends State {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image.asset(
-                                  "assets/plantimg1.png",
+                                SizedBox(
+                                  height: 140,
+                                  width: 150,
+                                  child: Image.asset(
+                                    item[index].img,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                                 SizedBox(
                                   //height: 20,
                                   child: Text(
-                                    "Snake Plants",
+                                    item[index].plantname,
                                     style: GoogleFonts.dmSans(
                                         fontSize: 13,
                                         fontWeight: FontWeight.w400),
@@ -327,12 +353,9 @@ class _HomeState extends State {
                                 ),
                                 Row(
                                   children: [
-                                    const Icon(
-                                      Icons.currency_rupee,
-                                      size: 20,
-                                    ),
+                                   
                                     Text(
-                                      "450",
+                                      "\$ ${item[index].price}",
                                       style: GoogleFonts.dmSans(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:plants_app/controller/productcontroller.dart';
+import 'package:plants_app/model/plantsmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:plants_app/model/plantsqimodel.dart';
+
 
 class AddToCart extends StatefulWidget {
   const AddToCart({super.key});
@@ -11,18 +12,17 @@ class AddToCart extends StatefulWidget {
 }
 
 class _AddToCartState extends State {
-  @override
-  // void initState() {
-  //   super.initState();
+  void removefromcart(Plant obj){
+    setState(() {
+      plantlist.remove(obj);
+    });
 
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     Provider.of<ProductController>(context, listen: false).getOrderData();
-  //   });
-  // }
+  }
 
+ 
   @override
   Widget build(BuildContext context) {
-    // var productdetail = Provider.of<ProductController>(context, listen: false);
+    
 
     return Scaffold(
         appBar: AppBar(
@@ -63,7 +63,8 @@ class _AddToCartState extends State {
                           flex: 1,
                         ),
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Total Price",
@@ -79,22 +80,37 @@ class _AddToCartState extends State {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: const BoxDecoration(
-                                    color: Color.fromARGB(255, 67, 139, 241),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                child: Text(
-                                  "Payment",
-                                  style: GoogleFonts.dmSans(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: const BoxDecoration(
+                                        color: Color.fromARGB(255, 67, 139, 241),
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(10))),
+                                    child: Text(
+                                      "Payment",
+                                      style: GoogleFonts.dmSans(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                InkWell(
+                                  onTap: (){
+                                    removefromcart(plant);
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.only(left: 10),
+                                    child: const Icon(Icons.delete_outlined),
+                                  ),
+                                )
+
+                              
+                              ],
                             )
                           ],
                         ),

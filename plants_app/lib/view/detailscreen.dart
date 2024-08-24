@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:plants_app/model/plantsmodel.dart';
 import 'package:plants_app/view/productaddtocart.dart';
 import 'package:provider/provider.dart';
 import 'package:plants_app/controller/productcontroller.dart';
-import 'package:plants_app/model/plantsqimodel.dart';
+
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
@@ -13,7 +14,10 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State {
-  @override
+  
+  void addPlantToList(Plant plant) {
+  plantlist.add(plant);
+}
   Widget build(BuildContext context) {
     var productdetail = Provider.of<ProductController>(context, listen: false);
 
@@ -26,55 +30,14 @@ class _DetailScreenState extends State {
               flex: 1,
             ),
             Container(
+              width: MediaQuery.of(context).size.width*0.8,
+              height: MediaQuery.of(context).size.height*0.45,
+              padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.only(
-                  top: 10, bottom: 20, left: 20, right: 20),
-              child: Column(
-                children: [
-                  CarouselSlider(
-                    items: productdetail.imglist
-                        .map(
-                          (imagelist) => Container(
-                            padding: const EdgeInsets.all(20),
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                                image: DecorationImage(
-                                    image:
-                                        AssetImage("assets/plant img2.png"))),
-                            // child: Image.asset(
-                            //   "assets/plant img2.png",
-                            //   height: 300,
-                            //   width: 300,
-                            // ),
-                          ),
-                        )
-                        .toList(),
-                    options: CarouselOptions(
-                      height: 300,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 4),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:
-                        productdetail.imglist.asMap().entries.map((entry) {
-                      return Container(
-                        width: 8.0,
-                        height: 8.0,
-                        margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            //  color: currentIndex == entry.key
-                            // ? Colors.red // Active dot color
-                            // : Colors.grey,
-                            color: Colors.black),
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
+                  top: 10, bottom: 20, left: 40, right: 40),
+                  decoration: BoxDecoration(border: Border.all(style: BorderStyle.solid,color: Colors.grey),),
+              child:Image.asset("assets/zamia green.jpeg",fit: BoxFit.fill,)
+              
             ),
             Container(
               margin: const EdgeInsets.only(
@@ -225,8 +188,10 @@ class _DetailScreenState extends State {
                           final Plant plants = Plant(
                               mobileno: 1234567890,
                               plantname: "Snake Plants",
-                              price: 350);
-                          insertOrder(plants);
+                              price: 350,
+                              img: "assets/zamia green.jpeg"
+                              );
+                          addPlantToList(plants);
 
                           Navigator.push(
                             context,

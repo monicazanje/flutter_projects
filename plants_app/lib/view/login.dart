@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,9 +45,7 @@ class _Loginstate extends State<Login> {
       body: Center(
         child: Column(
           children: [
-            const Spacer(
-              flex: 1,
-            ),
+            
             // Container(
             //   height: 130,
             //   width: 130,
@@ -60,7 +56,7 @@ class _Loginstate extends State<Login> {
             //   child: Image.asset("assets/Group 5314.png"),
             // ),
             const Spacer(
-              flex: 3,
+              flex: 1,
             ),
             SizedBox(
               height: 90,
