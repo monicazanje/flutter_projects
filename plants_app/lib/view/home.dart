@@ -10,13 +10,13 @@ import 'package:plants_app/view/productaddtocart.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
   @override
-  State createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State {
+class _HomeState extends State<Home> {
   int currentIndex = 0;
-  List<Plant>plantindoorlist=indoorlist;
-  List<Plant>plantoutdoorlist=outdoorlist;
+  List<Plant>plantindoorlist=Plant.indoorlist;
+  List<Plant>plantoutdoorlist=Plant.outdoorlist;
 
   final List<String> imagelist = [
     "assets/Group 5318.png",
@@ -81,7 +81,7 @@ class _HomeState extends State {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const AddToCart(),
+                                    builder: (context) =>  AddToCart(currentindex: currentIndex,cartlist: plantindoorlist,),
                                   ),
                                 );
                               },
@@ -209,13 +209,13 @@ class _HomeState extends State {
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        final item=indoorlist;
+                        final item=Plant.indoorlist;
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const DetailScreen(),
+                                builder: (context) => DetailScreen(currentindex: index,imglist: Plant.indoorlist,),
                               ),
                             );
                           },
@@ -307,13 +307,13 @@ class _HomeState extends State {
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        final item=plantindoorlist;
+                        
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const DetailScreen(),
+                                builder: (context) =>  DetailScreen(currentindex: index,imglist: plantoutdoorlist,),
                               ),
                             );
                           },
@@ -338,14 +338,14 @@ class _HomeState extends State {
                                   height: 140,
                                   width: 150,
                                   child: Image.asset(
-                                    item[index].img,
+                                    plantoutdoorlist[index].img,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
                                 SizedBox(
                                   //height: 20,
                                   child: Text(
-                                    item[index].plantname,
+                                  plantoutdoorlist[index].plantname,
                                     style: GoogleFonts.dmSans(
                                         fontSize: 13,
                                         fontWeight: FontWeight.w400),
@@ -355,7 +355,7 @@ class _HomeState extends State {
                                   children: [
                                    
                                     Text(
-                                      "\$ ${item[index].price}",
+                                      "\$ ${plantoutdoorlist[index].price}",
                                       style: GoogleFonts.dmSans(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600),

@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plants_app/model/plantsmodel.dart';
 import 'package:plants_app/view/productaddtocart.dart';
-import 'package:provider/provider.dart';
-import 'package:plants_app/controller/productcontroller.dart';
 
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  final int currentindex;
+  final List<Plant>imglist;
+  const DetailScreen({super.key,required this.currentindex,required this.imglist});
   @override
-  State createState() => _DetailScreenState();
+  State<DetailScreen> createState() => _DetailScreenState();
 }
 
-class _DetailScreenState extends State {
+class _DetailScreenState extends State<DetailScreen> {
+  late int imgindex;
+  @override
+  void initState(){
+    super.initState();
+    imgindex=widget.currentindex;
+  }
   
   void addPlantToList(Plant plant) {
   plantlist.add(plant);
-}
+  }
+  @override
   Widget build(BuildContext context) {
-    var productdetail = Provider.of<ProductController>(context, listen: false);
-
+    final currentimg=widget.imglist[imgindex];
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 242, 241, 241),
         body: Column(
@@ -36,14 +41,14 @@ class _DetailScreenState extends State {
               margin: const EdgeInsets.only(
                   top: 10, bottom: 20, left: 40, right: 40),
                   decoration: BoxDecoration(border: Border.all(style: BorderStyle.solid,color: Colors.grey),),
-              child:Image.asset("assets/zamia green.jpeg",fit: BoxFit.fill,)
+              child:Image.asset(currentimg.img,fit: BoxFit.fill,)
               
             ),
             Container(
               margin: const EdgeInsets.only(
                   left: 30, right: 30, top: 10, bottom: 10),
               child: Text(
-                "Snake Plants",
+                currentimg.plantname,
                 style: GoogleFonts.dmSans(
                     fontSize: 22, fontWeight: FontWeight.w600),
               ),
@@ -172,7 +177,7 @@ class _DetailScreenState extends State {
                                 color: Colors.white),
                           ),
                           Text(
-                            "₹ 350",
+                            "\$ ${currentimg.price}",
                             style: GoogleFonts.dmSans(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -186,17 +191,17 @@ class _DetailScreenState extends State {
                       GestureDetector(
                         onTap: () {
                           final Plant plants = Plant(
-                              mobileno: 1234567890,
-                              plantname: "Snake Plants",
-                              price: 350,
-                              img: "assets/zamia green.jpeg"
+                              mobileno: currentimg.mobileno,
+                              plantname: currentimg.plantname,
+                              price: currentimg.price,
+                              img: currentimg.img
                               );
                           addPlantToList(plants);
 
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AddToCart(),
+                              builder: (context) =>AddToCart(currentindex: imgindex,cartlist: widget.imglist,),
                             ),
                           );
                         },

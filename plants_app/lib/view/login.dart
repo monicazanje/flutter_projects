@@ -45,22 +45,30 @@ class _Loginstate extends State<Login> {
       body: Center(
         child: Column(
           children: [
+            const SizedBox(height: 70,),
             
-            // Container(
-            //   height: 130,
-            //   width: 130,
-            //   decoration: const BoxDecoration(
-            //     border: Border.symmetric(horizontal: BorderSide()),
-            //   ),
-            //   alignment: Alignment.topLeft,
-            //   child: Image.asset("assets/Group 5314.png"),
-            // ),
-            const Spacer(
-              flex: 1,
+            Container(
+              height: 180,
+              width: 180,
+              margin: const EdgeInsets.only(
+                  bottom: 10, top: 10, left: 10, right: 10),
+              padding: const EdgeInsets.only(
+                  top: 10, bottom: 10, left: 10, right: 10),
+              decoration: const BoxDecoration(boxShadow: [
+                BoxShadow(
+                    blurRadius: 10,
+                    color: Color.fromARGB(255, 228, 227, 227),
+                    spreadRadius: 10)
+              ],),
+
+              child: Image.asset(
+                "assets/plant img2.png",
+              ),
             ),
+            const SizedBox(height: 30,),
             SizedBox(
               height: 90,
-              width: 250,
+              width: MediaQuery.of(context).size.width*0.85,
               child: Text(
                 " Log In ",
                 textAlign: TextAlign.center,
@@ -73,7 +81,7 @@ class _Loginstate extends State<Login> {
             ),
             SizedBox(
               height: 60,
-              width: 350,
+              width: MediaQuery.of(context).size.width*0.85,
               child: TextField(
                 controller: mobileno,
                 focusNode: mobilenofocus,
@@ -93,12 +101,10 @@ class _Loginstate extends State<Login> {
                 ),
               ),
             ),
-            const Spacer(
-              flex: 1,
-            ),
+            const SizedBox(height: 20,),
             Container(
               height: 60,
-              width: 360,
+              width: MediaQuery.of(context).size.width*0.85,
               decoration: const BoxDecoration(
                 // gradient: LinearGradient(
                 //   colors: [
@@ -154,26 +160,9 @@ class _Loginstate extends State<Login> {
               ),
             ),
             const Spacer(
-              flex: 2,
+              flex: 10,
             ),
-            Container(
-              height: 350,
-              width: 350,
-              margin: const EdgeInsets.only(
-                  bottom: 30, top: 10, left: 10, right: 10),
-              padding: const EdgeInsets.only(
-                  top: 10, bottom: 10, left: 10, right: 10),
-              decoration: const BoxDecoration(boxShadow: [
-                BoxShadow(
-                    blurRadius: 10,
-                    color: Color.fromARGB(255, 236, 235, 235),
-                    spreadRadius: 10)
-              ],),
-
-              child: Image.asset(
-                "assets/plant img2.png",
-              ),
-            ),
+            
           ],
         ),
       ),

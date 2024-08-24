@@ -1,17 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:plants_app/controller/productcontroller.dart';
+import 'package:plants_app/model/historymodel.dart';
 import 'package:plants_app/model/plantsmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 
 class AddToCart extends StatefulWidget {
-  const AddToCart({super.key});
+  final List<Plant>cartlist;
+  final int currentindex;
+  const AddToCart({super.key,required this.cartlist,required this.currentindex});
   @override
-  State createState() => _AddToCartState();
+  State<AddToCart> createState() => _AddToCartState();
 }
 
-class _AddToCartState extends State {
+class _AddToCartState extends State<AddToCart> {
+  late Razorpay _razorpay;
+  late int cartindex;
+  
+  @override
+  void initState() {
+    super.initState();
+    cartindex=widget.currentindex;
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    Fluttertoast.showToast(
+        msg: "Payment Succesful${response.paymentId!}",
+        toastLength: Toast.LENGTH_SHORT);
+    historyData.add(Historymodel(
+        name: "${widget.cartlist[widget.currentindex].plantname}",
+        status: true,
+        ammount: '${widget.cartlist[widget.currentindex].price}',
+        image: '${widget.cartlist[widget.currentindex].img}'),);
+  }
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "Payment Fail${response.message!}",
+        toastLength: Toast.LENGTH_SHORT);
+    historyData.add(
+      Historymodel(
+          name: '${widget.cartlist[widget.currentindex].plantname}',
+        status: false,
+        ammount: '${widget.cartlist[widget.currentindex].price}',
+        image: '${widget.cartlist[widget.currentindex].img}',),
+    );
+  }
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(
+        msg: "External${response.walletName!}",
+        toastLength: Toast.LENGTH_SHORT);
+  }
+  void openCheckout(amount) {
+    amount = amount * 100;
+    var options = {
+      // 'key': 'rzp_test_SZCJlxQmd4mfim',
+      'amount': amount, //in paise.
+      'name': 'Monika Zanje',
+      // 'order_id':
+      //     'YDLWRDoMOAtVu0kBqgbSuZBO', // Generate order_id using Orders API
+      'timeout': 160, // in seconds
+      'prefill': {
+        'contact': '7249520949',
+        'email': 'monikazanje29@gmail.com'
+      }
+    };
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint('Error: $e');
+      Fluttertoast.showToast(msg: "Error: $e");
+    }
+  }
   void removefromcart(Plant obj){
     setState(() {
       plantlist.remove(obj);
@@ -22,8 +87,7 @@ class _AddToCartState extends State {
  
   @override
   Widget build(BuildContext context) {
-    
-
+  
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 148, 190, 93),
@@ -50,7 +114,7 @@ class _AddToCartState extends State {
                     margin: const EdgeInsets.all(10),
                     child: Row(
                       children: [
-                        Image.asset("assets/plant img2.png"),
+                        Image.asset(plant.img),
                         const Spacer(
                           flex: 1,
                         ),
@@ -82,8 +146,15 @@ class _AddToCartState extends State {
                             ),
                             Row(
                               children: [
-                                GestureDetector(
-                                  onTap: () {},
+                                InkWell(
+                                  onTap: (){
+                                    setState(() {
+                                      int amount =
+                                           int.parse("${widget.cartlist[widget.currentindex].price}");
+                                           
+                                      openCheckout(amount);
+                                    });
+                                  },
                                   child: Container(
                                     padding: const EdgeInsets.all(5),
                                     decoration: const BoxDecoration(
