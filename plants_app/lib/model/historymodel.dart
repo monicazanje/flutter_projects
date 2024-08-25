@@ -2,13 +2,13 @@ class Historymodel {
   final String? name;
   final bool? status;
   final String? image;
-  final String? ammount;
+  final String? amount;
   
   Historymodel(
       {
       required this.name,
       required this.status,
-      required this.ammount,
+      required this.amount,
       required this.image,
     });
 }

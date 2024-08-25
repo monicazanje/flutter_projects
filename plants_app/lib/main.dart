@@ -15,7 +15,7 @@ void main()  async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   ); 
-  runApp(const MainApp());
+  runApp(const MyApp());
   //final database = await initialisedatabase();
   // database = openDatabase(
   //   p.join(await getDatabasesPath(), "plant1db.db"),
@@ -34,8 +34,8 @@ void main()  async{
   // plantlist = await getOrderData();
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   // final Database database;
 
   @override

@@ -53,7 +53,7 @@ class _GetstartedState extends State {
             height: 50,
             width: 320,
             margin: const EdgeInsets.only(
-              top: 90,
+              top: 50,
               left: 15,
               right: 15,
               bottom: 90,
@@ -100,13 +100,7 @@ class _GetstartedState extends State {
               ),
             ),
           ),
-          const Spacer(
-            flex: 1,
-          ),
-          Container(
-            height: 32,
-            color: const Color.fromRGBO(123, 123, 123, 1),
-          ),
+          
         ],
       ),
     );
