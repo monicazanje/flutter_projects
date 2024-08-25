@@ -18,7 +18,7 @@ class AddToCart extends StatefulWidget {
 }
 
 class _AddToCartState extends State<AddToCart> {
-  late Razorpay _razorpay;
+  late  Razorpay _razorpay;
   late int cartindex;
 
   @override
