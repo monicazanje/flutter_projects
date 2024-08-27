@@ -174,13 +174,13 @@ class _HomeScreenState extends State {
       page = page + 1;
     });
     String url =
-        "https://api.pexels.com/v1/curated?per_page=80&page=" + page.toString();
+        "https://api.unsplash.com/photos/?client id=UA51nDU0yBQcjxXFsFRBoQjrg8oU4svIs8DyGi_oyX0" + page.toString();
     await http.get(
       Uri.parse(url),
-      headers: {
-        'Authorization':
-            'YCAOi5EDyJehI6DZTdlA8LXUgC37jxfndTMyezGIMN0uC8KiUOzIvo0R'
-      },
+      // headers: {
+      //   'Authorization':
+      //       'UA51nDU0yBQcjxXFsFRBoQjrg8oU4svIs8DyGi_oyX0'
+      // },
     ).then((value) {
       Map result = jsonDecode(value.body);
       setState(() {
