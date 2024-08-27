@@ -201,7 +201,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>AddToCart(currentindex: imgindex,cartlist: widget.imglist,),
+                              builder: (context) =>AddToCart(currentindex: imgindex,cartlist: plantlist,),
                             ),
                           );
                         },

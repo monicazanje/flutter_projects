@@ -78,12 +78,12 @@ class _HomeState extends State<Home> {
                             ),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>  AddToCart(currentindex: currentIndex,cartlist: plantindoorlist,),
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) =>  AddToCart(currentindex: currentIndex,cartlist: plantindoorlist,),
+                                //   ),
+                                // );
                               },
                               child: Image.asset(
                                 "assets/shopping-bag.png",
@@ -234,7 +234,7 @@ class _HomeState extends State<Home> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 130,
                                   width: 150,
                                   child: Image.asset(

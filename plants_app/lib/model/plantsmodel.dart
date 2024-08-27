@@ -97,7 +97,7 @@ Future<void> updateorder(Plant obj) async {
 }
 
 List<Plant> plantlist = [
-  Plant(mobileno: 1234567890, plantname: "asdfgh", price: 350,img: "assets/arborvitae.jpg")
+  Plant(mobileno: 1234567890, plantname: " zamia1 ", price: 350,img: "assets/arborvitae.jpg")
 ];
 
 

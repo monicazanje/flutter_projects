@@ -6,6 +6,7 @@ import 'package:plants_app/model/plantsmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+// import 'package:http/http.dart'as http;
 
 class AddToCart extends StatefulWidget {
   final List<Plant> cartlist;
@@ -18,18 +19,19 @@ class AddToCart extends StatefulWidget {
 }
 
 class _AddToCartState extends State<AddToCart> {
-  late  Razorpay _razorpay;
+  // late  Razorpay _razorpay;
   late int cartindex;
+  final  _razorpay = Razorpay();
 
   @override
   void initState() {
     super.initState();
     cartindex = widget.currentindex;
-    _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
+ 
 
   @override
   void dispose() {
@@ -76,17 +78,19 @@ class _AddToCartState extends State<AddToCart> {
   }
 
   void openCheckout(double amount) {
-    amount = amount * 100.toDouble(); // Convert to paise
+    amount = amount * 100.toDouble(); 
     var options = {
-      'key': 'rzp_test_it8oYn1wKBwt6N',
-      'amount': amount,
-      'name': 'Monika Zanje',
-      'timeout': 160, // in seconds
-      'prefill': {
-        'contact': '7249520949',
-        'email': 'monikazanje29@gmail.com',
-      }
-    };
+  'key': 'rzp_test_SZCJlxQmd4mfim',
+  'amount': amount, //in paise.
+  'name': 'Monika Zanje',
+  // 'order_id': 'order_EMBFqjDHEEn80l', 
+  'description': 'Fine Plants',
+  'timeout': 160, // in seconds
+  'prefill': {
+    'contact': '9000090000',
+    'email': 'gaurav.kumar@example.com'
+  }
+};
 
     try {
       _razorpay.open(options);
@@ -158,11 +162,11 @@ class _AddToCartState extends State<AddToCart> {
                           children: [
                             InkWell(
                               onTap: () {
-                                // cartindex = index; 
-                                setState(() {
-                                  double amount = double.parse(plant.price.toString());
-                                  openCheckout(amount);
-                                });
+                                cartindex = index; 
+                                // setState(() {
+                                //   double amount = double.parse(plant.price.toString());
+                                //   openCheckout(amount);
+                                // });
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(5),
