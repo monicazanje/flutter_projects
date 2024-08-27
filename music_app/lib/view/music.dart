@@ -161,43 +161,61 @@ class _MusicState extends State<Music> {
                     ),
                   ),
                   Positioned(
-                    left: 30,
-                    bottom: 0,
-                    child: IconButton(
-                      icon: currentSong.isFavorite == true
-                          ? const Icon(
-                              Icons.favorite,
-                              color: Colors.red,
-                              size: 30,
-                            )
-                          : const Icon(
-                              Icons.favorite_border_outlined,
-                              color: Colors.red,
-                              size: 30,
-                            ),
-                      onPressed: (){
-                        setState(() {
-                          currentSong.isFavorite = !currentSong.isFavorite;
-                          // FavoriteModel.addfavorite(currentSong);
-                           if (FavoriteModel.instance.isFavorite(currentSong)) {
-                            FavoriteModel.instance.removeFavorite(currentSong);
-                          } else {
-                            FavoriteModel.instance.addFavorite(currentSong);
-                          }
-                        });
-                      }
+                    right: 0,
+                    bottom: 50,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      // padding: const EdgeInsets.only(right: 2),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromARGB(255, 192, 192, 192),
+                      ),
+                      child: IconButton(
+                        icon: currentSong.isFavorite == true
+                            ? const Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                                size: 27,
+                              )
+                            : const Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.red,
+                                size: 27,
+                              ),
+                        onPressed: (){
+                          setState(() {
+                            currentSong.isFavorite = !currentSong.isFavorite;
+                            // FavoriteModel.addfavorite(currentSong);
+                             if (FavoriteModel.instance.isFavorite(currentSong)) {
+                              FavoriteModel.instance.removeFavorite(currentSong);
+                            } else {
+                              FavoriteModel.instance.addFavorite(currentSong);
+                            }
+                          });
+                        }
+                      ),
                     ),
                   ),
                   Container(
                     alignment: Alignment.bottomRight,
-                    child: IconButton(
-                      icon: const Icon(Icons.ios_share,
-                          size: 25, color: Color.fromRGBO(230, 154, 21, 1)),
-                      onPressed: () {
-                         setState(() {
-                          CartModel.instance.addCart(currentSong);
-                        });
-                      },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      padding: const EdgeInsets.only(right: 5),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromARGB(255, 232, 232, 232),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.ios_share,
+                            size: 25, color: Color.fromRGBO(230, 154, 21, 1)),
+                        onPressed: () {
+                           setState(() {
+                            CartModel.instance.addCart(currentSong);
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ],

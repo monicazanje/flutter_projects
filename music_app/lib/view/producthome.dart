@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/view/login.dart';
 import 'package:music_app/view/navigator.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,7 +79,7 @@ class _HomePage extends State {
                     )),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context){return const SignIn();}));
+                    // Navigator.push(context, MaterialPageRoute(builder: (context){return const SignIn();}));
                   },
                   child: Text(
                     "Continue with Email",
