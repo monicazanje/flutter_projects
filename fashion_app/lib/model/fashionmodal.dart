@@ -46,6 +46,12 @@ class Data {
         name: "Tagerine Shirt",
         price: 240.32),
         Data(
+        img: "assets/women/kurties1.jpg",
+        name: "Leather Coart",
+        price: 257.80),
+        Data(
+        img: "assets/other/apple-iphone-14-pro-max-1.jpg", name: "Tagerine Shirt", price: 126.73),
+        Data(
         img: "assets/other/headphone.jpg",
         name: "Leather Coart",
         price: 257.80),
@@ -68,9 +74,10 @@ class Data {
         name: "Tagerine Shirt",
         price: 240.32),
     Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-        Data(
-        img: "assets/other/apple-iphone-14-pro-max-1.jpg", name: "Tagerine Shirt", price: 126.73),
+        img: "assets/Rectangle 980 (1).png",
+        name: "Leather Coart",
+        price: 257.80),
+    
     Data(
         img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
@@ -85,7 +92,7 @@ class Data {
     Data(
         img: "assets/women/winter clothes.jpg", name: "Tagerine Shirt", price: 126.73),
     Data(
-        img: "assets/Rectangle 980 (1).png",
+        img: "assets/women/kurties1.jpg",
         name: "Leather Coart",
         price: 257.80),
   ];
