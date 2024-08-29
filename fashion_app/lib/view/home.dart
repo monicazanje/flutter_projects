@@ -13,43 +13,44 @@ class Home extends StatefulWidget {
 
 class _HomedingState extends State<Home> {
   int currentindex = 0;
-  List image = [
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
-    Data(
-        img: "assets/Rectangle 981 (1).png",
-        name: "Tagerine Shirt",
-        price: 240.32),
-    Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-    Data(
-        img: "assets/Rectangle 980 (1).png",
-        name: "Leather Coart",
-        price: 257.80),
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
-    Data(
-        img: "assets/Rectangle 981 (1).png",
-        name: "Tagerine Shirt",
-        price: 240.32),
-    Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-    Data(
-        img: "assets/Rectangle 980 (1).png",
-        name: "Leather Coart",
-        price: 257.80),
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
-    Data(
-        img: "assets/Rectangle 981 (1).png",
-        name: "Tagerine Shirt",
-        price: 240.32),
-    Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-    Data(
-        img: "assets/Rectangle 980 (1).png",
-        name: "Leather Coart",
-        price: 257.80),
-  ];
+  // List image = [
+  //   Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
+  //   Data(
+  //       img: "assets/Rectangle 981 (1).png",
+  //       name: "Tagerine Shirt",
+  //       price: 240.32),
+  //   Data(
+  //       img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+  //   Data(
+  //       img: "assets/Rectangle 980 (1).png",
+  //       name: "Leather Coart",
+  //       price: 257.80),
+  //   Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
+  //   Data(
+  //       img: "assets/Rectangle 981 (1).png",
+  //       name: "Tagerine Shirt",
+  //       price: 240.32),
+  //   Data(
+  //       img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+  //   Data(
+  //       img: "assets/Rectangle 980 (1).png",
+  //       name: "Leather Coart",
+  //       price: 257.80),
+  //   Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
+  //   Data(
+  //       img: "assets/Rectangle 981 (1).png",
+  //       name: "Tagerine Shirt",
+  //       price: 240.32),
+  //   Data(
+  //       img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+  //   Data(
+  //       img: "assets/Rectangle 980 (1).png",
+  //       name: "Leather Coart",
+  //       price: 257.80),
+  // ];
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -102,7 +103,12 @@ class _HomedingState extends State<Home> {
                     color: Colors.black),
               ),
             ),
-            const Categories(),
+            Categories(oncatselected: (index) {
+              setState(() {
+                currentindex = index;
+              });
+            },
+            selectedIndex:currentindex,),
             
             Expanded(
               flex: 10,
@@ -116,9 +122,10 @@ class _HomedingState extends State<Home> {
                       mainAxisSpacing: 4,
                       crossAxisSpacing: 4),
                   scrollDirection: Axis.vertical,
-                  itemCount: Categorymodel.catlist.length,
+                  itemCount: Categorymodel.catlist[currentindex].namelist.length,
+                  
                   itemBuilder: (context, index) {
-                    final item1=Categorymodel.catlist[index].namelist[index];
+                    final item1=Categorymodel.catlist[currentindex].namelist;
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(context,
@@ -138,7 +145,7 @@ class _HomedingState extends State<Home> {
                                 AspectRatio(
                                   aspectRatio: 0.9,
                                   child: Image.asset(
-                                    item1.img,
+                                    item1[index].img,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -159,14 +166,14 @@ class _HomedingState extends State<Home> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    " \$${item1.price}",
+                                    " \$${item1[index].price}",
                                     style: GoogleFonts.imprima(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black),
                                   ),
                                   Text(
-                                    item1.name,
+                                    item1[index].name,
                                     style: GoogleFonts.imprima(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600,
@@ -185,61 +192,6 @@ class _HomedingState extends State<Home> {
             ),
           ],
         ),
-        // bottomNavigationBar: NavigationBar(
-        //   onDestinationSelected: (int index) {
-        //     setState(() {
-        //       currentindex = index;
-        //     });
-        //   },
-        //   indicatorColor: Colors.white,
-        //   selectedIndex: currentindex,
-        //   destinations: const [
-        //     NavigationDestination(
-        //       selectedIcon: Icon(
-        //         Icons.home,
-        //         color: Colors.orange,
-        //       ),
-        //       icon: Icon(
-        //         Icons.home_outlined,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'home',
-        //     ),
-        //     NavigationDestination(
-        //       selectedIcon: Icon(
-        //         Icons.search,
-        //         color: Colors.orange,
-        //       ),
-        //       icon: Icon(
-        //         Icons.search_outlined,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'home',
-        //     ),
-        //     NavigationDestination(
-        //       selectedIcon: Icon(
-        //         Icons.shopping_bag,
-        //         color: Colors.orange,
-        //       ),
-        //       icon: Icon(
-        //         Icons.shopping_bag_outlined,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'home',
-        //     ),
-        //     NavigationDestination(
-        //       selectedIcon: Icon(
-        //         Icons.settings_outlined,
-        //         color: Colors.orange,
-        //       ),
-        //       icon: Icon(
-        //         Icons.settings,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'home',
-        //     ),
-        //   ],
-        // )
         );
   }
 }

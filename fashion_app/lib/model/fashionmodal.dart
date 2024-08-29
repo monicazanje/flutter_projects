@@ -24,34 +24,38 @@ class Data {
   Data({required this.img,required this.name,required this.price,});
   static List<Data> fashionlist=[
     Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
+    Data(img: "assets/other/ITechShop wireless.jpg", name: "Leather Coart", price: 257.30),
     Data(
-        img: "assets/Rectangle 981 (1).png",
+        img: "assets/kids/30 and broke.jpg", name: "Tagerine Shirt", price: 126.73),
+    Data(
+        img: "assets/kids/Baby Girl Dungree.jpg",
+        name: "Leather Coart",
+        price: 257.80),
+   
+    Data(img: "assets/women/Elegant Emerald Wine Dress.jpg", name: "Leather Coart", price: 257.30),
+    Data(
+        img: "assets/women/midi dress.jpg",
         name: "Tagerine Shirt",
         price: 240.32),
-    Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
     Data(
         img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
         price: 257.80),
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
     Data(
-        img: "assets/Rectangle 981 (1).png",
+        img: "assets/other/samsung Galaxy wireless.jpg",
         name: "Tagerine Shirt",
         price: 240.32),
-    Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-    Data(
-        img: "assets/Rectangle 980 (1).png",
+        Data(
+        img: "assets/other/headphone.jpg",
         name: "Leather Coart",
         price: 257.80),
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
     Data(
         img: "assets/Rectangle 981 (1).png",
         name: "Tagerine Shirt",
         price: 240.32),
     Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+        img: "assets/women/winter clothes.jpg", name: "Tagerine Shirt", price: 126.73),
+
     Data(
         img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
@@ -65,47 +69,53 @@ class Data {
         price: 240.32),
     Data(
         img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+        Data(
+        img: "assets/other/apple-iphone-14-pro-max-1.jpg", name: "Tagerine Shirt", price: 126.73),
     Data(
         img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
         price: 257.80),
   ];
   static List<Data>womeList=[
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
+    Data(img: "assets/women/Elegant Emerald Wine Dress.jpg", name: "Leather Coart", price: 257.30),
     Data(
-        img: "assets/Rectangle 981 (1).png",
+        img: "assets/women/midi dress.jpg",
         name: "Tagerine Shirt",
         price: 240.32),
     Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+        img: "assets/women/winter clothes.jpg", name: "Tagerine Shirt", price: 126.73),
     Data(
         img: "assets/Rectangle 980 (1).png",
         name: "Leather Coart",
         price: 257.80),
   ];
   static List<Data>kidslist=[
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
+    Data(img: "assets/kids/2Pcs Casual cotton.jpg", name: "Leather Coart", price: 257.30),
     Data(
-        img: "assets/Rectangle 981 (1).png",
+        img: "assets/kids/13 Rock Star ideas.jpg",
         name: "Tagerine Shirt",
         price: 240.32),
     Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+        img: "assets/kids/30 and broke.jpg", name: "Tagerine Shirt", price: 126.73),
     Data(
-        img: "assets/Rectangle 980 (1).png",
+        img: "assets/kids/Baby Girl Dungree.jpg",
+        name: "Leather Coart",
+        price: 257.80),
+    Data(
+        img: "assets/kids/Kid Floral Print.jpg",
         name: "Leather Coart",
         price: 257.80),
   ];
   static List<Data>otherlist=[
-    Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
+    Data(img: "assets/other/ITechShop wireless.jpg", name: "Leather Coart", price: 257.30),
     Data(
-        img: "assets/Rectangle 981 (1).png",
+        img: "assets/other/samsung Galaxy wireless.jpg",
         name: "Tagerine Shirt",
         price: 240.32),
     Data(
-        img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
+        img: "assets/other/apple-iphone-14-pro-max-1.jpg", name: "Tagerine Shirt", price: 126.73),
     Data(
-        img: "assets/Rectangle 980 (1).png",
+        img: "assets/other/headphone.jpg",
         name: "Leather Coart",
         price: 257.80),
   ];
