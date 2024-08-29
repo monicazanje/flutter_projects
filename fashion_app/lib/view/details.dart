@@ -1,6 +1,5 @@
 import 'package:fashion_app/view/cart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Details extends StatefulWidget {
@@ -45,7 +44,7 @@ class _DetailsState extends State<Details> {
                 ),
                 GestureDetector(
                   onTap: () {},
-                  child: Image.asset("assets/Group 63.png"),
+                  child: Image.asset("assets/Group 63.png",fit: BoxFit.fill,),
                 ),
               ],
             ),
@@ -103,7 +102,7 @@ class _DetailsState extends State<Details> {
           Container(
             margin: const EdgeInsets.only(
               left: 30,
-              top: 20,
+              top: 10,
             ),
             child: Text(
               "Size",
@@ -238,8 +237,9 @@ class _DetailsState extends State<Details> {
               ],
             ),
           ),
+          const Spacer(flex: 1,),
           Container(
-            margin: const EdgeInsets.only(left: 30, right: 30, top: 50),
+            margin: const EdgeInsets.only(left: 30, right: 30,bottom: 5),
             child: Row(
               children: [
                 Text(
@@ -268,7 +268,7 @@ class _DetailsState extends State<Details> {
                       );
                     },
                     style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
+                      backgroundColor: WidgetStatePropertyAll(
                         Color.fromRGBO(255, 122, 0, 1),
                       ),
                     ),

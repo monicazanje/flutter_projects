@@ -1,6 +1,5 @@
 import 'package:fashion_app/view/checkout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -120,14 +119,17 @@ class _CartState extends State<Cart> {
                         // decoration: BoxDecoration(
                         //     border: Border.all(style: BorderStyle.solid)),
                         child: Row(
+                          
                           children: [
                             Container(
                               height: MediaQuery.of(context).size.height * 0.2,
-                              width: MediaQuery.of(context).size.width * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.25,
                               decoration: const BoxDecoration(
+
                                 image: DecorationImage(
                                   image: AssetImage(
                                       "assets/Rectangle 980 (1).png"),
+                                      fit: BoxFit.fill
                                 ),
                               ),
                             ),
@@ -150,7 +152,7 @@ class _CartState extends State<Cart> {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 20,
+                                  height: 10,
                                 ),
                                 SizedBox(
                                   height: 60,
@@ -169,17 +171,18 @@ class _CartState extends State<Cart> {
                                       "\$257.85",
                                       style: GoogleFonts.imprima(
                                           fontSize: 34,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w400,
                                           color: Colors.black),
                                     ),
                                     const SizedBox(
                                       width: 50,
                                     ),
+                                    // const Spacer(flex: 1,),
                                     Text(
                                       "1x",
                                       style: GoogleFonts.imprima(
                                           fontSize: 34,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w400,
                                           color: Colors.black),
                                     ),
                                   ],

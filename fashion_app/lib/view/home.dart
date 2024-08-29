@@ -1,4 +1,6 @@
+import 'package:fashion_app/model/fashionmodal.dart';
 import 'package:fashion_app/view/details.dart';
+import 'package:fashion_app/view/widgets/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,12 +10,6 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomedingState();
 }
 
-class Data {
-  final double price;
-  final String img;
-  final String name;
-  Data({required this.img, required this.name, required this.price});
-}
 
 class _HomedingState extends State<Home> {
   int currentindex = 0;
@@ -106,123 +102,23 @@ class _HomedingState extends State<Home> {
                     color: Colors.black),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(
-                  left: 20, right: 20, top: 20, bottom: 20),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 18, right: 18, top: 8, bottom: 8),
-                      decoration: BoxDecoration(
-                          color: const Color.fromRGBO(255, 122, 0, 1),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Text(
-                        "All",
-                        style: GoogleFonts.imprima(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  const Spacer(
-                    flex: 1,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 18, right: 18, top: 8, bottom: 8),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Text(
-                        "Men",
-                        style: GoogleFonts.imprima(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  const Spacer(
-                    flex: 1,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 18, right: 18, top: 8, bottom: 8),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Text(
-                        "Women",
-                        style: GoogleFonts.imprima(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  const Spacer(
-                    flex: 1,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 18, right: 18, top: 8, bottom: 8),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Text(
-                        "Kids",
-                        style: GoogleFonts.imprima(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  const Spacer(
-                    flex: 1,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          left: 18, right: 18, top: 8, bottom: 8),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Text(
-                        "Others",
-                        style: GoogleFonts.imprima(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            const Categories(),
+            
             Expanded(
+              flex: 10,
               child: Container(
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: GridView.builder(
+                  padding: EdgeInsets.zero,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 3 / 4,
                       mainAxisSpacing: 4,
                       crossAxisSpacing: 4),
                   scrollDirection: Axis.vertical,
-                  itemCount: image.length,
+                  itemCount: Categorymodel.catlist.length,
                   itemBuilder: (context, index) {
+                    final item1=Categorymodel.catlist[index].namelist[index];
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(context,
@@ -235,15 +131,14 @@ class _HomedingState extends State<Home> {
                         // decoration: BoxDecoration(
                         //     border: Border.all(style: BorderStyle.solid)),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          
                           children: [
                             Stack(
                               children: [
                                 AspectRatio(
                                   aspectRatio: 0.9,
                                   child: Image.asset(
-                                    image[index].img,
+                                    item1.img,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -264,14 +159,14 @@ class _HomedingState extends State<Home> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    " \$${image[index].price}",
+                                    " \$${item1.price}",
                                     style: GoogleFonts.imprima(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black),
                                   ),
                                   Text(
-                                    image[index].name,
+                                    item1.name,
                                     style: GoogleFonts.imprima(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600,
@@ -290,60 +185,61 @@ class _HomedingState extends State<Home> {
             ),
           ],
         ),
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentindex = index;
-            });
-          },
-          indicatorColor: Colors.white,
-          selectedIndex: currentindex,
-          destinations: const [
-            NavigationDestination(
-              selectedIcon: Icon(
-                Icons.home,
-                color: Colors.orange,
-              ),
-              icon: Icon(
-                Icons.home_outlined,
-                color: Colors.black,
-              ),
-              label: 'home',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(
-                Icons.search,
-                color: Colors.orange,
-              ),
-              icon: Icon(
-                Icons.search_outlined,
-                color: Colors.black,
-              ),
-              label: 'home',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(
-                Icons.shopping_bag,
-                color: Colors.orange,
-              ),
-              icon: Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.black,
-              ),
-              label: 'home',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(
-                Icons.settings_outlined,
-                color: Colors.orange,
-              ),
-              icon: Icon(
-                Icons.settings,
-                color: Colors.black,
-              ),
-              label: 'home',
-            ),
-          ],
-        ));
+        // bottomNavigationBar: NavigationBar(
+        //   onDestinationSelected: (int index) {
+        //     setState(() {
+        //       currentindex = index;
+        //     });
+        //   },
+        //   indicatorColor: Colors.white,
+        //   selectedIndex: currentindex,
+        //   destinations: const [
+        //     NavigationDestination(
+        //       selectedIcon: Icon(
+        //         Icons.home,
+        //         color: Colors.orange,
+        //       ),
+        //       icon: Icon(
+        //         Icons.home_outlined,
+        //         color: Colors.black,
+        //       ),
+        //       label: 'home',
+        //     ),
+        //     NavigationDestination(
+        //       selectedIcon: Icon(
+        //         Icons.search,
+        //         color: Colors.orange,
+        //       ),
+        //       icon: Icon(
+        //         Icons.search_outlined,
+        //         color: Colors.black,
+        //       ),
+        //       label: 'home',
+        //     ),
+        //     NavigationDestination(
+        //       selectedIcon: Icon(
+        //         Icons.shopping_bag,
+        //         color: Colors.orange,
+        //       ),
+        //       icon: Icon(
+        //         Icons.shopping_bag_outlined,
+        //         color: Colors.black,
+        //       ),
+        //       label: 'home',
+        //     ),
+        //     NavigationDestination(
+        //       selectedIcon: Icon(
+        //         Icons.settings_outlined,
+        //         color: Colors.orange,
+        //       ),
+        //       icon: Icon(
+        //         Icons.settings,
+        //         color: Colors.black,
+        //       ),
+        //       label: 'home',
+        //     ),
+        //   ],
+        // )
+        );
   }
 }

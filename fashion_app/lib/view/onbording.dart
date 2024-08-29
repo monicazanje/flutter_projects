@@ -1,4 +1,4 @@
-import 'package:fashion_app/view/home.dart';
+import 'package:fashion_app/view/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,7 +60,7 @@ class _OnbordingState extends State<Onbording> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
+                      backgroundColor: WidgetStatePropertyAll(
                         Colors.white,
                       ),
                     ),
@@ -85,13 +85,13 @@ class _OnbordingState extends State<Onbording> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Home();
+                            return const Navigation();
                           },
                         ),
                       );
                     },
                     style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
+                      backgroundColor: WidgetStatePropertyAll(
                         Color.fromRGBO(255, 122, 0, 1),
                       ),
                     ),
