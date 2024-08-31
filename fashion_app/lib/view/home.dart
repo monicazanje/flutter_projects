@@ -130,7 +130,7 @@ class _HomedingState extends State<Home> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const Details();
+                          return Details(currentindex: index,imglist: item1,);
                         }));
                       },
                       child: Container(
