@@ -1,5 +1,6 @@
 import 'package:fashion_app/model/fashionmodal.dart';
 import 'package:fashion_app/view/details.dart';
+import 'package:fashion_app/view/profile.dart';
 import 'package:fashion_app/view/widgets/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,41 +14,6 @@ class Home extends StatefulWidget {
 
 class _HomedingState extends State<Home> {
   int currentindex = 0;
-  // List image = [
-  //   Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
-  //   Data(
-  //       img: "assets/Rectangle 981 (1).png",
-  //       name: "Tagerine Shirt",
-  //       price: 240.32),
-  //   Data(
-  //       img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-  //   Data(
-  //       img: "assets/Rectangle 980 (1).png",
-  //       name: "Leather Coart",
-  //       price: 257.80),
-  //   Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
-  //   Data(
-  //       img: "assets/Rectangle 981 (1).png",
-  //       name: "Tagerine Shirt",
-  //       price: 240.32),
-  //   Data(
-  //       img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-  //   Data(
-  //       img: "assets/Rectangle 980 (1).png",
-  //       name: "Leather Coart",
-  //       price: 257.80),
-  //   Data(img: "assets/Rectangle 980.png", name: "Leather Coart", price: 257.30),
-  //   Data(
-  //       img: "assets/Rectangle 981 (1).png",
-  //       name: "Tagerine Shirt",
-  //       price: 240.32),
-  //   Data(
-  //       img: "assets/Rectangle 981.png", name: "Tagerine Shirt", price: 126.73),
-  //   Data(
-  //       img: "assets/Rectangle 980 (1).png",
-  //       name: "Leather Coart",
-  //       price: 257.80),
-  // ];
   @override
   Widget build(BuildContext context) {
     
@@ -72,11 +38,13 @@ class _HomedingState extends State<Home> {
                   const Spacer(
                     flex: 1,
                   ),
-                  SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: GestureDetector(
-                      onTap: () {},
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const Profile(),),);
+                    },
+                    child: SizedBox(
+                      height: 30,
+                      width: 30,
                       child: Image.asset("assets/Profile.png"),
                     ),
                   )

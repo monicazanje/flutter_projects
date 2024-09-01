@@ -63,16 +63,26 @@ class _NavigationState extends State<Navigation>{
               ),
               label: 'Search',
             ),
-            NavigationDestination(
-              selectedIcon: Icon(
-                Icons.shopping_bag,
-                color: Colors.orange,
+            Badge(
+              label: Text("0"),
+              offset: Offset(-30, 10),
+              backgroundColor: Colors.orange,
+              textStyle: TextStyle(fontSize: 15,),
+              
+              // alignment: AlignmentDirectional.topCenter ,
+             
+              
+              child: NavigationDestination(
+                selectedIcon: Icon(
+                  Icons.shopping_bag,
+                  color: Colors.orange,
+                ),
+                icon: Icon(
+                  Icons.shopping_bag_outlined,
+                  color: Colors.black,
+                ),
+                label: 'Cart',
               ),
-              icon: Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.black,
-              ),
-              label: 'Cart',
             ),
             NavigationDestination(
               selectedIcon: Icon(
